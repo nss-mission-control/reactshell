@@ -1,11 +1,94 @@
 import React, { Component } from 'react';
+// import MessageModular from "../modularMessage";
+import { confirmAlert } from "react-confirm-alert";
+import APIManager from "../../../modules/APIManager";
+import "./OldMessages.css";
 
 export default class OldMessages extends Component {
+
+  deleteMessage = (event) => {
+    APIManager.deleteItem("messages", event.id)
+  }
+
+  saveMessage = (event) => {
+    if (this.content.value !== "") {
+      event.messageContent = this.content.value;
+    }
+    // let messageContent = {messageContent: this.content.value}
+    APIManager.updateItem("messages", event.id, event)
+  }
+
+  editMessage = (event) => {
+    confirmAlert({
+      customUI: ({ onClose }) => {
+        // event.target.id = parseInt(event.target.id);
+        let tempId = parseInt(event.target.id);
+        let thisMessage = this.props.messages.filter(message => message.id === tempId);
+        thisMessage = thisMessage[0];
+        thisMessage = { id: thisMessage.id, messageContent: thisMessage.messageContent, timeStamp: thisMessage.timeStamp, userId: thisMessage.userId }
+        return (
+          <div className="messageEdit">
+            <div className="control">
+              <p className="alert hide" id="noMessageContent">Message Details</p>
+              <input className="input" defaultValue={thisMessage.messageContent} ref={content => this.content = content} />
+            </div>
+            <div id="editMessageBtns">
+              <button className="messageButton" onClick={() => {
+                onClose()
+              }}>Back to Messages</button>
+              <button className="messageButton" onClick={() => {
+                this.saveMessage(thisMessage);
+                onClose()
+              }}>Save Message Changes</button>
+              <button className="messageButton" onClick={() => {
+                this.deleteMessage(thisMessage)
+                onClose()
+              }}>Delete Message</button>
+            </div>
+          </div>
+        )
+      }
+    })
+  }
+
+  printMessages = () => {
+    let moment = require('moment');
+    if (this.props.messages.length > 1) {
+      this.props.messages.sort(function (a, b) {
+        return new Date(b.timeStamp) - new Date(a.timeStamp);
+      });
+    }
+    return (this.props.messages.map(message => {
+      // TODO: need to add ability to read current user id
+      if (message.user.username === "braddavistech") {
+        return <section className="level-right" key={message.id}>
+          <div className="">
+            <p id="dateInfo">{moment(`${message.timeStamp}`).fromNow()} </p>
+            <article id="editDelete">
+              <img className="editIcon" id={parseInt(message.id)} onClick={this.editMessage} src="../../../../edit.png" alt="edit"></img>
+            </article>
+          </div>
+          <p className={`oldMsgBody ${message.id}body`}>{message.messageContent}</p>
+        </section>
+      }
+      else {
+        return <section className="level-left" key={message.id}>
+          <div className="">
+            <p className="oldMsgTitle">{message.user.username} - {moment(`${message.timeStamp}`).fromNow()}</p>
+            <p className="oldMsgTitle">{message.messageContent}</p>
+          </div>
+        </section>
+      }
+    }
+    ))
+  }
+
+
 
   render() {
     return (
       <div className="top">
-        <p>Top</p>
+        {this.printMessages()}
       </div>
     )
   }

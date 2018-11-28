@@ -6,10 +6,12 @@ export default class Messages extends Component {
 
   render() {
     return (
-      <div className="container">
-        {OldMessages}
-        {NewMessage}
-      </div>
+      <React.Fragment>
+        <div className="container">
+          <OldMessages messages={this.props.messages}/>
+          <NewMessage />
+        </div>
+      </React.Fragment>
     )
   }
 }
