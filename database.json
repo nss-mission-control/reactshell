@@ -1,0 +1,381 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "firstName": "Kelly",
+      "lastName": "Morin",
+      "username": "kmorin06",
+      "password": "1234NSS",
+      "email": "kmorin06@gmail.com",
+      "profilePic": "https://scontent-atl3-1.xx.fbcdn.net/v/t1.0-9/14100479_10157231480525062_191282433024935032_n.jpg?_nc_cat=102&_nc_ht=scontent-atl3-1.xx&oh=8ecc7dd157438c9c3d09c5c910ff4c61&oe=5C6FC0EA"
+    },
+    {
+      "id": 2,
+      "firstName": "Jase",
+      "lastName": "Hackman",
+      "username": "JaseTheGreat",
+      "password": "MusicMan",
+      "email": "jaseH@gmail.com",
+      "profilePic": "https://avatars1.githubusercontent.com/u/42299515?s=400&v=4"
+    },
+    {
+      "id": 3,
+      "firstName": "Brendan",
+      "lastName": " McCray",
+      "username": "Brendan",
+      "password": "CodeWhiz",
+      "email": "brendanMc@gmail.com",
+      "profilePic": "https://avatars0.githubusercontent.com/u/43763999?s=400&v=4"
+    },
+    {
+      "id": 4,
+      "firstName": "Brad",
+      "lastName": "Davis",
+      "username": "braddavistech",
+      "password": "12345NSS",
+      "email": "brad@braddavistech.com",
+      "profilePic": "https://scontent-atl3-1.xx.fbcdn.net/v/t1.0-9/35884762_10211693141659337_7630947963367325696_n.jpg?_nc_cat=103&_nc_ht=scontent-atl3-1.xx&oh=ffc0c07db4711096066f9a4612ebff3c&oe=5C7CD0B2"
+    }
+  ],
+  "messages": [
+    {
+      "id": 1,
+      "messageContent": "Hi, first message.",
+      "timeStamp": "2018-11-08T14:07:21.489Z",
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "messageContent": "How is everyone doing today? ",
+      "timeStamp": "2018-11-09T12:10:34.489Z",
+      "userId": 3
+    },
+    {
+      "id": 3,
+      "messageContent": "I'm doing great! How are you? ",
+      "timeStamp": "2018-11-07T21:16:34.489Z",
+      "userId": 2
+    },
+    {
+      "messageContent": "I'm good, but I'm a little nervous about this presentation",
+      "timeStamp": "2018-11-10T09:16:34.489Z",
+      "userId": 4,
+      "id": 4
+    },
+    {
+      "id": 5,
+      "messageContent": "Don't be nervous! You will be great!",
+      "timeStamp": "2018-11-08T14:07:21.489Z",
+      "userId": 1
+    },
+    {
+      "id": 6,
+      "messageContent": "#besties ",
+      "timeStamp": "2018-11-07T21:16:34.489Z",
+      "userId": 2
+    }
+  ],
+  "articles": [
+    {
+      "articleName": "Tearful Elon Musk Warns About Dangers Of AI After Having Heart Broken By Beautiful Robotrix",
+      "url": "https://www.theonion.com/tearful-elon-musk-warns-about-dangers-of-ai-after-havin-1822192554",
+      "articleImage": "https://i.kinja-img.com/gawker-media/image/upload/s--CJvX7MgP--/c_scale,f_auto,fl_progressive,q_80,w_800/tizlx79ig3cluhdkvwuh.jpg",
+      "dateSaved": "2018-11-14T21:18:52.339Z",
+      "about": "It was named Mark Zuckerberg",
+      "userId": 2,
+      "id": 1
+    },
+    {
+      "articleName": "Astronomers Confirm Moon Will Have Dozens Of New Phases In 2019",
+      "url": "https://www.theonion.com/astronomers-confirm-moon-will-have-dozens-of-new-phases-1830339439",
+      "articleImage": "https://i.kinja-img.com/gawker-media/image/upload/s---K0s5FLo--/c_scale,f_auto,fl_progressive,q_80,w_800/chmtxbc2yw9jzlv1bpxu.jpg",
+      "dateSaved": "2018-11-09T21:18:52.339Z",
+      "about": "Cheese phase activate",
+      "userId": 3,
+      "id": 2
+    },
+    {
+      "articleName": "Astronomers Confirm Moon Will Have Dozens Of New Phases In 2019",
+      "url": "https://www.trtworld.com/americas/five-things-you-need-to-know-about-trump-s-space-force-21667",
+      "articleImage": "data:image/jpeg;base64,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",
+      "dateSaved": "2018-11-14T21:18:52.339Z",
+      "about": "The sun is bright",
+      "userId": 1,
+      "id": 3
+    },
+    {
+      "articleName": "Scammers impersonate Elon Musk on Twitter, hack Target in bitcoin fraud",
+      "url": "https://www.usatoday.com/story/money/2018/11/13/twitter-bitcoin-scam-elon-musk-target/1986017002/",
+      "articleImage": "https://www.gannett-cdn.com/-mm-/a890a0b221257bbeacdf114031d88c89afd4f7cf/c=32-0-548-387/local/-/media/2018/10/27/USATODAY/usatsports/bitcoin-gettyimages-880534636_large.jpg?width=534&height=401&fit=crop",
+      "dateSaved": "2018-11-13T21:18:52.339Z",
+      "about": "Bitcoin is at an all time HIGH! LOW! HIGH! LOW! HIGH!",
+      "userId": 4,
+      "id": 4
+    },
+    {
+      "articleName": "Report: Universe To End Next Friday",
+      "url": "https://www.theonion.com/report-universe-to-end-next-friday-1826534469",
+      "articleImage": "https://i.kinja-img.com/gawker-media/image/upload/s--0FPHZN4L--/c_scale,f_auto,fl_progressive,q_80,w_800/tbtklk0j98obm6zmqdfk.jpg",
+      "dateSaved": "2018-11-10T21:18:52.339Z",
+      "about": "A coalition of scientists at CERN announced this morning that the Universe, the accumulation of matter and energy that makes up everything that is, will end abruptly next Friday.",
+      "userId": 3,
+      "id": 5
+    }
+  ],
+  "events": [
+    {
+      "id": 2,
+      "name": "Fancy Party",
+      "date": "2014-09-09",
+      "location": "My House",
+      "time": "03:02",
+      "userId": 2
+    },
+    {
+      "name": "Soccer Practice Today",
+      "date": "2018-11-02",
+      "time": "22:11",
+      "location": "The Field",
+      "userId": 2,
+      "id": 3
+    },
+    {
+      "name": "Sleep",
+      "date": "2018-11-15",
+      "time": "04:23",
+      "location": "My Bed",
+      "userId": 3,
+      "id": 4
+    },
+    {
+      "name": "Class",
+      "date": "2018-11-12",
+      "time": "09:05",
+      "location": "NSS",
+      "userId": 1,
+      "id": 7
+    },
+    {
+      "name": "First day of school",
+      "date": "2018-10-01",
+      "time": "01:02",
+      "location": "NSS",
+      "userId": 2,
+      "id": 9
+    },
+    {
+      "name": "The Day I Was Born",
+      "date": "1989-05-15",
+      "time": "12:12",
+      "location": "Hospital",
+      "userId": 2,
+      "id": 10
+    },
+    {
+      "name": "Coffee with Jim",
+      "date": "2018-11-13",
+      "time": "15:00",
+      "location": "Starbucks",
+      "userId": 1,
+      "id": 11
+    },
+    {
+      "name": "Lunch with Jill",
+      "date": "2018-11-15",
+      "time": "05:23",
+      "location": "Pizza Hut",
+      "userId": 3,
+      "id": 12
+    },
+    {
+      "name": "Jase's Party",
+      "date": "2018-11-20",
+      "time": "10:10",
+      "location": "The Moon",
+      "userId": 2,
+      "id": 13
+    },
+    {
+      "name": "Brendan's House Warming",
+      "date": "2018-11-17",
+      "time": "20:16",
+      "location": "Nashville, TN",
+      "userId": 4,
+      "id": 14
+    },
+    {
+      "name": "Dance Class",
+      "date": "2018-11-14",
+      "time": "11:11",
+      "location": "Roots",
+      "userId": 4,
+      "id": 15
+    },
+    {
+      "name": "Spelling Bee",
+      "date": "2011-11-11",
+      "time": "11:11",
+      "location": "Highschool",
+      "userId": 3,
+      "id": 16
+    },
+    {
+      "name": "Lunch with Mike",
+      "date": "2018-11-12",
+      "time": "11:11",
+      "location": "South",
+      "userId": 2,
+      "id": 17
+    },
+    {
+      "name": "Start NSS",
+      "date": "2018-10-01",
+      "time": "09:00",
+      "location": "Nashville Software School",
+      "userId": 4,
+      "id": 19
+    },
+    {
+      "name": "Presentation of Mission Control Test",
+      "date": "2018-11-15",
+      "time": "09:00",
+      "location": "Nashville Software School",
+      "userId": 4,
+      "id": 20
+    }
+  ],
+  "tasks": [
+    {
+      "task": "Homework",
+      "complete": true,
+      "dueDate": "2018-11-12",
+      "userId": 2,
+      "id": 1
+    },
+    {
+      "task": "Finish MVP",
+      "complete": true,
+      "dueDate": "2018-11-11",
+      "userId": 4,
+      "id": 2
+    },
+    {
+      "task": "Plan project",
+      "complete": true,
+      "dueDate": "2018-11-09",
+      "userId": 2,
+      "id": 3
+    },
+    {
+      "task": "Take out the trash",
+      "complete": true,
+      "dueDate": "2018-11-29",
+      "userId": 4,
+      "id": 5
+    },
+    {
+      "task": "Balance checking account",
+      "complete": false,
+      "dueDate": "2018-11-06",
+      "userId": 2,
+      "id": 7
+    },
+    {
+      "task": "Buy milk",
+      "complete": false,
+      "dueDate": "2018-11-02",
+      "userId": 2,
+      "id": 8
+    },
+    {
+      "task": "Do homework",
+      "complete": false,
+      "dueDate": "2018-11-17",
+      "userId": 2,
+      "id": 9
+    },
+    {
+      "task": "Check email",
+      "complete": false,
+      "dueDate": "2018-11-01",
+      "userId": 4,
+      "id": 11
+    },
+    {
+      "task": "I fixed all of the issuez with the task list!",
+      "complete": true,
+      "dueDate": "2018-10-11",
+      "userId": 3,
+      "id": 12
+    },
+    {
+      "task": "Call mom",
+      "complete": false,
+      "dueDate": "2018-11-14",
+      "userId": 2,
+      "id": 13
+    },
+    {
+      "task": "Videotape Santa",
+      "complete": false,
+      "dueDate": "2018-12-25",
+      "userId": 3,
+      "id": 15
+    },
+    {
+      "task": "Look at Alfonso's Good Morning gif",
+      "complete": false,
+      "dueDate": "2018-11-15",
+      "userId": 3,
+      "id": 16
+    },
+    {
+      "task": "Tweet at Elon Musk and wait for response",
+      "complete": true,
+      "dueDate": "2018-11-06",
+      "userId": 3,
+      "id": 17
+    },
+    {
+      "task": "Test new app",
+      "complete": false,
+      "dueDate": "2018-11-20",
+      "userId": 1,
+      "id": 18
+    },
+    {
+      "task": "Get some sleep",
+      "complete": false,
+      "dueDate": "2018-10-31",
+      "userId": 1,
+      "id": 19
+    }
+  ],
+  "friends": [
+    {
+      "id": 1,
+      "request_userId": 2,
+      "userId": 1
+    },
+    {
+      "id": 3,
+      "request_userId": 3,
+      "userId": 2
+    },
+    {
+      "request_userId": 1,
+      "userId": 3,
+      "id": 4
+    },
+    {
+      "request_userId": 1,
+      "userId": 2,
+      "id": 5
+    },
+    {
+      "request_userId": 2,
+      "userId": 3,
+      "id": 6
+    }
+  ]
+}
