@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 // import { Link } from "react-router-dom"
 import "./navbar.css"
+import $ from "jquery"
 
 class NavBar extends Component {
 
@@ -11,6 +12,12 @@ class NavBar extends Component {
 
   resetFontColor(element) {
     element.classList.toggle("has-text-link");
+  }
+
+  handleDropDownColor(element) {
+    if ($(element).parent().hasClass("navbar-dropdown")) {
+      $(element).parent().prev().toggleClass("has-text-link")
+    }
   }
 
   render() {
@@ -49,14 +56,14 @@ class NavBar extends Component {
           </div>
           <div className="navbar-end">
             <div className="navbar-item has-dropdown is-hoverable">
-              <a className="navbar-link has-text-white" onMouseOver={(e) => this.modifyFontColor(e.target)} onMouseOut={(e) => this.resetFontColor(e.target)}>
+              <a className="navbar-link has-text-white hov1 hov2" id="dropdown-top">
                 Username here
               </a>
               <div className="navbar-dropdown">
-                <a className="navbar-item has-text-white" onMouseOver={(e) => this.modifyFontColor(e.target)} onMouseOut={(e) => this.resetFontColor(e.target)}>
+                <a className="navbar-item has-text-white hov1"  id="dropdown-itm1" onMouseOver={(e) => this.handleDropDownColor(e.target)} onMouseOut={(e) => this.handleDropDownColor(e.target)}>
                   Edit Profile
                 </a>
-                <a className="navbar-item has-text-white" onMouseOver={(e) => this.modifyFontColor(e.target)} onMouseOut={(e) => this.resetFontColor(e.target)}>
+                <a className="navbar-item has-text-white hov2" id="dropdown-itm2" onMouseOver={(e) => this.handleDropDownColor(e.target)} onMouseOut={(e) => this.handleDropDownColor(e.target)}>
                   Logout
                 </a>
               </div>
