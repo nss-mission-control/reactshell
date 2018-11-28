@@ -1,17 +1,22 @@
 import React, {Component} from 'react'
-// import TaskContainer from './TaskContainer'
+import TaskContainer from './TaskContainer'
+import Tasks from './Tasks'
 
 
 export default class TaskView extends Component {
 
   render() {
+      console.log(this.props.tasks)
     return(
-    <div>
-      <h1>{"Hello"}
+    <React.Fragment>
+      {this.props.tasks.map(singleTask =>
+        <Tasks key={singleTask.id} task={singleTask}/>
 
-      </h1>
-
-    </div>
+      )}
+      {/* <TaskContainer />
+      <TaskContainer />
+      <TaskContainer /> */}
+    </React.Fragment>
     )
   }
 }

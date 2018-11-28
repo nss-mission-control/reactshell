@@ -5,7 +5,6 @@ import TaskView from "./tasks/TaskView"
 
 
 export default class ApplicationViews extends Component {
-
  render() {
      return (
        <React.Fragment>
@@ -13,7 +12,7 @@ export default class ApplicationViews extends Component {
            return <Messages refreshData={this.props.refresh}/>
          }} /> */}
          <Route exact path="/tasks" render={(props) => {
-           return <TaskView {...props} />
+           return <TaskView {...props} tasks={this.props.tasks} />
          }}/>
        </React.Fragment>
      )
