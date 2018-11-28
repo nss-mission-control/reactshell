@@ -4,50 +4,59 @@ import "./navbar.css"
 
 class NavBar extends Component {
 
+  modifyFontColor(element) {
+    element.classList.toggle("has-text-link");
+    console.log(element)
+  }
+
+  resetFontColor(element) {
+    element.classList.toggle("has-text-link");
+  }
+
   render() {
     return (
-      <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-          <a class="navbar-item" href="https://bulma.io">
-            <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" />
+      <nav className="navbar has-background-link" role="navigation" aria-label="main navigation">
+        <div className="navbar-brand">
+          <a className="navbar-item" href="#">
+            <img src="images/white-react-logo.png" width="28" height="28" />
           </a>
-          <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="reactShellNav">
+          <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="reactShellNav">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
           </a>
         </div>
 
-        <div id="reactShellNav" class="navbar-menu">
+        <div id="reactShellNav" className="navbar-menu">
 
-          <div class="navbar-start">
-            <a class="navbar-item">
+          <div className="navbar-start">
+            <a className="navbar-item has-text-white" onMouseOver={(e) => this.modifyFontColor(e.target)} onMouseOut={(e) => this.resetFontColor(e.target)}>
               {/* <Link className="nav-link" to="/">Messages</Link> */}
               Messages
             </a>
-            <a class="navbar-item">
+            <a className="navbar-item has-text-white" onMouseOver={(e) => this.modifyFontColor(e.target)} onMouseOut={(e) => this.resetFontColor(e.target)}>
               Tasks
             </a>
-            <a class="navbar-item">
+            <a className="navbar-item has-text-white" onMouseOver={(e) => this.modifyFontColor(e.target)} onMouseOut={(e) => this.resetFontColor(e.target)}>
               Events
             </a>
-            <a class="navbar-item">
+            <a className="navbar-item has-text-white" onMouseOver={(e) => this.modifyFontColor(e.target)} onMouseOut={(e) => this.resetFontColor(e.target)}>
               News
             </a>
-            <a class="navbar-item">
+            <a className="navbar-item has-text-white" onMouseOver={(e) => this.modifyFontColor(e.target)} onMouseOut={(e) => this.resetFontColor(e.target)}>
               Friends
             </a>
           </div>
-          <div class="navbar-end">
-            <div class="navbar-item has-dropdown is-hoverable">
-              <a class="navbar-link">
+          <div className="navbar-end">
+            <div className="navbar-item has-dropdown is-hoverable">
+              <a className="navbar-link has-text-white" onMouseOver={(e) => this.modifyFontColor(e.target)} onMouseOut={(e) => this.resetFontColor(e.target)}>
                 Username here
               </a>
-              <div class="navbar-dropdown">
-                <a class="navbar-item">
+              <div className="navbar-dropdown">
+                <a className="navbar-item has-text-white" onMouseOver={(e) => this.modifyFontColor(e.target)} onMouseOut={(e) => this.resetFontColor(e.target)}>
                   Edit Profile
                 </a>
-                <a class="navbar-item">
+                <a className="navbar-item has-text-white" onMouseOver={(e) => this.modifyFontColor(e.target)} onMouseOut={(e) => this.resetFontColor(e.target)}>
                   Logout
                 </a>
               </div>
