@@ -1,7 +1,7 @@
 import { Route, Redirect } from "react-router-dom"
 import React, { Component } from "react";
 // import Messages from "./messages";
-import Login from "./login/LogIn"
+import LogIn from "./login/LogIn"
 
 
 export default class ApplicationViews extends Component {
@@ -12,10 +12,12 @@ export default class ApplicationViews extends Component {
   render() {
     return (
       <React.Fragment>
-        <Route path="/login" component={Login} />
+        <Route path="/login" render={(props) => {
+          return <LogIn {...props}/>}} />
         <Route exact path="/" render={(props) => {
           if (this.isAuthenticated()) {
             // return <Messages  />
+            console.log("credentials exist in session storage")
           } else {
             return <Redirect to="/login" />
           }

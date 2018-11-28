@@ -1,10 +1,11 @@
 import React, { Component } from "react"
+import API from "../../modules/APIManager"
 
 export default class Login extends Component {
 
   // Set initial state
   state = {
-    email: "",
+    username: "",
     password: ""
   }
 
@@ -19,36 +20,42 @@ export default class Login extends Component {
   handleLogin = (e) => {
     e.preventDefault()
 
-    sessionStorage.setItem(
-      "credentials",
-      JSON.stringify({
-        email: this.state.email,
-        password: this.state.password
-      })
-    )
+    API.getAllCategory("users").then(users => users.forEach(user => {
+      if (this.state.username === user.username) {
+        if (user.password = this.state.password) {
+          sessionStorage.setItem("id", user.id)
+          this.props.history.push("/")
+        }
+      }
+    }))
+
   }
 
   render() {
     return (
-      <form onSubmit={this.handleLogin} className="field">
-        <h1 className="h3 mb-3 list font-weight-normal">Please sign in</h1>
-        <label htmlFor="inputEmail">
-          Email address
-                </label>
-        <input onChange={this.handleFieldChange} type="email"
-          id="email"
-          placeholder="Email address"
-          required="" autoFocus="" />
+      <form onSubmit={this.handleLogin} className="field container">
+        <h1 className="title is-5">Please sign in</h1>
+        <label htmlFor="inputUsername">
+          Username
+        </label>
+        <div className="control">
+          <input onChange={this.handleFieldChange} type="text" className="input"
+            id="username"
+            placeholder="enter username"
+            required autoFocus="" />
+        </div>
         <label htmlFor="inputPassword">
           Password
-                </label>
-        <input onChange={this.handleFieldChange} type="password"
-          id="password"
-          placeholder="Password"
-          required="" />
-        <button type="submit">
+        </label>
+        <div className="control">
+          <input onChange={this.handleFieldChange} type="password" className="input"
+            id="password"
+            placeholder=" enter password"
+            required />
+        </div>
+        <button type="submit" className="button">
           Sign in
-                </button>
+        </button>
       </form>
     )
   }

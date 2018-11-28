@@ -18,7 +18,7 @@ export default class ReactManager extends Component {
     return (
       <React.Fragment>
         <NavBar />
-        {/* <ApplicationViews messages={this.state.messages} /> */}
+        <ApplicationViews  /> {/*messages={this.state.messages}*/}
       </React.Fragment>
     )
   }

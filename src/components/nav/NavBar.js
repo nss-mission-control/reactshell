@@ -7,7 +7,6 @@ class NavBar extends Component {
 
   modifyFontColor(element) {
     element.classList.toggle("has-text-link");
-    console.log(element)
   }
 
   resetFontColor(element) {
