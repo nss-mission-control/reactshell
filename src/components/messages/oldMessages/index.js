@@ -29,20 +29,20 @@ export default class OldMessages extends Component {
         thisMessage = thisMessage[0];
         thisMessage = { id: thisMessage.id, messageContent: thisMessage.messageContent, timeStamp: thisMessage.timeStamp, userId: thisMessage.userId }
         return (
-          <div className="messageEdit">
+          <div className="messageEdit box container">
             <div className="control">
               <p className="alert hide" id="noMessageContent">Message Details</p>
               <input className="input" defaultValue={thisMessage.messageContent} ref={content => this.content = content} />
             </div>
-            <div id="editMessageBtns">
-              <button className="messageButton" onClick={() => {
+            <div id="editMessageBtns" className="buttons">
+              <button className="messageButton button" onClick={() => {
                 onClose()
               }}>Back to Messages</button>
-              <button className="messageButton" onClick={() => {
+              <button className="messageButton button" onClick={() => {
                 this.saveMessage(thisMessage);
                 onClose()
               }}>Save Message Changes</button>
-              <button className="messageButton" onClick={() => {
+              <button className="messageButton button" onClick={() => {
                 this.deleteMessage(thisMessage)
                 onClose()
               }}>Delete Message</button>
@@ -65,19 +65,19 @@ export default class OldMessages extends Component {
     return (this.props.messages.map(message => {
       // TODO: need to add ability to read current user id
       if (message.user.username === "braddavistech") {
-        return <section className="level-right" key={message.id}>
-          <div className="">
-            <p id="dateInfo">{moment(`${message.timeStamp}`).fromNow()} </p>
+        return <section className="level" key={message.id}>
+          <div className="level-left">
+            <p id="dateInfo" className="tag">{moment(`${message.timeStamp}`).fromNow()} </p>
             <article id="editDelete">
               <img className="editIcon" id={parseInt(message.id)} onClick={this.editMessage} src="../../../../edit.png" alt="edit"></img>
             </article>
           </div>
-          <p className={`oldMsgBody ${message.id}body`}>{message.messageContent}</p>
+          <p className={`oldMsgBody ${message.id}body level-right`}>{message.messageContent}</p>
         </section>
       }
       else {
-        return <section className="level-left" key={message.id}>
-          <div className="">
+        return <section className="level" key={message.id}>
+          <div className="level-left">
             <p className="oldMsgTitle">{message.user.username} - {moment(`${message.timeStamp}`).fromNow()}</p>
             <p className="oldMsgTitle">{message.messageContent}</p>
           </div>
@@ -91,7 +91,7 @@ export default class OldMessages extends Component {
 
   render() {
     return (
-      <div className="top">
+      <div className="top container box">
         {this.printMessages()}
       </div>
     )

@@ -1,4 +1,4 @@
-import { Route } from "react-router-dom"
+import { Route, Redirect } from "react-router-dom"
 import React, { Component } from "react"
 import Messages from "./messages"
 import LogIn from "./login/LogIn"

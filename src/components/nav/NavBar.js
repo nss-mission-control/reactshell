@@ -11,10 +11,10 @@ class NavBar extends Component {
     username: ""
   }
 
-  // componentDidUpdate() {
-  //   let userId = sessionStorage.getItem("id")
-  //   APIManager.getOneFromCategory("users", userId).then(user => this.setState({ username: user.username }))
-  // }
+  componentDidMount() {
+    let userId = sessionStorage.getItem("id")
+    APIManager.getOneFromCategory("users", userId).then(user => this.setState({ username: user.username }))
+  }
 
   modifyFontColor(element) {
     element.classList.toggle("has-text-link");
