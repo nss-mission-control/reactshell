@@ -12,13 +12,11 @@ export default class ApplicationViews extends Component {
   render() {
     return (
       <React.Fragment>
-        <Route path="/login" render={(props) => {
-          return <LogIn {...props}/>}} />
         <Route exact path="/" render={(props) => {
           if (this.isAuthenticated()) {
-            return <Messages messages={this.props.messages} refresh={this.props.refresh}/>
+            return <Messages messages={this.props.messages} refresh={this.props.refresh} />
           } else {
-            return <Redirect to="/login" />
+            return <LogIn {...props} activeUser={this.props.activeUser} />
           }
         }} />
       </React.Fragment>

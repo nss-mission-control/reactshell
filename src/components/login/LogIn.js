@@ -51,7 +51,8 @@ export default class Login extends Component {
           sessionStorage.setItem("id", user.id)
           //TODO: if user logs in, show username in top right corner (navbar component)
           // API.getOneFromCategory("users", user.id).then()
-          this.props.history.push("/")
+          this.props.activeUser(user)
+          // this.props.history.push("/")
         } else {
           this.toggleValidation(e)
           return "nothing"

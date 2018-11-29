@@ -59,7 +59,7 @@ export default class OldMessages extends Component {
     console.log(messages)
     if (messages.length > 1) {
       this.props.messages.sort(function (a, b) {
-        return new Date(b.timeStamp) - new Date(a.timeStamp);
+        return new Date(a.timeStamp) - new Date(b.timeStamp);
       });
     }
     return (this.props.messages.map(message => {
