@@ -5,7 +5,7 @@ export default class Tasks extends Component {
 
   render(){
     return (
-      <p>{this.props.task.task}</p>
+      <p className="level box has-background-primary"> {this.props.task.task}</p>
     )
   }
 }
