@@ -5,7 +5,11 @@ import APIManager from "../modules/APIManager";
 
 export default class ReactManager extends Component{
   state = {
-    pageLoaded: false
+    pageLoaded: false,
+    events: "",
+    articles: "",
+    tasks: "",
+    friends: "",
   }
 
   componentDidMount = () => {
@@ -27,7 +31,7 @@ refreshData = () => {
     return(
       <React.Fragment>
         {/* <NavBar /> */}
-        <ApplicationViews messages={this.state.messages} refresh={this.refreshData}/>
+        <ApplicationViews messages={this.state.messages} refresh={this.refreshData} articles={this.state.articles}/>
       </React.Fragment>
     )
     } else {

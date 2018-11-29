@@ -1,7 +1,7 @@
 import {Route} from 'react-router-dom'
 import React, {Component} from 'react'
 import NewsContainer from './news/NewsContainer'
-import Messages from './messages/Messages'
+import Messages from './messages'
 
 
 export default class ApplicationViews extends Component{
@@ -13,7 +13,7 @@ export default class ApplicationViews extends Component{
           return <Messages messages={this.props.messages} refreshData={this.props.refresh} />
         }} />
         <Route exact path="/news" render={(props) => {
-          return <NewsContainer {...props} news={this.props.news} />
+          return <NewsContainer {...props} news={this.props.articles} refreshData={this.props.refresh} />
         }} />
       </React.Fragment>
     )
