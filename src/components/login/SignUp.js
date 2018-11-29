@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
 import APIManager from "../../modules/APIManager";
-import { Redirect } from "react-router-dom"
+import Messages from "../messages"
 
 // these objects are used for inline styles below
 const heroMargin = {
@@ -61,9 +61,8 @@ export default class Login extends Component {
     }
     APIManager.saveItem("users", user).then((user) => {
       sessionStorage.setItem("id", user.id)
+      this.props.login()
       this.props.activeUser(user)
-      return <Redirect to="/" />
-      // return this.props.refreshData
     })
   }
 
@@ -125,7 +124,7 @@ export default class Login extends Component {
                       Username
                     </label>
                     <div className="control has-icons-left">
-                      <input onChange={this.handleFieldChange} type="text" className="input"
+                      <input onChange={this.handleFieldChange} type="text" pattern=".{7,}" className="input" title="Username must be at least 7 characters in length"
                         id="username"
                         required  />
                       <span className="icon is-small is-left">

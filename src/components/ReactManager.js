@@ -6,19 +6,23 @@ import APIManager from "../modules/APIManager";
 export default class ReactManager extends Component {
   state = {
     pageLoaded: false,
-    activeUser: false,
+    loggedIn: false,
     currentUser: {}
   }
 
   // function is passed to login.js. On login, currentUser is set in state and
   // currentUser is passed to navBar to append username on right side
   activeUser = (user) => {
-    this.setState({ currentUser: user })
+    this.setState({ currentUser: user, loggedIn: true })
+  }
+
+  login = () => {
+    this.setState({loggedIn: true})
   }
 
   logoutUser = () => {
     sessionStorage.removeItem("id")
-    this.setState({currentUser: {}})
+    this.setState({currentUser: {}, loggedIn: false})
   }
 
   componentDidMount = () => {
@@ -39,8 +43,8 @@ export default class ReactManager extends Component {
     if (this.state.pageLoaded) {
       return (
         <React.Fragment>
-          <NavBar user={this.state.currentUser} logout={this.logoutUser} />
-          <ApplicationViews messages={this.state.messages} refresh={this.refreshData} activeUser={this.activeUser} />
+          <NavBar user={this.state.currentUser} logout={this.logoutUser} activeUser={this.activeUser} />
+          <ApplicationViews messages={this.state.messages} refresh={this.refreshData} activeUser={this.activeUser} login={this.login} loggedIn={this.state.loggedIn}/>
         </React.Fragment>
       )
     } else {
