@@ -1,7 +1,6 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
 import APIManager from "../../modules/APIManager";
-import Messages from "../messages"
 
 // these objects are used for inline styles below
 const heroMargin = {
@@ -65,8 +64,6 @@ export default class Login extends Component {
     }
 
     let usernameTaken = false;
-
-    //TODO: validate passwords match
 
     APIManager.getAllCategory("users").then(users => {
       users.forEach(person => {

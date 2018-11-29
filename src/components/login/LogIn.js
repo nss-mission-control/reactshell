@@ -46,90 +46,95 @@ export default class Login extends Component {
   handleLogin = (e) => {
     e.preventDefault()
 
-    APIManager.getAllCategory("users").then(users => users.forEach(user => {
-      if (this.state.username === user.username) {
-        if (user.password = this.state.password) {
-          sessionStorage.setItem("id", user.id)
-          //TODO: if user logs in, show username in top right corner (navbar component)
-          // API.getOneFromCategory("users", user.id).then()
-          this.props.activeUser(user)
-          // this.props.history.push("/")
-        } else {
-          this.toggleValidation(e)
-          return "nothing"
-        }
-      }
-    }))
-  }
+    const userName = document.getElementById("username")
+    const passWord = document.getElementById("password")
+    userName.style.color = "black"
+    passWord.style.color = "black"
+    let passwordCorrect = true
 
-  // toggle display none on validation tag
-  toggleValidation(e) {
-    //TODO: form validation tag does not appear when submit fails to log in user
-    const xBtn = document.getElementById("login-validation")
-    e.preventDefault();
-    console.log("yes")
-    xBtn.style.display = xBtn.style.display === "none" ? "" : "none";
+    APIManager.getAllCategory("users").then(users => {
+      users.forEach(user => {
+        if (this.state.username === user.username) {
+          if (user.password === this.state.password) {
+            sessionStorage.setItem("id", user.id)
+            // used for username display in navbar
+            this.props.activeUser(user)
+          } else {
+            passwordCorrect = false
+          }
+        }
+      })
+      return passwordCorrect
+    })
+    .then(result => {
+      // if password is incorrect, that means username exists - just show username incorrect
+      if (!passwordCorrect) {
+        passWord.style.color = "red"
+      } else {
+        userName.style.color = "red"
+      }
+    }
+    )
   }
 
   render() {
-    return (
-      <div className="hero is-fullheight" style={heroMargin}>
-        <div className="hero-body">
-          <div className="container has-text-centered" style={centerForm}>
-            <div className="column is-4" style={removePadding}>
-              <h3 className="title is-4 has-text-grey">Welcome to ReactShell</h3>
-              <p className="subtitle has-text-grey">Please login</p>
-              <div className="box">
-                <div style={centerContenthorizontally}>
-                  <figure className="image is-128x128">
-                    <img src="images/white-react-logo.png" />
-                  </figure>
-                </div>
-                <form onSubmit={this.handleLogin} className="has-text-centered">
-                  <div className="field">
-                    <label htmlFor="inputUsername">
-                      Username
-                    </label>
-                    <div className="control has-icons-left">
-                      <input onChange={this.handleFieldChange} type="text" className="input"
-                        id="username"
-                        required autoFocus />
-                      <span className="icon is-small is-left">
-                        <i className="fas fa-user"></i>
-                      </span>
+        return(
+      <div className = "hero is-fullheight" style = { heroMargin } >
+            <div className="hero-body">
+              <div className="container has-text-centered" style={centerForm}>
+                <div className="column is-4" style={removePadding}>
+                  <h3 className="title is-4 has-text-grey">Welcome to ReactShell</h3>
+                  <p className="subtitle has-text-grey">Please login</p>
+                  <div className="box">
+                    <div style={centerContenthorizontally}>
+                      <figure className="image is-128x128">
+                        <img src="images/white-react-logo.png" />
+                      </figure>
                     </div>
-                  </div>
-                  <div className="field">
-                    <label htmlFor="inputPassword">
-                      Password
+                    <form onSubmit={this.handleLogin} className="has-text-centered">
+                      <div className="field">
+                        <label htmlFor="inputUsername">
+                          Username
                     </label>
-                    <div className="control has-icons-left">
-                      <input onChange={this.handleFieldChange} type="password" className="input"
-                        id="password"
-                        required />
-                      <span className="icon is-small is-left">
-                        <i className="fas fa-key"></i>
-                      </span>
-                    </div>
-                  </div>
-                  <div className="field">
-                    <div className="buttons is-centered">
-                      <button type="submit" className="button is-link">
-                        Sign in
+                        <div className="control has-icons-left">
+                          <input onChange={this.handleFieldChange} type="text" className="input"
+                            id="username"
+                            required autoFocus />
+                          <span className="icon is-small is-left">
+                            <i className="fas fa-user"></i>
+                          </span>
+                        </div>
+                      </div>
+                      <div className="field">
+                        <label htmlFor="inputPassword">
+                          Password
+                    </label>
+                        <div className="control has-icons-left">
+                          <input onChange={this.handleFieldChange} type="password" className="input"
+                            id="password"
+                            required />
+                          <span className="icon is-small is-left">
+                            <i className="fas fa-key"></i>
+                          </span>
+                        </div>
+                      </div>
+                      <div className="field">
+                        <div className="buttons is-centered">
+                          <button type="submit" className="button is-link">
+                            Sign in
                       </button>
-                    </div>
+                        </div>
+                      </div>
+                    </form>
                   </div>
-                  <span className="tag is-danger" id="login-validation" style={hiddenStyle}>Incorrect username or password<button className="delete" onClick={(e) => this.toggleValidation(e)}></button></span>
-                </form>
-              </div>
-              <p className="has-text-grey">
-              <Link to="/signup">Sign Up</Link> &nbsp;·&nbsp;
+                  <p className="has-text-grey">
+                    <Link to="/signup">Sign Up</Link> &nbsp;·&nbsp;
                         <a href="../">Forgot Password</a> &nbsp;·&nbsp;
                         <a href="../">Need Help?</a>
-              </p>
+                  </p>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
       </div>
 
     )

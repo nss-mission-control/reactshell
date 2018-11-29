@@ -2,7 +2,10 @@ import React, { Component } from "react"
 import { Link } from "react-router-dom"
 import "./navbar.css"
 import $ from "jquery"
-import APIManager from "../../modules/APIManager";
+
+const removeSpacing = {
+  marginTop: "-5px"
+}
 
 class NavBar extends Component {
 
@@ -14,10 +17,8 @@ class NavBar extends Component {
     element.classList.toggle("has-text-link");
   }
 
-  handleDropDownColor(element) {
-    if ($(element).parent().hasClass("navbar-dropdown")) {
-      $(element).parent().prev().toggleClass("has-text-link")
-    }
+  handleDropDownColor() {
+      $("#dropdown-top").toggleClass("has-text-link")
   }
 
   render() {
@@ -50,14 +51,14 @@ class NavBar extends Component {
             </div>
             <div className="navbar-end">
               <div className="navbar-item has-dropdown is-hoverable">
-                <a className="navbar-link has-text-white" id="dropdown-top">
+                <a className="navbar-link has-text-white" id="dropdown-top" onMouseOver={this.handleDropDownColor} onMouseOut={this.handleDropDownColor}>
                   {this.props.user.username}
                 </a>
-                <div className="navbar-dropdown">
-                  <a className="navbar-item has-text-white" id="dropdown-itm1" onMouseOver={(e) => this.handleDropDownColor(e.target)} onMouseOut={(e) => this.handleDropDownColor(e.target)}>
+                <div className="navbar-dropdown" onMouseOver={this.handleDropDownColor} onMouseOut={this.handleDropDownColor}>
+                  <a className="navbar-item has-text-white" id="dropdown-itm1" >
                     Edit Profile
                   </a>
-                  <a className="navbar-item has-text-white" id="dropdown-itm2" onMouseOver={(e) => this.handleDropDownColor(e.target)} onMouseOut={(e) => this.handleDropDownColor(e.target)} onClick={this.props.logout}>
+                  <a className="navbar-item has-text-white" id="dropdown-itm2" onClick={this.props.logout}>
                     Logout
                   </a>
                 </div>
