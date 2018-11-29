@@ -1,6 +1,6 @@
 import { Route, Redirect } from "react-router-dom"
 import React, { Component } from "react";
-// import Messages from "./messages";
+import Messages from "./messages";
 import LogIn from "./login/LogIn"
 
 
@@ -16,7 +16,7 @@ export default class ApplicationViews extends Component {
           return <LogIn {...props}/>}} />
         <Route exact path="/" render={(props) => {
           if (this.isAuthenticated()) {
-            // return <Messages  />
+            return <Messages messages={this.props.messages} refresh={this.props.refresh}/>
           } else {
             return <Redirect to="/login" />
           }
@@ -24,5 +24,4 @@ export default class ApplicationViews extends Component {
       </React.Fragment>
     )
   }
-
 }

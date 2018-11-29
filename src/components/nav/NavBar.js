@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import API from "../../modules/APIManager"
-// import { Link } from "react-router-dom"
+import { Link } from "react-router-dom"
 import "./navbar.css"
 import $ from "jquery"
 
@@ -47,28 +47,16 @@ class NavBar extends Component {
         </div>
 
         <div id="reactShellNav" className="navbar-menu">
-
           <div className="navbar-start">
-            <a className="navbar-item has-text-white" onMouseOver={(e) => this.modifyFontColor(e.target)} onMouseOut={(e) => this.resetFontColor(e.target)}>
-              {/* <Link className="nav-link" to="/">Messages</Link> */}
-              Messages
-            </a>
-            <a className="navbar-item has-text-white" onMouseOver={(e) => this.modifyFontColor(e.target)} onMouseOut={(e) => this.resetFontColor(e.target)}>
-              {/* <Link className="nav-link" to="/tasks">Tasks</Link> */}
-              Tasks
-            </a>
-            <a className="navbar-item has-text-white" onMouseOver={(e) => this.modifyFontColor(e.target)} onMouseOut={(e) => this.resetFontColor(e.target)}>
-              {/* <Link className="nav-link" to="/events">Events</Link> */}
-              Events
-            </a>
-            <a className="navbar-item has-text-white" onMouseOver={(e) => this.modifyFontColor(e.target)} onMouseOut={(e) => this.resetFontColor(e.target)}>
-              {/* <Link className="nav-link" to="/news">News</Link> */}
-              News
-            </a>
-            <a className="navbar-item has-text-white" onMouseOver={(e) => this.modifyFontColor(e.target)} onMouseOut={(e) => this.resetFontColor(e.target)}>
-              {/* <Link className="nav-link" to="/friends">Friends</Link> */}
-              Friends
-            </a>
+            <Link className=" navbar-item has-text-white" to="/" onMouseOver={(e) => this.modifyFontColor(e.target)} onMouseOut={(e) => this.resetFontColor(e.target)}>Messages</Link>
+
+            <Link className="navbar-item has-text-white" to="/tasks" onMouseOver={(e) => this.modifyFontColor(e.target)} onMouseOut={(e) => this.resetFontColor(e.target)}>Tasks</Link>
+
+            <Link className="navbar-item has-text-white" to="/events" onMouseOver={(e) => this.modifyFontColor(e.target)} onMouseOut={(e) => this.resetFontColor(e.target)}>Events</Link>
+
+            <Link className="navbar-item has-text-white" to="/news" onMouseOver={(e) => this.modifyFontColor(e.target)} onMouseOut={(e) => this.resetFontColor(e.target)}>News</Link>
+
+            <Link className="navbar-item has-text-white" to="/friends" onMouseOver={(e) => this.modifyFontColor(e.target)} onMouseOut={(e) => this.resetFontColor(e.target)}>Friends</Link>
           </div>
           <div className="navbar-end">
             <div className="navbar-item has-dropdown is-hoverable">
