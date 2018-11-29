@@ -7,6 +7,10 @@ import $ from 'jquery'
 
 export default class NewsContainer extends Component{
   //TODO: Need to find a way to capture userId
+  //TODO: NEED TO PASS ACTIVE USERID DOWN TO NEWS MODULE COMPONTENT
+  //TODO: NEED TO PASSDOWN DELETE BUTTON CLICK FUNCTION
+  //TODO: Need to add this as a column layout and work on changing the display based on if the article is from the user, friends or people they are not friends with
+//TODO: Get Read More button on newsmodule working to open link in a separate tag
 
   //ShowNews accessible to news
   //addnews accessable to newsContainer and add/edit news

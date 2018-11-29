@@ -1,12 +1,6 @@
 import React, {Component} from 'react'
-// import AddEditNews from './AddEditNews'
-// import APIManager from '../../modules/APIManager';
-// import $ from 'jquery'
 
 export default class NewsModule extends Component{
-//TODO: Get button working to open link in a separate tag
-//TODO: Refresh function
-//TODO: Need to make sure userId and session storage is being captured appropriately
 
   //TODO: UPDATE THESE TWO FUNCTIONS AS SOON AS SESSION STORAGE IS INTEGRATED
 
