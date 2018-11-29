@@ -57,7 +57,7 @@
       "userId": 2
     },
     {
-      "messageContent": "I'm good, but I'm a little nervous about this presentation",
+      "messageContent": "I'm good, but I'm a little nervous about this presentation!",
       "timeStamp": "2018-11-10T09:16:34.489Z",
       "userId": 4,
       "id": 4
@@ -73,6 +73,12 @@
       "messageContent": "#besties ",
       "timeStamp": "2018-11-07T21:16:34.489Z",
       "userId": 2
+    },
+    {
+      "timeStamp": "2018-11-29T15:02:54.055Z",
+      "messageContent": "Testing this again...",
+      "userId": 4,
+      "id": 7
     }
   ],
   "articles": [
@@ -120,6 +126,15 @@
       "about": "A coalition of scientists at CERN announced this morning that the Universe, the accumulation of matter and energy that makes up everything that is, will end abruptly next Friday.",
       "userId": 3,
       "id": 5
+    },
+    {
+      "articleName": "Testing",
+      "url": "https://github.com/nss-mission-control/reactshell/issues/9",
+      "articleImage": "https://github.com/nss-mission-control/reactshell/issues/9",
+      "dateSaved": "2018-11-29T15:22:38.164Z",
+      "about": "Testing post function with React",
+      "userId": 1,
+      "id": 6
     }
   ],
   "events": [
