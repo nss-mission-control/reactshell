@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
 import APIManager from "../../modules/APIManager";
+import { Redirect } from "react-router-dom"
 
 // these objects are used for inline styles below
 const heroMargin = {
@@ -44,8 +45,13 @@ export default class Login extends Component {
     this.setState(stateToChange)
   }
 
-  createNewUser() {
-    let item = {
+  createNewUser(e) {
+    e.preventDefault()
+
+    //TODO: validate passwords match
+    //TODO: verify username doesn't already exist
+
+    let user = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       username: this.state.username,
@@ -53,7 +59,12 @@ export default class Login extends Component {
       email: this.state.email,
       profilePic: this.state.profilePic
     }
-    APIManager.saveItem("users", item).then((item) => this.props.activeUser(item))
+    APIManager.saveItem("users", user).then((user) => {
+      sessionStorage.setItem("id", user.id)
+      this.props.activeUser(user)
+      return <Redirect to="/" />
+      // return this.props.refreshData
+    })
   }
 
   render() {
@@ -69,7 +80,7 @@ export default class Login extends Component {
                     <img src="images/white-react-logo.png" />
                   </figure>
                 </div>
-                <form onSubmit={this.createNewUser} className="has-text-centered">
+                <form onSubmit={(e) => this.createNewUser(e)} className="has-text-centered">
                   <div className="field">
                     <label htmlFor="inputFirstName">
                       First name
@@ -153,7 +164,7 @@ export default class Login extends Component {
                       Provide a link for your profile picture
                     </label>
                     <div className="control has-icons-left">
-                      <input onChange={this.handleFieldChange} type="password" className="input"
+                      <input onChange={this.handleFieldChange} type="text" className="input"
                         id="profilePic"
                         required />
                       <span className="icon is-small is-left">

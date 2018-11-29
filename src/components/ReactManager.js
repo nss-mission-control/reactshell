@@ -22,7 +22,7 @@ export default class ReactManager extends Component {
   }
 
   componentDidMount = () => {
-    this.refreshData();
+    this.refreshData()
   }
 
   refreshData = () => {

@@ -2,8 +2,19 @@ import React, { Component } from "react"
 import { Link } from "react-router-dom"
 import "./navbar.css"
 import $ from "jquery"
+import APIManager from "../../modules/APIManager";
 
 class NavBar extends Component {
+
+
+  state = {
+    username: ""
+  }
+
+  // componentDidUpdate() {
+  //   let userId = sessionStorage.getItem("id")
+  //   APIManager.getOneFromCategory("users", userId).then(user => this.setState({ username: user.username }))
+  // }
 
   modifyFontColor(element) {
     element.classList.toggle("has-text-link");
@@ -21,7 +32,7 @@ class NavBar extends Component {
 
   render() {
 
-    if (this.props.user.id !== undefined) {
+    if (sessionStorage.getItem("id") !== null) {
       return (
         <nav className="navbar has-background-link" role="navigation" aria-label="main navigation">
           <div className="navbar-brand">
@@ -50,7 +61,7 @@ class NavBar extends Component {
             <div className="navbar-end">
               <div className="navbar-item has-dropdown is-hoverable">
                 <a className="navbar-link has-text-white" id="dropdown-top">
-                  {this.props.user.username}
+                  {this.state.username}
                 </a>
                 <div className="navbar-dropdown">
                   <a className="navbar-item has-text-white" id="dropdown-itm1" onMouseOver={(e) => this.handleDropDownColor(e.target)} onMouseOut={(e) => this.handleDropDownColor(e.target)}>
