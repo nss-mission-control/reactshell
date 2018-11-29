@@ -17,7 +17,6 @@ export default class ApplicationViews extends Component {
         <Route exact path="/" render={(props) => {
           if (this.isAuthenticated()) {
             // return <Messages  />
-            console.log("credentials exist in session storage")
           } else {
             return <Redirect to="/login" />
           }

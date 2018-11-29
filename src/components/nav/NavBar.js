@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import API from "../../modules/APIManager"
 // import { Link } from "react-router-dom"
 import "./navbar.css"
 import $ from "jquery"
@@ -19,7 +20,19 @@ class NavBar extends Component {
     }
   }
 
+  //TODO: get username and append username in top right corner of navbar
+  // checks for a logged in user and returns their username if true
+  activeUser() {
+    let userId = sessionStorage.getItem("id")
+    if (userId !== null) {
+      return API.getOneFromCategory("Users", userId)
+    } else {
+      return "Please Log In"
+    }
+  }
+
   render() {
+
     return (
       <nav className="navbar has-background-link" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
@@ -41,28 +54,32 @@ class NavBar extends Component {
               Messages
             </a>
             <a className="navbar-item has-text-white" onMouseOver={(e) => this.modifyFontColor(e.target)} onMouseOut={(e) => this.resetFontColor(e.target)}>
+              {/* <Link className="nav-link" to="/tasks">Tasks</Link> */}
               Tasks
             </a>
             <a className="navbar-item has-text-white" onMouseOver={(e) => this.modifyFontColor(e.target)} onMouseOut={(e) => this.resetFontColor(e.target)}>
+              {/* <Link className="nav-link" to="/events">Events</Link> */}
               Events
             </a>
             <a className="navbar-item has-text-white" onMouseOver={(e) => this.modifyFontColor(e.target)} onMouseOut={(e) => this.resetFontColor(e.target)}>
+              {/* <Link className="nav-link" to="/news">News</Link> */}
               News
             </a>
             <a className="navbar-item has-text-white" onMouseOver={(e) => this.modifyFontColor(e.target)} onMouseOut={(e) => this.resetFontColor(e.target)}>
+              {/* <Link className="nav-link" to="/friends">Friends</Link> */}
               Friends
             </a>
           </div>
           <div className="navbar-end">
             <div className="navbar-item has-dropdown is-hoverable">
-              <a className="navbar-link has-text-white hov1 hov2" id="dropdown-top">
+              <a className="navbar-link has-text-white" id="dropdown-top">
                 Username here
               </a>
               <div className="navbar-dropdown">
-                <a className="navbar-item has-text-white hov1"  id="dropdown-itm1" onMouseOver={(e) => this.handleDropDownColor(e.target)} onMouseOut={(e) => this.handleDropDownColor(e.target)}>
+                <a className="navbar-item has-text-white" id="dropdown-itm1" onMouseOver={(e) => this.handleDropDownColor(e.target)} onMouseOut={(e) => this.handleDropDownColor(e.target)}>
                   Edit Profile
                 </a>
-                <a className="navbar-item has-text-white hov2" id="dropdown-itm2" onMouseOver={(e) => this.handleDropDownColor(e.target)} onMouseOut={(e) => this.handleDropDownColor(e.target)}>
+                <a className="navbar-item has-text-white" id="dropdown-itm2" onMouseOver={(e) => this.handleDropDownColor(e.target)} onMouseOut={(e) => this.handleDropDownColor(e.target)}>
                   Logout
                 </a>
               </div>
