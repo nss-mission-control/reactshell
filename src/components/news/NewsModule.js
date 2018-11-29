@@ -1,9 +1,11 @@
 import React, {Component} from 'react'
 import AddEditNews from './AddEditNews'
+import APIManager from '../../modules/APIManager';
 
 export default class NewsModule extends Component{
 //TODO: Get button working to open link in a separate tag
 //TODO: Delete function
+//TODO: Refresh function
   state={
     editNews: false,
     articleName: "",
@@ -15,7 +17,11 @@ export default class NewsModule extends Component{
 
   editNewsClick(){
     this.setState({
-      editNews: true
+      editNews: true,
+      articleName: this.props.articleName,
+      url: this.props.url,
+      articleImage: this.props.articleImage,
+      about: this.props.description,
     })
   }
 
@@ -35,7 +41,8 @@ export default class NewsModule extends Component{
       about: this.state.about,
       userId: 1,
     }
-    console.log("You're trying to edit", article)
+    // console.log("You're trying to edit", article)
+    APIManager.updateItem("articles", this.props.id, article)
   }
   closeFunction=()=>{
     this.setState({
@@ -45,6 +52,7 @@ export default class NewsModule extends Component{
 
   render(){
     let newsEditor =""
+
     if(this.state.editNews === true){
       newsEditor= <AddEditNews handleFieldChange={this.handleFieldChange} editArticle={this.editArticle} editNews={this.state.editNews} closeFunction={this.closeFunction} title={this.props.title} about={this.props.description} img={this.props.img} url={this.props.url}/>
     }

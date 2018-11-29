@@ -11,8 +11,9 @@ export default class News extends Component{
     title: [],
     description: [],
     img: [],
+    id: ""
   }
-  clickFunction=(url, title, description, img)=>{
+  clickFunction=(url, title, description, img, id)=>{
     this.setState({
       showNews: true,
       editNews: false,
@@ -20,6 +21,7 @@ export default class News extends Component{
       title: title,
       description: description,
       img: img,
+      id: id,
     })
   }
   closeFunction=()=>{
@@ -42,14 +44,14 @@ export default class News extends Component{
   render(){
     let showNews = ""
     if(this.state.showNews === true){
-      showNews= <NewsModule url={this.state.url} title={this.state.title} closeFunction={this.closeFunction} description={this.state.description} img={this.state.img} editNewsClick={this.editNewsClick} handleFieldChange={this.handleFieldChange} editArticle={this.editArticle}/>
+      showNews= <NewsModule url={this.state.url} title={this.state.title} closeFunction={this.closeFunction} description={this.state.description} img={this.state.img} editNewsClick={this.editNewsClick} handleFieldChange={this.handleFieldChange} editArticle={this.editArticle} id={this.state.id}/>
     }
     return(
       <React.Fragment>
       {
         this.props.news.map((article, index)=>{
           return(
-          <div className={this.createClass(index)} key={article.id} onClick={()=> this.clickFunction(article.url, article.articleName, article.about, article.articleImage)}>
+          <div className={this.createClass(index)} key={article.id} onClick={()=> this.clickFunction(article.url, article.articleName, article.about, article.articleImage, article.id)}>
             <div className="has-background-primary">
               <div className="media">
                 <a href={article.url} target="_blank" rel="noopener noreferrer" className="media-left">
