@@ -13,7 +13,6 @@ export default class ReactManager extends Component{
 }
 
 refreshData = () => {
-  let newState = {};
   APIManager.getAllCategory("messages/?_expand=user").then(data => {this.setState({messages: data})})
   .then(() => APIManager.getAllCategory("users").then(data => {this.setState({users: data})}))
   .then(() => APIManager.getAllCategory("articles/?_expand=user").then(data => {this.setState({articles: data})}))
