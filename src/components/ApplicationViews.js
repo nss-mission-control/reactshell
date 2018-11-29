@@ -1,7 +1,8 @@
-import { Route, Redirect } from "react-router-dom"
-import React, { Component } from "react";
-import Messages from "./messages";
+import { Route } from "react-router-dom"
+import React, { Component } from "react"
+import Messages from "./messages"
 import LogIn from "./login/LogIn"
+import SignUp from "./login/SignUp"
 
 
 export default class ApplicationViews extends Component {
@@ -18,6 +19,9 @@ export default class ApplicationViews extends Component {
           } else {
             return <LogIn {...props} activeUser={this.props.activeUser} />
           }
+        }} />
+        <Route path="/signup" render={(props) => {
+          return <SignUp />
         }} />
       </React.Fragment>
     )

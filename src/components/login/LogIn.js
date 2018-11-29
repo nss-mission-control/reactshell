@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import API from "../../modules/APIManager"
+import { Link } from "react-router-dom"
 
 // these objects are used for inline style below
 const hiddenStyle = {
@@ -122,7 +123,7 @@ export default class Login extends Component {
                 </form>
               </div>
               <p className="has-text-grey">
-                <a href="../">Sign Up</a> &nbsp;·&nbsp;
+              <Link to="/signup">Sign Up</Link> &nbsp;·&nbsp;
                         <a href="../">Forgot Password</a> &nbsp;·&nbsp;
                         <a href="../">Need Help?</a>
               </p>
