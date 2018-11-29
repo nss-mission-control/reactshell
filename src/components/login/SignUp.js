@@ -45,11 +45,15 @@ export default class Login extends Component {
     this.setState(stateToChange)
   }
 
+  // validates username is unique and provided passwords match (email type and required attributes are in render())
   createNewUser(e) {
     e.preventDefault()
-
-    //TODO: validate passwords match
-    //TODO: verify username doesn't already exist
+    const passwordInput = document.getElementById("password")
+    const confirmPasswordInput = document.getElementById("confirmPassword")
+    const usernameInput = document.getElementById("username")
+    usernameInput.style.color = "black"
+    passwordInput.style.color = "black"
+    confirmPasswordInput.style.color = "black"
 
     let user = {
       firstName: this.state.firstName,
@@ -59,11 +63,38 @@ export default class Login extends Component {
       email: this.state.email,
       profilePic: this.state.profilePic
     }
-    APIManager.saveItem("users", user).then((user) => {
-      sessionStorage.setItem("id", user.id)
-      this.props.login()
-      this.props.activeUser(user)
+
+    let usernameTaken = false;
+
+    //TODO: validate passwords match
+
+    APIManager.getAllCategory("users").then(users => {
+      users.forEach(person => {
+        // if username already exists, set variable to true
+        if (user.username === person.username) {
+          usernameTaken = true
+        }
+      })
+      return usernameTaken
     })
+      .then(result => {
+        // if username exists, change text color of username to red
+        if (result) {
+          usernameInput.style.color = "red"
+          return
+        // check for no password match
+        } else if (user.password !== this.state.confirmPassword) {
+          passwordInput.style.color = "red"
+          confirmPasswordInput.style.color = "red"
+          return
+        } else {
+          APIManager.saveItem("users", user).then((user) => {
+            sessionStorage.setItem("id", user.id)
+            this.props.login()
+            this.props.activeUser(user)
+          })
+        }
+      })
   }
 
   render() {
@@ -100,7 +131,7 @@ export default class Login extends Component {
                     <div className="control has-icons-left">
                       <input onChange={this.handleFieldChange} type="text" className="input"
                         id="lastName"
-                        required  />
+                        required />
                       <span className="icon is-small is-left">
                         <i className="fas fa-keyboard"></i>
                       </span>
@@ -113,7 +144,7 @@ export default class Login extends Component {
                     <div className="control has-icons-left">
                       <input onChange={this.handleFieldChange} type="email" className="input"
                         id="email"
-                        required  />
+                        required />
                       <span className="icon is-small is-left">
                         <i className="fas fa-envelope"></i>
                       </span>
@@ -126,7 +157,7 @@ export default class Login extends Component {
                     <div className="control has-icons-left">
                       <input onChange={this.handleFieldChange} type="text" pattern=".{7,}" className="input" title="Username must be at least 7 characters in length"
                         id="username"
-                        required  />
+                        required />
                       <span className="icon is-small is-left">
                         <i className="fas fa-user"></i>
                       </span>
@@ -137,7 +168,7 @@ export default class Login extends Component {
                       Password
                     </label>
                     <div className="control has-icons-left">
-                      <input onChange={this.handleFieldChange} type="password" className="input"
+                      <input onChange={this.handleFieldChange} type="password" className="input" title="Passwords must match"
                         id="password"
                         required />
                       <span className="icon is-small is-left">
@@ -150,7 +181,7 @@ export default class Login extends Component {
                       Confirm password
                     </label>
                     <div className="control has-icons-left">
-                      <input onChange={this.handleFieldChange} type="password" className="input"
+                      <input onChange={this.handleFieldChange} type="password" className="input" title="Passwords must match"
                         id="confirmPassword"
                         required />
                       <span className="icon is-small is-left">
