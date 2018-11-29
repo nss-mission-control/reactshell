@@ -1,5 +1,4 @@
 import React, { Component } from "react"
-import API from "../../modules/APIManager"
 import { Link } from "react-router-dom"
 import "./navbar.css"
 import $ from "jquery"
@@ -57,7 +56,7 @@ class NavBar extends Component {
                   <a className="navbar-item has-text-white" id="dropdown-itm1" onMouseOver={(e) => this.handleDropDownColor(e.target)} onMouseOut={(e) => this.handleDropDownColor(e.target)}>
                     Edit Profile
                   </a>
-                  <a className="navbar-item has-text-white" id="dropdown-itm2" onMouseOver={(e) => this.handleDropDownColor(e.target)} onMouseOut={(e) => this.handleDropDownColor(e.target)}>
+                  <a className="navbar-item has-text-white" id="dropdown-itm2" onMouseOver={(e) => this.handleDropDownColor(e.target)} onMouseOut={(e) => this.handleDropDownColor(e.target)} onClick={this.props.logout}>
                     Logout
                   </a>
                 </div>
@@ -68,18 +67,7 @@ class NavBar extends Component {
       )
     } else {
       return (
-        <nav className="navbar has-background-link" role="navigation" aria-label="main navigation">
-          <div className="navbar-brand">
-            <a className="navbar-item" href="#">
-              <img src="images/white-react-logo.png" width="28" height="28" />
-            </a>
-            <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="reactShellNav">
-              <span aria-hidden="true"></span>
-              <span aria-hidden="true"></span>
-              <span aria-hidden="true"></span>
-            </a>
-          </div>
-        </nav >
+        <nav className="navbar has-background-link" role="navigation" aria-label="main navigation"></nav >
       )
     }
   }

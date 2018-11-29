@@ -10,11 +10,15 @@ export default class ReactManager extends Component {
     currentUser: {}
   }
 
-  //TODO: get username and append username in top right corner of navbar
-  // checks for a logged in user and returns their username if true
+  // function is passed to login.js. On login, currentUser is set in state and
+  // currentUser is passed to navBar to append username on right side
   activeUser = (user) => {
     this.setState({ currentUser: user })
-    return this.state.currentUser
+  }
+
+  logoutUser = () => {
+    sessionStorage.removeItem("id")
+    this.setState({currentUser: {}})
   }
 
   componentDidMount = () => {
@@ -35,7 +39,7 @@ export default class ReactManager extends Component {
     if (this.state.pageLoaded) {
       return (
         <React.Fragment>
-          <NavBar user={this.state.currentUser} />
+          <NavBar user={this.state.currentUser} logout={this.logoutUser} />
           <ApplicationViews messages={this.state.messages} refresh={this.refreshData} activeUser={this.activeUser} />
         </React.Fragment>
       )
