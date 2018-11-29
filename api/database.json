@@ -274,7 +274,23 @@
       "complete": true,
       "dueDate": "2018-11-29",
       "userId": 4,
+      "id": 4,
+      "columnId": 1
+    },
+    {
+      "task": "Take out the trash",
+      "complete": true,
+      "dueDate": "2018-11-29",
+      "userId": 4,
       "id": 5,
+      "columnId": 1
+    },
+    {
+      "task": "Take out the trash",
+      "complete": true,
+      "dueDate": "2018-11-29",
+      "userId": 4,
+      "id": 6,
       "columnId": 1
     },
     {

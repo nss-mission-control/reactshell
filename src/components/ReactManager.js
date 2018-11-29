@@ -14,7 +14,7 @@ export default class ReactManager extends Component{
      this.setState({messages: data})
  }).then(() => APIManager.getAllCategory("tasks/?_expand=userId"))
     .then(data => {
-      this.setState({tasks: data}, () => console.log("react manager tasks", this.state.tasks))
+      this.setState({tasks: data})
     })
 }
 

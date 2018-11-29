@@ -8,7 +8,6 @@ import TaskDragging from "./tasks/TaskDragging"
 
 export default class ApplicationViews extends Component {
  render() {
-   console.log("app view pros", this.props)
      return (
        <React.Fragment>
          {/* <Route exact path="/messages" render={(props) => {

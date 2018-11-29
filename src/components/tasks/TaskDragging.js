@@ -46,7 +46,9 @@ APIManager.getAllCategory("column_order"))
     }).then(() => APIManager.getAllCategory("tasks/?_expand=userId"))
     .then(data => {
       this.setState({tasks: data})
-    }).then(() => {this.setState({taskLoaded: true})
+    }).then(() => {
+      console.log(this.state.tasks);
+      this.setState({taskLoaded: true})
 
     })
 }
@@ -65,12 +67,11 @@ render() {
       <DragDropContext onDragEnd={this.onDragEnd}>
         {this.state.column_order.columnId.map(columnId => {
           const column = this.state.columns[columnId-1];
-          console.log("array of tasks", column.columnTasks)
+          console.log(column.columnTasks)
           //this is based on an array not by id.  TODO: make it filter by id
           const tasks = column.columnTasks.map(taskId => {return this.state.tasks.filter( oneTask => oneTask.id === taskId)
-          //   console.log("tasks", tasks);
           });
-
+          console.log(tasks)
           return <Column key={column.id} column={column} tasks={tasks} />
         })
         // {this.props.tasks.map(singleTask => {
