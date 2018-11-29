@@ -2,10 +2,7 @@ import React, { Component } from "react"
 import { Link } from "react-router-dom"
 import "./navbar.css"
 import $ from "jquery"
-
-const removeSpacing = {
-  marginTop: "-5px"
-}
+import APIManager from "../../modules/APIManager";
 
 class NavBar extends Component {
 
