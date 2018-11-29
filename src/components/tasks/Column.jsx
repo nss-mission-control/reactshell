@@ -14,14 +14,14 @@ export default class Column extends Component {
     return (
     <Container id = "container">
       <Title id = "title">{this.props.column.title}</Title>
-      <Droppable droppableId={this.props.column.id}>
+      <Droppable droppableId={`this-${this.props.column.id}`}>
       {
         provided => (
           // if ref doesn't work try innerRef
           <TaskList ref={provided.innerRef} {...provided.droppableProps}>
             {this.props.tasks.map((task, index) =>
+              <Task key={task[0].id} task={task} index={index} />
 
-              <Task key={task.id} task={task} index={index} />
             )}
             {provided.placeholder}
           </TaskList>

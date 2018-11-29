@@ -270,7 +270,7 @@
       "columnId": 1
     },
     {
-      "task": "Take out the trash",
+      "task": "Take in the trash",
       "complete": true,
       "dueDate": "2018-11-29",
       "userId": 4,
@@ -278,7 +278,7 @@
       "columnId": 1
     },
     {
-      "task": "Take out the trash",
+      "task": "Take around the trash",
       "complete": true,
       "dueDate": "2018-11-29",
       "userId": 4,
