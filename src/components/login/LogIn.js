@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import API from "../../modules/APIManager"
+import APIManager from "../../modules/APIManager"
 import { Link } from "react-router-dom"
 
 // these objects are used for inline style below
@@ -46,7 +46,7 @@ export default class Login extends Component {
   handleLogin = (e) => {
     e.preventDefault()
 
-    API.getAllCategory("users").then(users => users.forEach(user => {
+    APIManager.getAllCategory("users").then(users => users.forEach(user => {
       if (this.state.username === user.username) {
         if (user.password = this.state.password) {
           sessionStorage.setItem("id", user.id)

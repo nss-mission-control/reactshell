@@ -21,7 +21,7 @@ export default class ApplicationViews extends Component {
           }
         }} />
         <Route path="/signup" render={(props) => {
-          return <SignUp />
+          return <SignUp activeUser={this.props.activeUser} />
         }} />
       </React.Fragment>
     )

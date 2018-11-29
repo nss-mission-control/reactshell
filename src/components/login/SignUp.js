@@ -1,6 +1,6 @@
 import React, { Component } from "react"
-import API from "../../modules/APIManager"
 import { Link } from "react-router-dom"
+import APIManager from "../../modules/APIManager";
 
 // these objects are used for inline styles below
 const heroMargin = {
@@ -9,7 +9,8 @@ const heroMargin = {
 
 const centerForm = {
   display: "flex",
-  justifyContent: "center"
+  justifyContent: "center",
+  marginTop: "25px"
 }
 
 // helps extend width of form on mobile
@@ -27,11 +28,13 @@ export default class Login extends Component {
 
   // Set initial state
   state = {
-    name: "",
+    firstName: "",
+    lastName: "",
     username: "",
     password: "",
     confirmPassword: "",
     email: "",
+    profilePic: ""
   }
 
   // Update state whenever an input field is edited
@@ -42,7 +45,15 @@ export default class Login extends Component {
   }
 
   createNewUser() {
-
+    let item = {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      username: this.state.username,
+      password: this.state.password,
+      email: this.state.email,
+      profilePic: this.state.profilePic
+    }
+    APIManager.saveItem("users", item).then((item) => this.props.activeUser(item))
   }
 
   render() {
@@ -52,7 +63,6 @@ export default class Login extends Component {
           <div className="container has-text-centered" style={centerForm}>
             <div className="column is-4" style={removePadding}>
               <h3 className="title is-4 has-text-grey">We're Glad You're Here!</h3>
-              <p className="subtitle has-text-grey">Sign Up Below</p>
               <div className="box">
                 <div style={centerContenthorizontally}>
                   <figure className="image is-128x128">
@@ -62,7 +72,7 @@ export default class Login extends Component {
                 <form onSubmit={this.createNewUser} className="has-text-centered">
                   <div className="field">
                     <label htmlFor="inputFirstName">
-                      First Name
+                      First name
                     </label>
                     <div className="control has-icons-left">
                       <input onChange={this.handleFieldChange} type="text" className="input"
@@ -75,7 +85,7 @@ export default class Login extends Component {
                   </div>
                   <div className="field">
                     <label htmlFor="inputLastName">
-                      Last Name
+                      Last name
                     </label>
                     <div className="control has-icons-left">
                       <input onChange={this.handleFieldChange} type="text" className="input"
@@ -127,7 +137,7 @@ export default class Login extends Component {
                   </div>
                   <div className="field">
                     <label htmlFor="confirmPassword">
-                      Confirm Password
+                      Confirm password
                     </label>
                     <div className="control has-icons-left">
                       <input onChange={this.handleFieldChange} type="password" className="input"
@@ -135,6 +145,19 @@ export default class Login extends Component {
                         required />
                       <span className="icon is-small is-left">
                         <i className="fas fa-key"></i>
+                      </span>
+                    </div>
+                  </div>
+                  <div className="field">
+                    <label htmlFor="profilePic">
+                      Provide a link for your profile picture
+                    </label>
+                    <div className="control has-icons-left">
+                      <input onChange={this.handleFieldChange} type="password" className="input"
+                        id="profilePic"
+                        required />
+                      <span className="icon is-small is-left">
+                        <i className="fas fa-link"></i>
                       </span>
                     </div>
                   </div>
