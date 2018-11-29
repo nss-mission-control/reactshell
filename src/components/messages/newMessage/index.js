@@ -18,6 +18,7 @@ export default class NewMessage extends Component {
       // TODO: need to add functionality to save to specific user
       let data = {timeStamp: timeStampNew, messageContent: this.state.messageContent, userId: 4}
       APIManager.saveItem("messages", data)
+      .then(() => this.props.refresh())
       this.setState({messageContent: ""})
       // $("#messageValue").value = "";
     }

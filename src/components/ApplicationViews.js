@@ -9,7 +9,7 @@ export default class ApplicationViews extends Component {
       return (
         <React.Fragment>
           <Route exact path="/" render={(props) => {
-            return <Messages messages={this.props.messages}/>
+            return <Messages messages={this.props.messages} refresh={this.props.refresh}/>
           }} />
         </React.Fragment>
       )

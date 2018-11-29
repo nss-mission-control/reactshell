@@ -8,6 +8,7 @@ export default class OldMessages extends Component {
 
   deleteMessage = (event) => {
     APIManager.deleteItem("messages", event.id)
+    .then(() => this.props.refresh())
   }
 
   saveMessage = (event) => {
@@ -16,6 +17,7 @@ export default class OldMessages extends Component {
     }
     // let messageContent = {messageContent: this.content.value}
     APIManager.updateItem("messages", event.id, event)
+    .then(() => this.props.refresh())
   }
 
   editMessage = (event) => {
@@ -53,7 +55,9 @@ export default class OldMessages extends Component {
 
   printMessages = () => {
     let moment = require('moment');
-    if (this.props.messages.length > 1) {
+    let messages = this.props.messages;
+    console.log(messages)
+    if (messages.length > 1) {
       this.props.messages.sort(function (a, b) {
         return new Date(b.timeStamp) - new Date(a.timeStamp);
       });
