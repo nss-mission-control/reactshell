@@ -4,7 +4,7 @@ import "./navbar.css"
 import $ from "jquery"
 import APIManager from "../../modules/APIManager";
 
-let usernameInNavbar
+let currentUserUsername
 
 class NavBar extends Component {
 
@@ -24,15 +24,16 @@ class NavBar extends Component {
     username: ""
   }
 
+  // fixes refresh bug with username in navbar
   componentDidMount() {
-    let userId = sessionStorage.getItem("id")
-    APIManager.getOneFromCategory("users", userId).then(user => this.setState({ username: user.username }))
+    let userId = Number(sessionStorage.getItem("id"))
+    if (userId !== null) {
+      this.props.refresh()
+    }
   }
 
   render() {
-
     if (sessionStorage.getItem("id") !== null) {
-      // gets navbar username
       return (
         <nav className="navbar has-background-link" role="navigation" aria-label="main navigation">
           <div className="navbar-brand">
@@ -60,8 +61,8 @@ class NavBar extends Component {
             </div>
             <div className="navbar-end">
               <div className="navbar-item has-dropdown is-hoverable">
-                <a className="navbar-link has-text-white" id="dropdown-top" onMouseOver={this.handleDropDownColor} onMouseOut={this.handleDropDownColor}>
-                  {this.state.username}
+              <a className="navbar-link has-text-white" id="dropdown-top" onMouseOver={this.handleDropDownColor} onMouseOut={this.handleDropDownColor}>
+              {this.props.user.username}
                 </a>
                 <div className="navbar-dropdown" onMouseOver={this.handleDropDownColor} onMouseOut={this.handleDropDownColor}>
                   <a className="navbar-item has-text-white" id="dropdown-itm1" >

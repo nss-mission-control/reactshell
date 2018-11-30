@@ -17,12 +17,12 @@ export default class ReactManager extends Component {
   }
 
   login = () => {
-    this.setState({loggedIn: true})
+    this.setState({ loggedIn: true })
   }
 
   logoutUser = () => {
     sessionStorage.removeItem("id")
-    this.setState({currentUser: {}, loggedIn: false})
+    this.setState({ currentUser: {}, loggedIn: false })
   }
 
   componentDidMount = () => {
@@ -36,6 +36,14 @@ export default class ReactManager extends Component {
       .then(() => APIManager.getAllCategory("events/?_expand=user").then(data => { this.setState({ events: data }) }))
       .then(() => APIManager.getAllCategory("tasks/?_expand=user").then(data => { this.setState({ tasks: data }) }))
       .then(() => APIManager.getAllCategory("friends/?_expand=user").then(data => { this.setState({ friends: data }) }))
+      .then(() => {
+        let userId = Number(sessionStorage.getItem("id"))
+        this.state.users.forEach(user => {
+          if (user.id === userId) {
+            this.setState({ currentUser: user })
+          }
+        })
+      })
       .then(() => this.setState({ pageLoaded: true }))
   }
 
@@ -43,8 +51,8 @@ export default class ReactManager extends Component {
     if (this.state.pageLoaded) {
       return (
         <React.Fragment>
-          <NavBar user={this.state.currentUser} logout={this.logoutUser} activeUser={this.activeUser} currentUser={this.state.currentUser}/>
-          <ApplicationViews messages={this.state.messages} refresh={this.refreshData} activeUser={this.activeUser} login={this.login} loggedIn={this.state.loggedIn}/>
+          <NavBar user={this.state.currentUser} logout={this.logoutUser} activeUser={this.activeUser} currentUser={this.state.currentUser} refresh={this.refreshData} />
+          <ApplicationViews messages={this.state.messages} refresh={this.refreshData} activeUser={this.activeUser} login={this.login} loggedIn={this.state.loggedIn} />
         </React.Fragment>
       )
     } else {
