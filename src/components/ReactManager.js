@@ -27,7 +27,7 @@ refreshData = () => {
     return(
       <React.Fragment>
         {/* <NavBar /> */}
-        <ApplicationViews messages={this.state.messages} refresh={this.refreshData}/>
+        <ApplicationViews data={this.state} refresh={this.refreshData}/>
       </React.Fragment>
     )
     } else {
