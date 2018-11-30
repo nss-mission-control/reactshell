@@ -423,10 +423,9 @@
       "name": "InProgress",
       "id": 2,
       "columnTasks": [
-        4,
+        6,
         8,
-        5,
-        6
+        4
       ]
     },
     {
@@ -434,6 +433,7 @@
       "id": 3,
       "columnTasks": [
         7,
+        5,
         9
       ]
     }

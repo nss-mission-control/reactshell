@@ -59,36 +59,40 @@ export default class TaskDragging extends Component {
     //Saves the specific column where it was dropped in the varable
     const sourceColID = source.droppableId.split('-');
     const destinationColId = destination.droppableId.split('-');
-    console.log("sourceColID:", sourceColID,
-    "destinationColId:", destinationColId)
     const sourceColumn = this.state.columns[Number(sourceColID[1]-1)];
     const destinationColumn = this.state.columns[Number(destinationColId[1]-1)];
+    const dragSplit = draggableId.split('-')
 
-    console.log("state - column" , this.state.columns, "column", sourceColumn)
-
-    console.log("colTasks", sourceColumn.columnTasks);
+    if(destinationColId[1]===sourceColID[1]) {
+      const sameDestandSourceTasksIds = Array.from(sourceColumn.columnTasks);
+      sameDestandSourceTasksIds.splice(source.index, 1);
+      console.log("before", sameDestandSourceTasksIds)
+      sameDestandSourceTasksIds.splice(destination.index, 0, Number(dragSplit[1]));
+      console.log("after", sameDestandSourceTasksIds)
+      APIManager.updateItem("columns", sourceColID[1], {columnTasks: sameDestandSourceTasksIds})
+        .then(() => APIManager.getAllCategory("columns"))
+        .then((newColumnObj) =>this.setState({
+          columns: newColumnObj
+        }))
+    } else {
     //Creates a new array of the targets column tasks
     const destinationTaskIds = Array.from(destinationColumn.columnTasks);
     const sourceTaskIds = Array.from(sourceColumn.columnTasks);
 
-    console.log("destiation", destinationTaskIds, "source", sourceTaskIds)
 
    sourceTaskIds.splice(source.index, 1);
 
     // Splits draggableId so I can access just the number with dragSplit[1]
-    const dragSplit = draggableId.split('-')
    destinationTaskIds.splice(destination.index, 0, Number(dragSplit[1]));
-    console.log("destinationTaskIds:", destinationTaskIds, "sourceTaskId:", sourceTaskIds);
 
     // patch source column
     APIManager.updateItem("columns", sourceColID[1], {columnTasks: sourceTaskIds})
       .then(() => APIManager.updateItem("columns", destinationColId[1], {columnTasks: destinationTaskIds}))
       .then(() => APIManager.getAllCategory("columns"))
-      .then((newColumnObj) =>
-        {console.log(newColumnObj)
-      this.setState({
+      .then((newColumnObj) =>this.setState({
         columns: newColumnObj
-      })})
+      }))
+    }
 
     // const newColumn = {
     //   ...column,
