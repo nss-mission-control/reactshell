@@ -143,6 +143,13 @@ export default class FriendIFollowPrint extends Component {
 
 
   render() {
+    $(document).keyup(function (e) {
+      if (e.keyCode === 27) {
+        $(".followingThem").removeClass("isBlurred")
+        $(".followingMe").removeClass("isBlurred")
+        $(".needToFollow").removeClass("isBlurred")
+      }
+    });
     let tempFriend = this.sortUsers()
     let availableFriend = this.newToFollow()
     return (

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { confirmAlert } from "react-confirm-alert";
 import APIManager from "../../../modules/APIManager";
 import "./OldMessages.css";
+import $ from "jquery";
 
 export default class OldMessages extends Component {
 
@@ -86,6 +87,13 @@ export default class OldMessages extends Component {
 
 
   render() {
+    $(document).keyup(function (e) {
+      if (e.keyCode === 27) {
+        $(".followingThem").removeClass("isBlurred")
+        $(".followingMe").removeClass("isBlurred")
+        $(".needToFollow").removeClass("isBlurred")
+      }
+    });
     return (
       <div className="top">
         {this.printMessages()}
