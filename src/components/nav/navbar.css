@@ -1,0 +1,11 @@
+.navbar {
+  margin-bottom: 5px;
+}
+
+/* .navbar-item:hover {
+  color: #3273DC !important; class: is-link
+} */
+
+#dropdown-top:hover, #dropdown-itm1, #dropdown-itm2 {
+  color: #3273DC !important;
+}

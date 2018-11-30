@@ -1,48 +1,44 @@
 const URL = "http://localhost:8088/"
 
-export default Object.create(null, {
+class APIManager {
 
-  getAllCategory: {
-    value: function (category) {
-      return fetch(`${URL}${category}`)
-        .then(entries => entries.json())
+  getAllCategory(category) {
+    return fetch(`${URL}${category}`)
+      .then(entries => entries.json())
+  }
+
+  getAllCategory(category) {
+    return fetch(`${URL}${category}`)
+      .then(entries => entries.json())
+  }
+
+  getOneFromCategory(category, id) {
+    return fetch(`${URL}${category}/${id}`)
+      .then(inputs => inputs.json())
+  }
+
+  saveItem(category, item) {
+    return fetch(`${URL}${category}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(item)
     }
-  },
+    ).then(jsonData => jsonData.json())
+  }
 
-  getOneFromCategory: {
-    value: function (category, id) {
-      return fetch(`${URL}${category}/${id}`)
-        .then(inputs => inputs.json())
-    }
-  },
-
-  saveItem: {
-    value: function (category, item) {
-      return fetch(`${URL}${category}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(item)
+  deleteItem(category, id) {
+    return fetch(`${URL}${category}/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
       }
-      ).then(jsonData => jsonData.json())
-    }
-  },
+    })
+  }
 
-  deleteItem: {
-    value: function (category, id) {
-      return fetch(`${URL}${category}/${id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json"
-        }
-      })
-    }
-  },
-
-  updateItem: {
-    value: function (category, id, item) {
-      console.log(item)
+  updateItem(category, id, item) {
+    console.log(item)
     return fetch(`${URL}${category}/${id}`, {
       method: "PATCH",
       headers: {
@@ -51,5 +47,7 @@ export default Object.create(null, {
       body: JSON.stringify(item)
     })
   }
-  }
-})
+
+}
+
+export default new APIManager()

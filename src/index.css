@@ -6,9 +6,20 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* added to allow certical centering of content */
+  min-height: 100vh;
+  background-color: #F5F5F5; /* matches notification class color */
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+/* workaround used to vertically center all content. Place this class on wrapper with class "container" */
+.is-vertical-centered {
+  min-height: calc(100vh - 57px); /* height of body - height+margin of navbar */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
