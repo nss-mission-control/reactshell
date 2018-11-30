@@ -4,7 +4,7 @@ import Messages from "./messages"
 import LogIn from "./login/LogIn"
 import SignUp from "./login/SignUp"
 import Tasks from "./tasks/Tasks"
-import Following from "./friends/Friends"
+import Friends from "./friends/Friends"
 import Events from "./events/Events"
 import News from "./news/News"
 
@@ -46,7 +46,7 @@ export default class ApplicationViews extends Component {
         }} />
         <Route exact path="/following" render={(props) => {
           if (this.isAuthenticated()) {
-            return <Following />
+            return <Friends data={this.props.data} refresh={this.props.refresh}/>
           } else {
             return <LogIn {...props} activeUser={this.props.activeUser} />
           }
@@ -64,4 +64,5 @@ export default class ApplicationViews extends Component {
       </React.Fragment>
     )
   }
+
 }

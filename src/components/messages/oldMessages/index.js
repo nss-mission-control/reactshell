@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-// import MessageModular from "../modularMessage";
 import { confirmAlert } from "react-confirm-alert";
 import APIManager from "../../../modules/APIManager";
 import "./OldMessages.css";
+import $ from "jquery";
 
 export default class OldMessages extends Component {
 
@@ -15,7 +15,6 @@ export default class OldMessages extends Component {
     if (this.content.value !== "") {
       event.messageContent = this.content.value;
     }
-    // let messageContent = {messageContent: this.content.value}
     APIManager.updateItem("messages", event.id, event)
     .then(() => this.props.refresh())
   }
@@ -23,7 +22,6 @@ export default class OldMessages extends Component {
   editMessage = (event) => {
     confirmAlert({
       customUI: ({ onClose }) => {
-        // event.target.id = parseInt(event.target.id);
         let tempId = parseInt(event.target.id);
         let thisMessage = this.props.messages.filter(message => message.id === tempId);
         thisMessage = thisMessage[0];
@@ -89,6 +87,13 @@ export default class OldMessages extends Component {
 
 
   render() {
+    $(document).keyup(function (e) {
+      if (e.keyCode === 27) {
+        $(".followingThem").removeClass("isBlurred")
+        $(".followingMe").removeClass("isBlurred")
+        $(".needToFollow").removeClass("isBlurred")
+      }
+    });
     return (
       <div className="top container box">
         {this.printMessages()}
