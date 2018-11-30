@@ -20,7 +20,6 @@ export default class NewMessage extends Component {
       APIManager.saveItem("messages", data)
       .then(() => this.props.refresh())
       this.setState({messageContent: ""})
-      // $("#messageValue").value = "";
     }
   }
 

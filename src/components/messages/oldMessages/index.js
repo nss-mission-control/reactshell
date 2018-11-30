@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import MessageModular from "../modularMessage";
 import { confirmAlert } from "react-confirm-alert";
 import APIManager from "../../../modules/APIManager";
 import "./OldMessages.css";
@@ -15,7 +14,6 @@ export default class OldMessages extends Component {
     if (this.content.value !== "") {
       event.messageContent = this.content.value;
     }
-    // let messageContent = {messageContent: this.content.value}
     APIManager.updateItem("messages", event.id, event)
     .then(() => this.props.refresh())
   }
@@ -23,7 +21,6 @@ export default class OldMessages extends Component {
   editMessage = (event) => {
     confirmAlert({
       customUI: ({ onClose }) => {
-        // event.target.id = parseInt(event.target.id);
         let tempId = parseInt(event.target.id);
         let thisMessage = this.props.messages.filter(message => message.id === tempId);
         thisMessage = thisMessage[0];
@@ -56,7 +53,6 @@ export default class OldMessages extends Component {
   printMessages = () => {
     let moment = require('moment');
     let messages = this.props.messages;
-    console.log(messages)
     if (messages.length > 1) {
       this.props.messages.sort(function (a, b) {
         return new Date(a.timeStamp) - new Date(b.timeStamp);

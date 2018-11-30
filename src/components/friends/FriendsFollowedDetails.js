@@ -37,7 +37,6 @@ export default class FriendIFollowPrint extends Component {
           }
         })
         if (canFollow) {
-        console.log("can follow", thisUser)
         // TODO: will need if else statement to display this if user is already following to unfollow
         return (
           <div className="detailsModularContainer">
@@ -63,7 +62,6 @@ export default class FriendIFollowPrint extends Component {
           </div>
         )
             } else {
-              console.log("can't follow", thisUser)
         // TODO: will need if else statement to display this if user is already following to unfollow
         return (
           <div className="detailsModularContainer">
@@ -87,25 +85,6 @@ export default class FriendIFollowPrint extends Component {
           </div>
         )
             }
-        // else {
-        //   return (
-        //     <div className="detailsModularContainer">
-        //     <IndividualDetails user={thisUser} />
-        //       <div id="detailsModularBtnsSection">
-        //         <button className="modularButton" onClick={() => {
-        //           $("#root").removeClass("isBlurred")
-        //           onClose()
-        //         }}>Back to Messages</button>
-        //         <button className="modularButton" onClick={() => {
-        //           // TODO: Need to replace currentUser with id for current user for saving
-        //          APIManager.deleteItem("friends", data).then (() => this.props.refresh())
-        //          $("#root").removeClass("isBlurred")
-        //           onClose()
-        //         }}>Unfollow {thisUser.username}</button>
-        //       </div>
-        //     </div>
-        //   )
-        // }
       }
     })
   }
@@ -149,7 +128,6 @@ export default class FriendIFollowPrint extends Component {
         toFollowList.push(person);
       }
     });
-    // this.setState({ availableToFollow: followingList })
     return (toFollowList.map(person => {
       return (
         <div className="indivUser" key={person.id} >
