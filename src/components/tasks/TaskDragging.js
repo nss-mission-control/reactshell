@@ -36,6 +36,30 @@ export default class TaskDragging extends Component {
       })
   }
 
+  refreshCol = () => {
+
+    APIManager.saveItem("tasks", {
+      task: "New",
+      userId: 1,
+      columnId: 1
+    }).then(data =>{
+      console.log("columns", this.state.columns[0].columnTasks)
+      let columnTaskAdd = this.state.columns
+
+
+      columnTaskAdd = this.state.columns[0].columnTasks
+      columnTaskAdd.push(data.id)
+      console.log("column", columnTaskAdd)
+      APIManager.updateItem("columns", 1, {columnTasks: columnTaskAdd}).then(()=>{
+        APIManager.getAllCategory("columns").then(data => {
+          this.setState({ columns: data })
+    })})})
+  }
+
+  newTask() {
+
+  }
+
   onDragEnd = result => {
     console.log(result)
     // results is the object that contains info on the drag and drop
@@ -124,11 +148,10 @@ export default class TaskDragging extends Component {
               const tasks = column.columnTasks.map(taskId => {
                 return this.state.tasks.filter(oneTask => oneTask.id === taskId)
               });
-              return <Column key={column.id} column={column} tasks={tasks} />
+              console.log("CHECKHERE",tasks);
+              return <Column refreshCol = {this.refreshCol} passedState ={this.state} key={column.id} column={column} tasks={tasks} />
             })
-              // {this.props.tasks.map(singleTask => {
-              //   return <Tasks task={singleTask} key={singleTask.id} />
-              // })}
+
             }
           </DragDropContext>
         </div>

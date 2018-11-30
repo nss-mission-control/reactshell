@@ -318,6 +318,14 @@
       "columnId": 3
     },
     {
+      "task": "Check all the email",
+      "complete": false,
+      "dueDate": "2018-11-01",
+      "userId": 4,
+      "id": 10,
+      "columnId": 3
+    },
+    {
       "task": "Check email",
       "complete": false,
       "dueDate": "2018-11-01",
@@ -339,6 +347,14 @@
       "dueDate": "2018-11-14",
       "userId": 2,
       "id": 13,
+      "columnId": 1
+    },
+    {
+      "task": "Fight Santa",
+      "complete": false,
+      "dueDate": "2018-12-25",
+      "userId": 3,
+      "id": 14,
       "columnId": 1
     },
     {
@@ -380,6 +396,12 @@
       "userId": 1,
       "id": 19,
       "columnId": 2
+    },
+    {
+      "task": "New",
+      "userId": 1,
+      "columnId": 1,
+      "id": 20
     }
   ],
   "friends": [
@@ -414,18 +436,27 @@
       "name": "Upcoming",
       "id": 1,
       "columnTasks": [
-        1,
-        2,
-        3
+        20,
+        10,
+        14,
+        17,
+        18,
+        6,
+        19
       ]
     },
     {
       "name": "InProgress",
       "id": 2,
       "columnTasks": [
-        6,
+        4,
+        12,
+        11,
+        15,
+        16,
+        13,
         8,
-        4
+        2
       ]
     },
     {
@@ -433,6 +464,8 @@
       "id": 3,
       "columnTasks": [
         7,
+        3,
+        1,
         5,
         9
       ]
