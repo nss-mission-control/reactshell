@@ -2,9 +2,6 @@ import React, { Component } from "react"
 import { Link } from "react-router-dom"
 import "./navbar.css"
 import $ from "jquery"
-import APIManager from "../../modules/APIManager";
-
-let currentUserUsername
 
 class NavBar extends Component {
 
@@ -61,28 +58,32 @@ class NavBar extends Component {
             </div>
             <div className="navbar-end">
               <div className="navbar-item has-dropdown is-hoverable">
-              <a className="navbar-link has-text-white" id="dropdown-top" onMouseOver={this.handleDropDownColor} onMouseOut={this.handleDropDownColor}>
-              {this.props.user.username}
+                <a className="navbar-link has-text-white" id="dropdown-top" onMouseOver={this.handleDropDownColor} onMouseOut={this.handleDropDownColor}>
+                  <figure className="image is-24x24">
+                    <img src={this.props.user.profilePic} className="is-rounded"/>
+                  </figure>
+                  &nbsp; &nbsp;
+                    {this.props.user.username}
                 </a>
-                <div className="navbar-dropdown" onMouseOver={this.handleDropDownColor} onMouseOut={this.handleDropDownColor}>
-                  <a className="navbar-item has-text-white" id="dropdown-itm1" >
-                    Edit Profile
+                  <div className="navbar-dropdown" onMouseOver={this.handleDropDownColor} onMouseOut={this.handleDropDownColor}>
+                    <a className="navbar-item has-text-white" id="dropdown-itm1" >
+                      Edit Profile
                   </a>
-                  <a className="navbar-item has-text-white" id="dropdown-itm2" onClick={this.props.logout}>
-                    Logout
+                    <a className="navbar-item has-text-white" id="dropdown-itm2" onClick={this.props.logout}>
+                      Logout
                   </a>
-                </div>
+                  </div>
+              </div>
               </div>
             </div>
-          </div>
         </nav >
-      )
+          )
     } else {
       return (
         <nav className="navbar has-background-link" role="navigation" aria-label="main navigation"></nav >
-      )
+          )
+        }
+      }
     }
-  }
-}
 
 export default NavBar

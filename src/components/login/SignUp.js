@@ -1,3 +1,5 @@
+// Code written by Brendan
+
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
 import APIManager from "../../modules/APIManager";
@@ -54,6 +56,7 @@ export default class Login extends Component {
     passwordInput.style.color = "black"
     confirmPasswordInput.style.color = "black"
 
+    // ---- if user doesn't specify profile image link, give them the temp avatar image instead
     let profilePictureLink = "images/avatar-placeholder.png"
     let user = {}
 
@@ -77,15 +80,7 @@ export default class Login extends Component {
       }
     }
 
-    user = {
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
-      username: this.state.username,
-      password: this.state.password,
-      email: this.state.email,
-      profilePic: this.state.profilePic
-    }
-
+    // ---- verify username is unique and password/confirm password match
     let usernameTaken = false;
 
     APIManager.getAllCategory("users").then(users => {

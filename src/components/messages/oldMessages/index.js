@@ -56,7 +56,6 @@ export default class OldMessages extends Component {
   printMessages = () => {
     let moment = require('moment');
     let messages = this.props.messages;
-    console.log(messages)
     if (messages.length > 1) {
       this.props.messages.sort(function (a, b) {
         return new Date(a.timeStamp) - new Date(b.timeStamp);
