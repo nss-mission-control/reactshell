@@ -4,6 +4,8 @@ import "./navbar.css"
 import $ from "jquery"
 import APIManager from "../../modules/APIManager";
 
+let usernameInNavbar
+
 class NavBar extends Component {
 
   modifyFontColor(element) {
@@ -15,12 +17,22 @@ class NavBar extends Component {
   }
 
   handleDropDownColor() {
-      $("#dropdown-top").toggleClass("has-text-link")
+    $("#dropdown-top").toggleClass("has-text-link")
+  }
+
+  state = {
+    username: ""
+  }
+
+  componentDidMount() {
+    let userId = sessionStorage.getItem("id")
+    APIManager.getOneFromCategory("users", userId).then(user => this.setState({ username: user.username }))
   }
 
   render() {
 
     if (sessionStorage.getItem("id") !== null) {
+      // gets navbar username
       return (
         <nav className="navbar has-background-link" role="navigation" aria-label="main navigation">
           <div className="navbar-brand">
@@ -49,7 +61,7 @@ class NavBar extends Component {
             <div className="navbar-end">
               <div className="navbar-item has-dropdown is-hoverable">
                 <a className="navbar-link has-text-white" id="dropdown-top" onMouseOver={this.handleDropDownColor} onMouseOut={this.handleDropDownColor}>
-                  {this.props.user.username}
+                  {this.state.username}
                 </a>
                 <div className="navbar-dropdown" onMouseOver={this.handleDropDownColor} onMouseOut={this.handleDropDownColor}>
                   <a className="navbar-item has-text-white" id="dropdown-itm1" >

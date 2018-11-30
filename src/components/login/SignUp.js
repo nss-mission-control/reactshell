@@ -54,7 +54,30 @@ export default class Login extends Component {
     passwordInput.style.color = "black"
     confirmPasswordInput.style.color = "black"
 
-    let user = {
+    let profilePictureLink = "images/avatar-placeholder.png"
+    let user = {}
+
+    if (this.state.profilePic === "") {
+      user = {
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        username: this.state.username,
+        password: this.state.password,
+        email: this.state.email,
+        profilePic: profilePictureLink
+      }
+    } else {
+      user = {
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        username: this.state.username,
+        password: this.state.password,
+        email: this.state.email,
+        profilePic: this.state.profilePic
+      }
+    }
+
+    user = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       username: this.state.username,
@@ -79,7 +102,7 @@ export default class Login extends Component {
         if (result) {
           usernameInput.style.color = "red"
           return
-        // check for no password match
+          // check for no password match
         } else if (user.password !== this.state.confirmPassword) {
           passwordInput.style.color = "red"
           confirmPasswordInput.style.color = "red"
@@ -192,8 +215,7 @@ export default class Login extends Component {
                     </label>
                     <div className="control has-icons-left">
                       <input onChange={this.handleFieldChange} type="text" className="input"
-                        id="profilePic"
-                        required />
+                        id="profilePic" />
                       <span className="icon is-small is-left">
                         <i className="fas fa-link"></i>
                       </span>

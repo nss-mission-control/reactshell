@@ -43,7 +43,7 @@ export default class ReactManager extends Component {
     if (this.state.pageLoaded) {
       return (
         <React.Fragment>
-          <NavBar user={this.state.currentUser} logout={this.logoutUser} activeUser={this.activeUser} />
+          <NavBar user={this.state.currentUser} logout={this.logoutUser} activeUser={this.activeUser} currentUser={this.state.currentUser}/>
           <ApplicationViews messages={this.state.messages} refresh={this.refreshData} activeUser={this.activeUser} login={this.login} loggedIn={this.state.loggedIn}/>
         </React.Fragment>
       )
