@@ -12,8 +12,6 @@ export default class NewsModule extends Component{
     }
   }
 
-  //this.props.deleteArticle
-
   addDeleteCapability=(id)=>{
     if(id === sessionStorage.id){
       return <button className="button" onClick={()=> this.props.deleteNewsClick()}>Delete Article</button>
@@ -36,7 +34,7 @@ export default class NewsModule extends Component{
           <p>{this.props.about}</p>
         </div>
         <footer className="modal-card-foot">
-          <a className="button" src={this.props.url}>Read More</a>
+          <a className="button" href={this.props.url} target="_blank" rel="noopener noreferrer">Read More</a>
           {this.addEditCapability(1)}
           {this.addDeleteCapability(this.props.userId)}
         </footer>

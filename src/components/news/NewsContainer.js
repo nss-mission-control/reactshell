@@ -8,7 +8,6 @@ import $ from 'jquery'
 export default class NewsContainer extends Component{
   //TODO: NEED TO PASS ACTIVE USERID DOWN TO NEWS MODULE COMPONTENT
   //TODO: Need to add this as a column layout and work on changing the display based on if the article is from the user, friends or people they are not friends with
-//TODO: Get Read More button on newsmodule working to open link in a separate tag
   state={
     showNews: false,
     addNews: false,
@@ -36,13 +35,14 @@ export default class NewsContainer extends Component{
     })
   }
 
+//When the edit news button is clicked, set state of edit news to true and show news to false (so you don't end up with nested modals) and display the AddEdit News component with the edit news view
   editNewsClick=()=>{
     this.setState({
       editNews:true,
       showNews: false,
     })
   }
-
+// When the delete news button is clicked, set the state of delete news to true and show news to false (so you don't end up with nested modals) and display the deleteNews component
   deleteNewsClick=()=>{
     this.setState({
       deleteNews: true,
@@ -63,6 +63,7 @@ export default class NewsContainer extends Component{
     $("#newsModal").toggleClass("is-active")
   }
 
+  //On any of the modals select the X in the top right hand corner to close the modal and show all articles
   closeModal=()=>{
     this.setState({
       showNews: false,
@@ -100,6 +101,7 @@ export default class NewsContainer extends Component{
       APICall.saveItem("articles", article).then(()=> APICall.getAllCategory("articles/?_expand=user").then(data => this.setState({news: data})))
   }
 
+  //Called from Add/Edit News component, this resets state for editNews to false and creates the element to be passed into the patch to the database. Then it re-fetches all news articles and updates the news state(causing a re-render of the news section)
   editArticleChanges=(evt, id)=>{
     evt.preventDefault()
     const article ={
@@ -115,6 +117,7 @@ export default class NewsContainer extends Component{
 
   }
 
+  //Called from the Delete News component, this resets state for deleteNews to false and captures the id number needed for the delete in the database. Then it re-fetches all news articles and updates the news state(causing a re-render of the news section)
   deleteArticle=(evt)=>{
     evt.preventDefault()
     const articleId = this.state.articleId

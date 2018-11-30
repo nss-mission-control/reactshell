@@ -42,9 +42,7 @@ export default class News extends Component{
           <div className={this.createClass(index)} key={article.id} onClick={()=> this.props.showNewsClick(article.url, article.articleName, article.about, article.articleImage, article.id)}>
             <div className="has-background-primary">
               <div className="media">
-                <a href={article.url} target="_blank" rel="noopener noreferrer" className="media-left">
                   <img src={article.articleImage} alt="Article" />
-                </a>
                 <div className="media-content">
                   <h2>{article.articleName}</h2>
                   <h4>Saved by: {article.user.firstName} | Date Saved: ${article.dateSaved}</h4>
