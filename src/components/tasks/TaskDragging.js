@@ -53,21 +53,27 @@ export default class TaskDragging extends Component {
   }
 
   onDragEnd = result => {
-    // console.log(result)
-    // const { destination, source, draggableId } = result;
+    console.log(result)
+    const { destination, source, draggableId } = result;
 
-    // if (!destination) {
-    //   return;
-    // };
+    if (!destination) {
+      return;
+    };
 
-    // if (
-    //   destination.droppableId === source.droppableId &&
-    //   destination.index === source.index
-    // ) {
-    //   return;
-    // }
-    // const column = this.state.columns[source.droppableId-1];
-    // console.log("column" , this.state.columns)
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
+    }
+
+    // grab last character
+
+    const colID = source.droppableId.split('-');
+    const column = this.state.columns[colID[1]-1];
+
+    console.log("state - column" , this.state.columns, "column", column)
+
     // const newTaskIds = Array.from(column.columnTasks);
     // newTaskIds.splice(source.index, 1);
     // newTaskIds.splice(destination.index, 0, draggableId);
