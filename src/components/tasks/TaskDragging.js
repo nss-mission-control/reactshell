@@ -15,16 +15,21 @@ export default class TaskDragging extends Component {
       columnId: []
     },
 
-    taskLoaded: false
+    taskLoaded: false,
+
+    timeForForm: false,
+
+    formFieldContent: ""
 
 
   }
 
   componentDidMount = () => {
-    APIManager.getAllCategory("columns").then(data => {
+    APIManager.getAllCategory("columns").then(data =>
       this.setState({ columns: data })
-    }).then(() =>
-      APIManager.getAllCategory("column_order"))
+    ).then(() =>
+      APIManager.getAllCategory("column_order")
+    )
       .then(data => {
         this.setState({ column_order: data })
       }).then(() => APIManager.getAllCategory("tasks/?_expand=userId"))
@@ -36,32 +41,51 @@ export default class TaskDragging extends Component {
       })
   }
 
-  refreshCol = () => {
-
-    APIManager.saveItem("tasks", {
-      task: "New",
-      userId: 1,
-      columnId: 1
-    }).then(data =>{
-      console.log("columns", this.state.columns[0].columnTasks)
-      let columnTaskAdd = this.state.columns
+  createNewTask = () => {
 
 
-      columnTaskAdd = this.state.columns[0].columnTasks
-      columnTaskAdd.push(data.id)
-      console.log("column", columnTaskAdd)
-      APIManager.updateItem("columns", 1, {columnTasks: columnTaskAdd}).then(()=>{
-        APIManager.getAllCategory("columns").then(data => {
-          this.setState({ columns: data })
-    })})})
   }
 
-  newTask() {
+  // refreshCol = () => {
 
-  }
+
+  //   APIManager.saveItem("tasks", {
+  //     task: "Test",
+  //     userId: 1,
+  //     columnId: 1
+  //   })
+
+  //   .then(data =>{
+  //     console.log("columns", this.state.columns[0].columnTasks)
+  //     let columnTaskAdd = this.state.columns
+
+
+  //     columnTaskAdd = this.state.columns[0].columnTasks
+  //     columnTaskAdd.push(data.id)
+  //     console.log("column", columnTaskAdd)
+  //     return columnTaskAdd
+  //   })
+
+
+
+  //     .then((data) => APIManager.updateItem("columns", 1, {columnTasks: data}))
+
+  //     .then(()=>{
+
+  //      return APIManager.getAllCategory("columns")})
+
+
+  //       .then(data => {
+  //         console.log("LOOKHERE:", this.state)
+  //         this.setState({ columns: data,
+  //         })
+
+  //       }
+  //   )
+  // }
+
 
   onDragEnd = result => {
-    console.log(result)
     // results is the object that contains info on the drag and drop
     // create access to these varables within the results object
     const { destination, source, draggableId } = result;
@@ -83,39 +107,38 @@ export default class TaskDragging extends Component {
     //Saves the specific column where it was dropped in the varable
     const sourceColID = source.droppableId.split('-');
     const destinationColId = destination.droppableId.split('-');
-    const sourceColumn = this.state.columns[Number(sourceColID[1]-1)];
-    const destinationColumn = this.state.columns[Number(destinationColId[1]-1)];
+    const sourceColumn = this.state.columns[Number(sourceColID[1] - 1)];
+    const destinationColumn = this.state.columns[Number(destinationColId[1] - 1)];
     const dragSplit = draggableId.split('-')
 
-    if(destinationColId[1]===sourceColID[1]) {
+    if (destinationColId[1] === sourceColID[1]) {
       const sameDestandSourceTasksIds = Array.from(sourceColumn.columnTasks);
       sameDestandSourceTasksIds.splice(source.index, 1);
-      console.log("before", sameDestandSourceTasksIds)
       sameDestandSourceTasksIds.splice(destination.index, 0, Number(dragSplit[1]));
-      console.log("after", sameDestandSourceTasksIds)
-      APIManager.updateItem("columns", sourceColID[1], {columnTasks: sameDestandSourceTasksIds})
+      APIManager.updateItem("columns", sourceColID[1], { columnTasks: sameDestandSourceTasksIds })
         .then(() => APIManager.getAllCategory("columns"))
-        .then((newColumnObj) =>this.setState({
+        .then((newColumnObj) => this.setState({
           columns: newColumnObj
         }))
     } else {
-    //Creates a new array of the targets column tasks
-    const destinationTaskIds = Array.from(destinationColumn.columnTasks);
-    const sourceTaskIds = Array.from(sourceColumn.columnTasks);
+      //Creates a new array of the targets column tasks
+      const destinationTaskIds = Array.from(destinationColumn.columnTasks);
+      const sourceTaskIds = Array.from(sourceColumn.columnTasks);
 
 
-   sourceTaskIds.splice(source.index, 1);
+      sourceTaskIds.splice(source.index, 1);
 
-    // Splits draggableId so I can access just the number with dragSplit[1]
-   destinationTaskIds.splice(destination.index, 0, Number(dragSplit[1]));
+      // Splits draggableId so I can access just the number with dragSplit[1]
+      destinationTaskIds.splice(destination.index, 0, Number(dragSplit[1]));
 
-    // patch source column
-    APIManager.updateItem("columns", sourceColID[1], {columnTasks: sourceTaskIds})
-      .then(() => APIManager.updateItem("columns", destinationColId[1], {columnTasks: destinationTaskIds}))
-      .then(() => APIManager.getAllCategory("columns"))
-      .then((newColumnObj) =>this.setState({
-        columns: newColumnObj
-      }))
+      // patch source column
+
+      APIManager.updateItem("columns", sourceColID[1], { columnTasks: sourceTaskIds })
+        .then(() => APIManager.updateItem("columns", destinationColId[1], { columnTasks: destinationTaskIds }))
+        .then(() => APIManager.getAllCategory("columns"))
+        .then((newColumnObj) => this.setState({
+          columns: newColumnObj
+        }))
     }
 
     // const newColumn = {
@@ -135,6 +158,37 @@ export default class TaskDragging extends Component {
 
 
 
+  newButtonClick = () => {
+    this.setState({ timeForForm: true })
+  }
+
+  newTaskSave = () => {
+    APIManager.saveItem("tasks", {
+      task: this.state.formFieldContent,
+      userId: 1,
+      columnId: 1
+    })
+      //copying state array and adding a value
+      .then(data => {
+        let arrayofColumn1Tasks = Array.from(this.state.columns[0].columnTasks)
+        arrayofColumn1Tasks.push(data.id)
+
+        return APIManager.updateItem("columns", 1, { columnTasks: arrayofColumn1Tasks })
+
+
+
+      })
+
+      .then(() => APIManager.getAllCategory("columns"))
+      .then(data => this.setState({ columns: data }))
+  }
+
+  handleFieldChange = (evt) => {
+    const stateToChange = {}
+    stateToChange[evt.target.id] = evt.target.value
+    this.setState(stateToChange)
+  }
+
 
   render() {
     let newvar
@@ -148,8 +202,7 @@ export default class TaskDragging extends Component {
               const tasks = column.columnTasks.map(taskId => {
                 return this.state.tasks.filter(oneTask => oneTask.id === taskId)
               });
-              console.log("CHECKHERE",tasks);
-              return <Column refreshCol = {this.refreshCol} passedState ={this.state} key={column.id} column={column} tasks={tasks} />
+              return <Column newButtonClick={this.newButtonClick} refreshCol={this.refreshCol} passedState={this.state} key={column.id} column={column} tasks={tasks} />
             })
 
             }
@@ -159,9 +212,19 @@ export default class TaskDragging extends Component {
       )
     }
 
+
+    //new task form
+    let addTaskForm = ""
+    if (this.state.timeForForm === true) {
+      addTaskForm = (<div><input id="formFieldContent" type="text" onChange={this.handleFieldChange} /> <button onClick={this.newTaskSave}>Save</button></div>)
+    }
+
+
     return (
       <React.Fragment>
+        {addTaskForm}
         {newvar}
+
       </React.Fragment>
     )
   }

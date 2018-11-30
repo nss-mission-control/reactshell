@@ -15,18 +15,18 @@ const TodoBody = styled.div`
 
 export default class Column extends Component {
 
-  newTask() {
-    APIManager.saveItem("tasks", {
-      task: "Test new app",
-      userId: 1
-    }).then(data =>{
+  // newTask() {
+  //   APIManager.saveItem("tasks", {
+  //     task: "Test new app",
+  //     userId: 1
+  //   }).then(data =>{
 
-      console.log(this.props.passedState)
-      let columnTasks = this.props.passedState.columns.columnTasks
-      columnTasks.shift(data.id)
-      APIManager.updateItem("columns", 1, {columnTasks}).then(()=>{this.props.refreshCol()})
-    }
-    )}
+  //     console.log(this.props.passedState)
+  //     let columnTasks = this.props.passedState.columns.columnTasks
+  //     columnTasks.shift(data.id)
+  //     APIManager.updateItem("columns", 1, {columnTasks}).then(()=>{this.props.refreshCol()})
+  //   }
+  //   )}
 
   addButtonFilter() {
     if (this.props.column.id===1){
@@ -34,7 +34,7 @@ export default class Column extends Component {
       <div >
         <div className = "level">
       <Title id = "title" className="title level-left">{this.props.column.name}</Title>
-        <button className = "" onClick = {()=> this.props.refreshCol()}>+</button>
+        <button className = "" onClick = {()=> this.props.newButtonClick()}>+</button>
       </div>
       <TodoBody className = "has-background-grey-lighter">
       <Droppable droppableId={`col-${this.props.column.id}`}>
@@ -64,8 +64,9 @@ export default class Column extends Component {
           provided => (
             // if ref doesn't work try innerRef
             <TaskList ref={provided.innerRef} {...provided.droppableProps}>
-              {this.props.tasks.map((task, index) =>
-                <Task key={task[0].id} task={task} index={index} />
+              {
+                this.props.tasks.map((task, index) =>{
+                return <Task key={task[0].id} task={task} index={index} />}
 
               )}
               {provided.placeholder}
@@ -77,6 +78,7 @@ export default class Column extends Component {
         </div>
       </Container>) }
   }
+
 
 
   render() {
