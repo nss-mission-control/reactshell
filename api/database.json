@@ -89,6 +89,15 @@
       "password": "12345NSS",
       "email": "backfromthegrave@yes.me",
       "profilePic": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxk8jkVbpVN4P7aRSxvjGZea4zsbGhhMZHqlbPXV7eC-pRQd2cHQ"
+    },
+    {
+      "firstName": "Dude",
+      "lastName": "Dude",
+      "username": "superlongusernameeeeeeeeeeee",
+      "password": "pass",
+      "email": "dede@dude.com",
+      "profilePic": "images/avatar-placeholder.png",
+      "id": 11
     }
   ],
   "messages": [
@@ -127,6 +136,18 @@
       "messageContent": "#besties ",
       "timeStamp": "2018-11-07T21:16:34.489Z",
       "userId": 2
+    },
+    {
+      "timeStamp": "2018-11-30T16:05:16.804Z",
+      "messageContent": "Her favorite foods are sketty n' buttr.",
+      "userId": 4,
+      "id": 7
+    },
+    {
+      "timeStamp": "2018-11-30T17:00:57.671Z",
+      "messageContent": "Test message",
+      "userId": 4,
+      "id": 8
     }
   ],
   "articles": [

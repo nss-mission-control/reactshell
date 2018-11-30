@@ -18,7 +18,7 @@ export default class ApplicationViews extends Component {
       <React.Fragment>
         <Route exact path="/" render={(props) => {
           if (this.isAuthenticated()) {
-            return <Messages messages={this.props.messages} refresh={this.props.refresh} />
+            return <Messages messages={this.props.data.messages} refresh={this.props.refresh} />
           } else {
             return <LogIn {...props} activeUser={this.props.activeUser} />
           }

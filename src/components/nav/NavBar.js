@@ -54,7 +54,7 @@ class NavBar extends Component {
 
               <Link className="navbar-item has-text-white" to="/news" onMouseOver={(e) => this.modifyFontColor(e.target)} onMouseOut={(e) => this.resetFontColor(e.target)}>News</Link>
 
-              <Link className="navbar-item has-text-white" to="/friends" onMouseOver={(e) => this.modifyFontColor(e.target)} onMouseOut={(e) => this.resetFontColor(e.target)}>Following</Link>
+              <Link className="navbar-item has-text-white" to="/following" onMouseOver={(e) => this.modifyFontColor(e.target)} onMouseOut={(e) => this.resetFontColor(e.target)}>Following</Link>
             </div>
             <div className="navbar-end">
               <div className="navbar-item has-dropdown is-hoverable">

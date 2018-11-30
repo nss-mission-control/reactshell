@@ -8,7 +8,7 @@ export default class OldMessages extends Component {
 
   deleteMessage = (event) => {
     APIManager.deleteItem("messages", event.id)
-    .then(() => this.props.refresh())
+      .then(() => this.props.refresh())
   }
 
   saveMessage = (event) => {
@@ -16,7 +16,7 @@ export default class OldMessages extends Component {
       event.messageContent = this.content.value;
     }
     APIManager.updateItem("messages", event.id, event)
-    .then(() => this.props.refresh())
+      .then(() => this.props.refresh())
   }
 
   editMessage = (event) => {
@@ -61,30 +61,41 @@ export default class OldMessages extends Component {
     }
     return (this.props.messages.map(message => {
       // TODO: need to add ability to read current user id
-      if (message.user.username === "braddavistech") {
+      let userId = sessionStorage.getItem("id")
+      if (message.user.id === userId) {
         return <section className="level" key={message.id}>
-          <div className="level-left">
-            <p id="dateInfo" className="tag">{moment(`${message.timeStamp}`).fromNow()} </p>
-            <article id="editDelete">
-              <img className="editIcon" id={parseInt(message.id)} onClick={this.editMessage} src="../../../../edit.png" alt="edit"></img>
-            </article>
+          <div className="level-left"></div>
+          <div className="level-right">
+            <p className={`oldMsgBody ${message.id}body level-item`}>{message.messageContent}</p>
+            <figure id="editDelete" className="level-item">
+              <img className="editIcon" id={parseInt(message.id)} onClick={this.editMessage} src="images/edit.png" alt="edit"></img>
+            </figure>
+            <figure className="image is-24x24">
+              <img src={message.user.profilePic} className="is-rounded" />
+            </figure> &nbsp;
+            <p id="dateInfo" className="tag level-item is-link">{message.user.username}</p>
+            <p id="dateInfo" className="tag level-item">{moment(`${message.timeStamp}`).fromNow()} </p>
           </div>
-          <p className={`oldMsgBody ${message.id}body level-right`}>{message.messageContent}</p>
         </section>
       }
       else {
         return <section className="level" key={message.id}>
           <div className="level-left">
-            <p className="oldMsgTitle">{message.user.username} - {moment(`${message.timeStamp}`).fromNow()}</p>
-            <p className="oldMsgTitle">{message.messageContent}</p>
+            <div className="level-item is-flex">
+              <p className="oldMsgTitle tag">{moment(`${message.timeStamp}`).fromNow()}</p>
+              <figure className="image is-24x24">
+                <img src={message.user.profilePic} className="is-rounded" />
+              </figure> &nbsp;
+              <p className="oldMsgTitle tag is-link">{message.user.username}</p>
+            </div>
+            <p className="oldMsgTitle level-item">{message.messageContent}</p>
           </div>
+          <div className="level-right"></div>
         </section>
       }
     }
     ))
   }
-
-
 
   render() {
     $(document).keyup(function (e) {
