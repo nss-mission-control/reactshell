@@ -60,8 +60,7 @@ export default class OldMessages extends Component {
       });
     }
     return (this.props.messages.map(message => {
-      // TODO: need to add ability to read current user id
-      let userId = sessionStorage.getItem("id")
+      let userId = Number(sessionStorage.getItem("id"))
       if (message.user.id === userId) {
         return <section className="level" key={message.id}>
           <div className="level-left"></div>

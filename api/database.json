@@ -120,12 +120,6 @@
       "userId": 2
     },
     {
-      "messageContent": "I'm good, but I'm a little nervous about this presentation",
-      "timeStamp": "2018-11-10T09:16:34.489Z",
-      "userId": 4,
-      "id": 4
-    },
-    {
       "id": 5,
       "messageContent": "Don't be nervous! You will be great!",
       "timeStamp": "2018-11-08T14:07:21.489Z",
@@ -138,16 +132,10 @@
       "userId": 2
     },
     {
-      "timeStamp": "2018-11-30T16:05:16.804Z",
+      "timeStamp": "2018-11-30T20:06:25.793Z",
       "messageContent": "Her favorite foods are sketty n' buttr.",
-      "userId": 4,
+      "userId": 7,
       "id": 7
-    },
-    {
-      "timeStamp": "2018-11-30T17:00:57.671Z",
-      "messageContent": "Test message",
-      "userId": 4,
-      "id": 8
     }
   ],
   "articles": [

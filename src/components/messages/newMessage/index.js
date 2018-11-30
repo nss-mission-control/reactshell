@@ -9,14 +9,13 @@ export default class NewMessage extends Component {
   }
 
   saveMessage = () => {
-    // need to add ability to grab current user id
     $(".alert").hide()
     let timeStampNew = new Date();
     if (this.state.messageContent === "") {
       $("#noMessageContent").show();
     } else {
-      // TODO: need to add functionality to save to specific user
-      let data = {timeStamp: timeStampNew, messageContent: this.state.messageContent, userId: 4}
+      let userId = Number(sessionStorage.getItem("id"))
+      let data = {timeStamp: timeStampNew, messageContent: this.state.messageContent, userId: userId}
       APIManager.saveItem("messages", data)
       .then(() => this.props.refresh())
       this.setState({messageContent: ""})
