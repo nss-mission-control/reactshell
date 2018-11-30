@@ -45,7 +45,7 @@ export default class FriendFollowingMePrint extends Component {
                 $(".followingMe").removeClass("isBlurred")
                 $(".needToFollow").removeClass("isBlurred")
                 onClose()
-              }}>Back to Messages</button>
+              }}>Back to Following</button>
               <button className="modularButton" onClick={() => {
                 // TODO: Need to replace currentUser with id for current user for saving
                let currentUser = 2;
@@ -71,7 +71,7 @@ export default class FriendFollowingMePrint extends Component {
                 $(".followingMe").removeClass("isBlurred")
                 $(".needToFollow").removeClass("isBlurred")
                 onClose()
-              }}>Back to Messages</button>
+              }}>Back to Following</button>
               <button className="modularButton" onClick={() => {
                 // TODO: Need to replace currentUser with id for current user for saving
                APIManager.deleteItem("friends", relationship).then (() => this.props.refresh())
