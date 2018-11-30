@@ -106,7 +106,7 @@ export default class FriendIFollowPrint extends Component {
                       <a href={article.url} target="blank" className="articleLinkDetails"><img src={article.articleImage} alt="New Story" className="articleImageDetails"></img> </a>
                         <p className="dateInfo">Added {moment(`${article.dateSaved}`).fromNow()} </p>
                         <p className="messageDetailsFollowContent">{article.articleName}</p>
-                        <p className="messageDetailsFollowContent">{article.about}</p>
+                        <p className="messageDetailsFollowContentAbout">{article.about}</p>
                       </div>
                     )
                   })
