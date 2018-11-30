@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import './News.css'
 import NewsModule from './NewsModule'
 import AddEditNews from './AddEditNews'
+import DeleteNews from './DeleteNews';
 
 export default class News extends Component{
 
@@ -23,13 +24,15 @@ export default class News extends Component{
     let showNews = ""
     if(this.props.showNews === true){
       showNews= <NewsModule
-      articleName={this.props.articleName} about={this.props.about} articleImage={this.props.articleImage} url={this.props.url} closeModal={this.props.closeModal} editNewsClick={this.props.editNewsClick}/>
+      articleName={this.props.articleName} about={this.props.about} articleImage={this.props.articleImage} url={this.props.url} closeModal={this.props.closeModal} editNewsClick={this.props.editNewsClick} deleteArticle={this.props.deleteArticle} deleteNewsClick={this.props.deleteNewsClick}/>
     } else if(this.props.editNews === true){
       showNews= <AddEditNews
       handleFieldChange={this.props.handleFieldChange}
       editNews={this.props.editNews}closeModal={this.props.closeModal}
       addNews={this.props.addNews} editArticleChanges={this.props.editArticleChanges} addNewArticle={this.props.addNewArticle}
       articleName={this.props.articleName} about={this.props.about} articleImage={this.props.articleImage} url={this.props.url} articleId={this.props.articleId}/>
+    } else if(this.props.deleteNews === true){
+      showNews=<DeleteNews deleteArticle={this.props.deleteArticle} closeModal={this.props.closeModal}/>
     }
     return(
       <React.Fragment>

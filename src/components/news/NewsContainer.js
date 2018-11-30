@@ -6,21 +6,14 @@ import APICall from '../../modules/APIManager'
 import $ from 'jquery'
 
 export default class NewsContainer extends Component{
-  //TODO: Need to find a way to capture userId
   //TODO: NEED TO PASS ACTIVE USERID DOWN TO NEWS MODULE COMPONTENT
-  //TODO: NEED TO PASSDOWN DELETE BUTTON CLICK FUNCTION
   //TODO: Need to add this as a column layout and work on changing the display based on if the article is from the user, friends or people they are not friends with
 //TODO: Get Read More button on newsmodule working to open link in a separate tag
-
-  //ShowNews accessible to news
-  //addnews accessable to newsContainer and add/edit news
-  //editNews accessible to news, news module, add/edit news
-
-  //articleName, url, articleImage, about accessible to news to pass down to news module and add/edit news
   state={
     showNews: false,
     addNews: false,
     editNews: false,
+    deleteNews: false,
     articleName: [],
     url: [],
     articleImage: [],
@@ -48,7 +41,13 @@ export default class NewsContainer extends Component{
       editNews:true,
       showNews: false,
     })
-    $("#newsModal").toggleClass("is-active")
+  }
+
+  deleteNewsClick=()=>{
+    this.setState({
+      deleteNews: true,
+      showNews: false,
+    })
   }
 
   //When a news article is selected, this function is called and passed the information about that specific article. It then sets showNews state to true to render the NewsModal component
@@ -69,6 +68,7 @@ export default class NewsContainer extends Component{
       showNews: false,
       editNews: false,
       addNews: false,
+      deleteNews: false,
       url: [],
       articleName: [],
       about: [],
@@ -115,6 +115,16 @@ export default class NewsContainer extends Component{
 
   }
 
+  deleteArticle=(evt)=>{
+    evt.preventDefault()
+    const articleId = this.state.articleId
+
+    APICall.deleteItem("articles", articleId).then(()=> APICall.getAllCategory("articles/?_expand=user")).then((data)=> this.setState({
+      deleteNews: false,
+      news: data
+    }))
+  }
+
   //Step 2: when section renders, use the following logic:
   //set blank variable called addNews, when state of addNews is true, show the AddEditNews component with the addNews view options
     //change state of add news using addNewsClick function above
@@ -141,7 +151,7 @@ export default class NewsContainer extends Component{
         <div className="columns is-multiline">
           <News showNews={this.state.showNews} showNewsClick={this.showNewsClick}
           addNews={this.state.addNews} handleFieldChange={this.handleFieldChange}
-          news={this.state.news} editNews={this.state.editNews} articleName={this.state.articleName} about={this.state.about} articleImage={this.state.articleImage} url={this.state.url} closeModal={this.closeModal} editNewsClick={this.editNewsClick} editArticleChanges={this.editArticleChanges} addNewArticle ={this.addNewArticle} articleId={this.state.articleId}/>
+          news={this.state.news} editNews={this.state.editNews} articleName={this.state.articleName} about={this.state.about} articleImage={this.state.articleImage} url={this.state.url} closeModal={this.closeModal} editNewsClick={this.editNewsClick} editArticleChanges={this.editArticleChanges} addNewArticle ={this.addNewArticle} articleId={this.state.articleId} deleteArticle={this.deleteArticle} deleteNewsClick={this.deleteNewsClick} deleteNews={this.state.deleteNews}/>
         </div>
       </section>
       {addNews}

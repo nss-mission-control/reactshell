@@ -12,9 +12,11 @@ export default class NewsModule extends Component{
     }
   }
 
+  //this.props.deleteArticle
+
   addDeleteCapability=(id)=>{
     if(id === sessionStorage.id){
-      return <button className="button" onClick={()=> this.deleteButtonClick()}>Delete Article</button>
+      return <button className="button" onClick={()=> this.props.deleteNewsClick()}>Delete Article</button>
     }
   }
 
