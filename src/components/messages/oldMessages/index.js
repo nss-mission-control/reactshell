@@ -6,6 +6,8 @@ import $ from "jquery";
 
 //FIXME: TODO: clicking edit button multiple times opens multiple edit fields
 
+//TODO: add absolute styling to new message box and edit message box
+//TODO: fix word wrap issue with long messages in the message body
 export default class OldMessages extends Component {
 
   deleteMessage = (event) => {

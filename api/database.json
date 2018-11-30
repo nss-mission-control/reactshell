@@ -108,12 +108,6 @@
       "userId": 1
     },
     {
-      "id": 2,
-      "messageContent": "How is everyone doing today? ",
-      "timeStamp": "2018-11-09T12:10:34.489Z",
-      "userId": 3
-    },
-    {
       "id": 3,
       "messageContent": "I'm doing great! How are you? ",
       "timeStamp": "2018-11-07T21:16:34.489Z",
@@ -136,6 +130,12 @@
       "messageContent": "Her favorite foods are sketty n' buttr.",
       "userId": 7,
       "id": 7
+    },
+    {
+      "timeStamp": "2018-11-30T21:08:16.396Z",
+      "messageContent": "95% of people who say \"no pun intended\" are literally saying a pun.... Which means 9.5 puns intended.",
+      "userId": 3,
+      "id": 8
     }
   ],
   "articles": [
