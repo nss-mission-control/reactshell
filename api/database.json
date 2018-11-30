@@ -413,23 +413,36 @@
     {
       "name": "Upcoming",
       "id": 1,
-      "columnTasks": [1, 2, 3]
-
+      "columnTasks": [
+        1,
+        2,
+        3
+      ]
     },
     {
       "name": "InProgress",
       "id": 2,
-      "columnTasks": [4, 5, 6]
-
+      "columnTasks": [
+        4,
+        8,
+        5,
+        6
+      ]
     },
     {
       "name": "Completed",
       "id": 3,
-      "columnTasks": [7, 8, 9]
+      "columnTasks": [
+        7,
+        9
+      ]
     }
-
   ],
-  "column_order":{
-    "columnId": [1, 2, 3]
+  "column_order": {
+    "columnId": [
+      1,
+      2,
+      3
+    ]
   }
 }

@@ -8,23 +8,7 @@ export default class TaskDragging extends Component {
 
   state = {
     tasks: [],
-    columns: [{
-      name: "Upcoming",
-      id: 1,
-      columnTasks: [1, 2, 3]
-
-    },
-    {
-      name: "InProgress",
-      id: 2,
-      columnTasks: [4, 5, 6]
-
-    },
-    {
-      name: "Completed",
-      id: 3,
-      columnTasks: [7, 8, 9]
-    }],
+    columns: [],
 
 
     column_order: {
@@ -54,12 +38,15 @@ export default class TaskDragging extends Component {
 
   onDragEnd = result => {
     console.log(result)
+    // results is the object that contains info on the drag and drop
+    // create access to these varables within the results object
     const { destination, source, draggableId } = result;
 
+    //If no destination return nothing
     if (!destination) {
       return;
     };
-
+    // if destination index and column are the same as source return nothing
     if (
       destination.droppableId === source.droppableId &&
       destination.index === source.index
@@ -67,20 +54,45 @@ export default class TaskDragging extends Component {
       return;
     }
 
-    // grab last character
+    // The id has to be astring for beautiful dnd so when I need access to them I have to split the string
+    //Source.droppableId is the column that the item is dropped in
+    //Saves the specific column where it was dropped in the varable
+    const sourceColID = source.droppableId.split('-');
+    const destinationColId = destination.droppableId.split('-');
+    console.log("sourceColID:", sourceColID,
+    "destinationColId:", destinationColId)
+    const sourceColumn = this.state.columns[Number(sourceColID[1]-1)];
+    const destinationColumn = this.state.columns[Number(destinationColId[1]-1)];
 
-    const colID = source.droppableId.split('-');
-    const column = this.state.columns[colID[1]-1];
+    console.log("state - column" , this.state.columns, "column", sourceColumn)
 
-    console.log("state - column" , this.state.columns, "column", column)
+    console.log("colTasks", sourceColumn.columnTasks);
+    //Creates a new array of the targets column tasks
+    const destinationTaskIds = Array.from(destinationColumn.columnTasks);
+    const sourceTaskIds = Array.from(sourceColumn.columnTasks);
 
-    // const newTaskIds = Array.from(column.columnTasks);
-    // newTaskIds.splice(source.index, 1);
-    // newTaskIds.splice(destination.index, 0, draggableId);
+    console.log("destiation", destinationTaskIds, "source", sourceTaskIds)
+
+   sourceTaskIds.splice(source.index, 1);
+
+    // Splits draggableId so I can access just the number with dragSplit[1]
+    const dragSplit = draggableId.split('-')
+   destinationTaskIds.splice(destination.index, 0, Number(dragSplit[1]));
+    console.log("destinationTaskIds:", destinationTaskIds, "sourceTaskId:", sourceTaskIds);
+
+    // patch source column
+    APIManager.updateItem("columns", sourceColID[1], {columnTasks: sourceTaskIds})
+      .then(() => APIManager.updateItem("columns", destinationColId[1], {columnTasks: destinationTaskIds}))
+      .then(() => APIManager.getAllCategory("columns"))
+      .then((newColumnObj) =>
+        {console.log(newColumnObj)
+      this.setState({
+        columns: newColumnObj
+      })})
 
     // const newColumn = {
     //   ...column,
-    //   taskIds: newTaskIds,
+    //   taskIds: destinationTaskIds,
     // }
 
     // const newState = {

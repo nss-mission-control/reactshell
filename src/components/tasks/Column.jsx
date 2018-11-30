@@ -13,8 +13,8 @@ export default class Column extends Component {
   render() {
     return (
     <Container id = "container">
-      <Title id = "title">{this.props.column.title}</Title>
-      <Droppable droppableId={`this-${this.props.column.id}`}>
+      <Title id = "title">{this.props.column.name}</Title>
+      <Droppable droppableId={`col-${this.props.column.id}`}>
       {
         provided => (
           // if ref doesn't work try innerRef
