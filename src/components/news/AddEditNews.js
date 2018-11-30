@@ -28,15 +28,33 @@ export default class AddEditNews extends Component{
   render(){
     return(
       <div className="modal is-active" id="newsModal">
-      <div className="modal-background"></div>
+      <div className="modal-background is-primary"></div>
       <div className="modal-card">
         <header className="modal-card-head">{this.buildHeader(this.props.addNews, this.props.editNews)}
         </header>
         <div className="modal-content">
-          <input className="input" type="text" id="articleName" placeholder="News Title" defaultValue={this.props.articleName} onChange={this.props.handleFieldChange}></input>
-          <input className="input" type="text" id="about"placeholder="Synopsis" defaultValue={this.props.about} onChange={this.props.handleFieldChange}></input>
-          <input className="input" type="text" id="url" placeholder="URL" defaultValue={this.props.url} onChange={this.props.handleFieldChange}></input>
-          <input className="input" type="text" id="articleImage" placeholder="Image URL" defaultValue={this.props.articleImage} onChange={this.props.handleFieldChange}></input>
+          <div className="field">
+          <label className="label">Article Name</label>
+          <div className="control">
+            <input className="input" type="text" id="articleName" placeholder="News Title" defaultValue={this.props.articleName} onChange={this.props.handleFieldChange}></input>
+            <div className="help is-danger">{this.props.warningMessage}</div>
+          </div>
+          <label className="label">Article Description</label>
+          <div className="control">
+            <input className="input" type="text" id="about"placeholder="Description" defaultValue={this.props.about} onChange={this.props.handleFieldChange}></input>
+            <div className="help is-danger">{this.props.warningMessageAbout}</div>
+          </div>
+          <label className="label">URL</label>
+          <div className="control">
+            <input className="input" type="text" id="url" placeholder="URL" defaultValue={this.props.url} onChange={this.props.handleFieldChange}></input>
+            <div className="help is-danger">{this.props.warningMessageURL}</div>
+          </div>
+          <label className="label">Image Link</label>
+          <div className="control">
+            <input className="input" type="text" id="articleImage" placeholder="Image Link" defaultValue={this.props.articleImage} onChange={this.props.handleFieldChange}></input>
+            <div className="help is-danger">{this.props.warningMessageImg}</div>
+          </div>
+        </div>
       </div>
       <footer className="modal-card-foot">
         {this.buildButton(this.props.addNews, this.props.editNews)}

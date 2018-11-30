@@ -12,7 +12,7 @@ render(){
         </header>
         <div className="modal-content">
           <button className="button" onClick={(evt)=> this.props.deleteArticle(evt)}>Yes</button>
-          <button className="button" onClick={(evt)=> this.props.cancelDelete}>No</button>
+          <button className="button" onClick={(evt)=> this.props.closeModal()}>No</button>
         </div>
       </div>
       <button className="modal-close is-large" aria-label="close" onClick={()=> this.props.closeModal()}></button>

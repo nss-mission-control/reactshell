@@ -8,19 +8,24 @@ import $ from 'jquery'
 export default class NewsContainer extends Component{
   //TODO: NEED TO PASS ACTIVE USERID DOWN TO NEWS MODULE COMPONTENT
   //TODO: Need to add this as a column layout and work on changing the display based on if the article is from the user, friends or people they are not friends with
+  //TODO: Form validation
   state={
     showNews: false,
     addNews: false,
     editNews: false,
     deleteNews: false,
-    articleName: [],
-    url: [],
-    articleImage: [],
+    articleName: "",
+    url: "",
+    articleImage: "",
     dateSaved: "",
-    about: [],
+    about: "",
     userId: [],
     news: [],
-    articleId: []
+    articleId: [],
+    warningMessage: "",
+    warningMessageAbout: "",
+    warningMessageURL: "",
+    warningMessageImg: ""
   }
 
   //Step 1: When the main container component mounts, do an API fetch, get all of the articles and pass them to state as news
@@ -54,13 +59,18 @@ export default class NewsContainer extends Component{
   showNewsClick=(url, title, description, img, id)=>{
     this.setState({
       showNews: true,
+    })
+    this.resetState(url, title, description, img, id)
+  }
+
+  resetState=(url, title, description, img, id)=>{
+    this.setState({
       url: url,
       articleName: title,
       about: description,
       articleImage: img,
       articleId: id,
     })
-    $("#newsModal").toggleClass("is-active")
   }
 
   //On any of the modals select the X in the top right hand corner to close the modal and show all articles
@@ -70,10 +80,14 @@ export default class NewsContainer extends Component{
       editNews: false,
       addNews: false,
       deleteNews: false,
-      url: [],
-      articleName: [],
-      about: [],
-      articleImage: []
+      url: "",
+      articleName: "",
+      about: "",
+      articleImage: "",
+      warningMessage: "",
+      warningMessageAbout: "",
+      warningMessageImg: "",
+      warningMessageURL: ""
     })
   }
 
@@ -89,6 +103,41 @@ export default class NewsContainer extends Component{
 
   addNewArticle=(evt)=>{
     evt.preventDefault()
+    this.setState({
+      warningMessage: "",
+      warningMessageAbout: "",
+      warningMessageImg: "",
+      warningMessageURL: "",
+    })
+    if(this.state.articleName === ""){
+      $("#articleName").addClass("is-danger")
+      $("#url").removeClass("is-danger")
+      $("#about").removeClass("is-danger")
+      $("#articleImage").removeClass("is-danger")
+      this.setState({warningMessage: "Please add an Article Name"})
+      return
+    } else if(this.state.url === ""){
+      $("#articleName").removeClass("is-danger")
+      $("#url").addClass("is-danger")
+      $("#about").removeClass("is-danger")
+      $("#articleImage").removeClass("is-danger")
+      this.setState({warningMessageURL: "Please enter an Article URL"})
+      return
+    } else if(this.state.about === ""){
+      $("#articleName").removeClass("is-danger")
+      $("#url").removeClass("is-danger")
+      $("#about").addClass("is-danger")
+      $("#articleImage").removeClass("is-danger")
+      this.setState({warningMessageAbout: "Please add an Article Description"})
+      return
+    } else if(this.state.articleImage === ""){
+      $("#articleName").removeClass("is-danger")
+      $("#url").removeClass("is-danger")
+      $("#about").removeClass("is-danger")
+      $("#articleImage").addClass("is-danger")
+      this.setState({warningMessageImg: "Please add an Image Link"})
+      return
+    } else{
       this.setState({addNews: false})
       const article={
         articleName: this.state.articleName,
@@ -98,12 +147,35 @@ export default class NewsContainer extends Component{
         about: this.state.about,
         userId: 1
       }
-      APICall.saveItem("articles", article).then(()=> APICall.getAllCategory("articles/?_expand=user").then(data => this.setState({news: data})))
+      APICall.saveItem("articles", article)
+      .then(()=> APICall.getAllCategory("articles/?_expand=user")
+      .then(data => this.setState({
+        news: data,
+        articleName: [],
+        articleImage: [],
+        about: [],
+        url: [],
+      })))
+    }
   }
 
   //Called from Add/Edit News component, this resets state for editNews to false and creates the element to be passed into the patch to the database. Then it re-fetches all news articles and updates the news state(causing a re-render of the news section)
   editArticleChanges=(evt, id)=>{
     evt.preventDefault()
+    if(this.state.articleName === ""){
+      this.resetState()
+      // this.setState({})
+      return
+    } else if(this.state.url === ""){
+      this.setState({})
+      return
+    } else if(this.state.about === ""){
+      this.setState({})
+      return
+    } else if(this.state.articleImage === ""){
+      this.setState({})
+      return
+    } else{
     const article ={
       articleName: this.state.articleName,
       url: this.state.url,
@@ -113,9 +185,15 @@ export default class NewsContainer extends Component{
     }
     APICall.updateItem("articles", id, article).then(()=> APICall.getAllCategory("articles/?_expand=user")).then((data)=> this.setState({
       editNews: false,
-      news: data}))
+      news: data,
+      url: [],
+      articleName: [],
+      about: [],
+      articleImage: [],
+    }))
 
   }
+}
 
   //Called from the Delete News component, this resets state for deleteNews to false and captures the id number needed for the delete in the database. Then it re-fetches all news articles and updates the news state(causing a re-render of the news section)
   deleteArticle=(evt)=>{
@@ -140,7 +218,7 @@ export default class NewsContainer extends Component{
       handleFieldChange={this.handleFieldChange}
       editNews={this.state.editNews}closeModal={this.closeModal}
       addNews={this.state.addNews} editArticleChanges={this.editArticleChanges} addNewArticle={this.addNewArticle}
-      articleName={this.state.articleName} about={this.state.about} articleImage={this.state.articleImage} url={this.state.url} articleId={this.state.articleId}/>
+      articleName={this.state.articleName} about={this.state.about} articleImage={this.state.articleImage} url={this.state.url} articleId={this.state.articleId} warningMessage={this.state.warningMessage} warningMessageAbout={this.state.warningMessageAbout} warningMessageImg={this.state.warningMessageImg} warningMessageURL={this.state.warningMessageURL}/>
     }
     return(
       <React.Fragment>
@@ -154,7 +232,7 @@ export default class NewsContainer extends Component{
         <div className="columns is-multiline">
           <News showNews={this.state.showNews} showNewsClick={this.showNewsClick}
           addNews={this.state.addNews} handleFieldChange={this.handleFieldChange}
-          news={this.state.news} editNews={this.state.editNews} articleName={this.state.articleName} about={this.state.about} articleImage={this.state.articleImage} url={this.state.url} closeModal={this.closeModal} editNewsClick={this.editNewsClick} editArticleChanges={this.editArticleChanges} addNewArticle ={this.addNewArticle} articleId={this.state.articleId} deleteArticle={this.deleteArticle} deleteNewsClick={this.deleteNewsClick} deleteNews={this.state.deleteNews}/>
+          news={this.state.news} editNews={this.state.editNews} articleName={this.state.articleName} about={this.state.about} articleImage={this.state.articleImage} url={this.state.url} closeModal={this.closeModal} editNewsClick={this.editNewsClick} editArticleChanges={this.editArticleChanges} addNewArticle ={this.addNewArticle} articleId={this.state.articleId} deleteArticle={this.deleteArticle} deleteNewsClick={this.deleteNewsClick} deleteNews={this.state.deleteNews} warningMessage={this.state.warningMessage} warningMessageAbout={this.state.warningMessageAbout} warningMessageImg={this.state.warningMessageImg} warningMessageURL={this.state.warningMessageURL}/>
         </div>
       </section>
       {addNews}

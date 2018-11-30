@@ -3,6 +3,7 @@ import './News.css'
 import NewsModule from './NewsModule'
 import AddEditNews from './AddEditNews'
 import DeleteNews from './DeleteNews';
+import moment from 'moment'
 
 export default class News extends Component{
 
@@ -30,10 +31,11 @@ export default class News extends Component{
       handleFieldChange={this.props.handleFieldChange}
       editNews={this.props.editNews}closeModal={this.props.closeModal}
       addNews={this.props.addNews} editArticleChanges={this.props.editArticleChanges} addNewArticle={this.props.addNewArticle}
-      articleName={this.props.articleName} about={this.props.about} articleImage={this.props.articleImage} url={this.props.url} articleId={this.props.articleId}/>
+      articleName={this.props.articleName} about={this.props.about} articleImage={this.props.articleImage} url={this.props.url} articleId={this.props.articleId} warningMessage={this.props.warningMessage} warningMessageAbout={this.props.warningMessageAbout} warningMessageImg={this.props.warningMessageImg} warningMessageURL={this.props.warningMessageURL}/>
     } else if(this.props.deleteNews === true){
       showNews=<DeleteNews deleteArticle={this.props.deleteArticle} closeModal={this.props.closeModal}/>
     }
+
     return(
       <React.Fragment>
       {
@@ -45,7 +47,7 @@ export default class News extends Component{
                   <img src={article.articleImage} alt="Article" />
                 <div className="media-content">
                   <h2>{article.articleName}</h2>
-                  <h4>Saved by: {article.user.firstName} | Date Saved: ${article.dateSaved}</h4>
+                  <h4>Saved by: {article.user.firstName} | Article Saved {moment(`${article.dateSaved}`).fromNow()}</h4>
                   <p>{article.about}</p>
                 </div>
               </div>
