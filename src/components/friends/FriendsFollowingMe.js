@@ -11,8 +11,11 @@ export default class FriendFollowingMePrint extends Component {
     confirmAlert({
       customUI: ({ onClose }) => {
         let canFollow = true;
+        let moment = require('moment');
         let relationship = 0;
         let currentUser = 2;
+        let thisUserMessages = [];
+        let thisUserArticles = [];
         $(".followingThem").addClass("isBlurred")
         $(".followingMe").addClass("isBlurred")
         $(".needToFollow").addClass("isBlurred")
@@ -33,11 +36,21 @@ export default class FriendFollowingMePrint extends Component {
             }
           }
         })
+        this.props.data.messages.forEach(message => {
+          if (thisUser.id === message.userId) {
+            thisUserMessages.push(message);
+          }
+        })
+        this.props.data.articles.forEach(article => {
+          if (thisUser.id === article.userId) {
+            thisUserArticles.push(article);
+          }
+        })
         if (canFollow) {
           // TODO: will need if else statement to display this if user is already following to unfollow
           return (
             <div className="detailsModularContainer">
-              <IndividualDetails user={thisUser} />
+              <IndividualDetails user={thisUser} data={this.props.data}/>
               <div id="detailsModularBtnsSection">
                 <button className="modularButton" onClick={() => {
                   $(".followingThem").removeClass("isBlurred")
@@ -56,6 +69,30 @@ export default class FriendFollowingMePrint extends Component {
                   onClose()
                 }}>Follow {thisUser.username}</button>
               </div>
+              <h1 className="userMessagesTitle">Messages from {thisUser.username}</h1>
+                {
+                  thisUserMessages.map(message => {
+                    return (
+                      <div className="messageDetailsFollow" key={message.id}>
+                        <p className="dateInfo">Added {moment(`${message.timeStamp}`).fromNow()} </p>
+                        <p className="messageDetailsFollowContent">{message.messageContent}</p>
+                      </div>
+                    )
+                  })
+                }
+                 <h1 className="userMessagesTitle">Articles from {thisUser.username}</h1>
+                {
+                  thisUserArticles.map(article => {
+                    return (
+                      <div className="messageDetailsFollow" key={article.id}>
+                      <a href={article.url} target="blank" className="articleLinkDetails"><img src={article.articleImage} alt="New Story" className="articleImageDetails"></img> </a>
+                        <p className="dateInfo">Added {moment(`${article.dateSaved}`).fromNow()} </p>
+                        <p className="messageDetailsFollowContent">{article.articleName}</p>
+                        <p className="messageDetailsFollowContentAbout">{article.about}</p>
+                      </div>
+                    )
+                  })
+                }
             </div>
           )
         } else {
@@ -79,6 +116,30 @@ export default class FriendFollowingMePrint extends Component {
                   onClose()
                 }}>Stop Following {thisUser.username}</button>
               </div>
+              <h1 className="userMessagesTitle">Messages from {thisUser.username}</h1>
+                {
+                  thisUserMessages.map(message => {
+                    return (
+                      <div className="messageDetailsFollow" key={message.id}>
+                        <p className="dateInfo">Added {moment(`${message.timeStamp}`).fromNow()} </p>
+                        <p className="messageDetailsFollowContent">{message.messageContent}</p>
+                      </div>
+                    )
+                  })
+                }
+                 <h1 className="userMessagesTitle">Articles from {thisUser.username}</h1>
+                {
+                  thisUserArticles.map(article => {
+                    return (
+                      <div className="messageDetailsFollow" key={article.id}>
+                      <a href={article.url} target="blank" className="articleLinkDetails"><img src={article.articleImage} alt="New Story" className="articleImageDetails"></img> </a>
+                        <p className="dateInfo">Added {moment(`${article.dateSaved}`).fromNow()} </p>
+                        <p className="messageDetailsFollowContent">{article.articleName}</p>
+                        <p className="messageDetailsFollowContentAbout">{article.about}</p>
+                      </div>
+                    )
+                  })
+                }
             </div>
           )
         }

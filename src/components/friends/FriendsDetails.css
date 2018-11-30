@@ -83,12 +83,13 @@
   position: absolute;
   width: 80%;
   top: 4%;
-  background-color: white;
+  background-color: lightgray;
   padding: 10px;
   text-align: center;
   margin-left: 10%;
   border: 1px solid black;
   border-radius: 10px;
+  margin-bottom: 50px;
 }
 #userDetailsContainer {
   margin-top: 2%;
@@ -96,6 +97,7 @@
 }
 #indivUserModularPic {
   max-height: 250px;
+  border-radius: 8px;
 }
 #indivUserName {
   font-weight: bold;
@@ -115,4 +117,45 @@
 }
 .userToAdd {
   margin-top: 18%;
+}
+.modularButton {
+  margin-left: 5%;
+  margin-right: 5%;
+  font-weight: bold;
+  font-size: 15px;
+  border: 2px solid;
+  border-radius: 10px;
+  width: 40%;
+}
+.modularButton:hover {
+  background-color: grey;
+  color: white
+}
+.userMessagesTitle {
+  font-weight:bold;
+  margin-top: 30px;
+  border-bottom: 2px solid black;
+  margin-bottom: 10px;
+}
+.dateInfo {
+  font-weight: bold;
+  font-size: 12px;
+}
+.messageDetailsFollow {
+  border: 1px solid;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 5px;
+  margin-bottom: 15px;
+  background-color: white;
+}
+.articleImageDetails {
+  max-width: 75%;
+  max-height: 300px;
+  border-radius: 8px;
+}
+.messageDetailsFollowContentAbout {
+  font-weight: bold;
+  font-size: 16px;
 }
