@@ -177,7 +177,42 @@ export default class TaskDragging extends Component {
     this.setState({ timeForForm: true })
   }
 
+  // newTaskSave = () => {
+
+  //   let stateSetObj = {}
+  //   APIManager.saveItem("tasks", {
+  //     task: this.state.formFieldContent,
+  //     userId: 1,
+  //     columnId: 1
+  //   })
+  //     //copying state array and adding a value
+  //     .then(data => {
+  //       let arrayofColumn1Tasks = Array.from(this.state.columns[0].columnTasks)
+  //       arrayofColumn1Tasks.push(data.id)
+
+  //       return APIManager.updateItem("columns", 1, { columnTasks: arrayofColumn1Tasks })
+
+
+
+  //     })
+
+  //     .then(() => {return APIManager.getAllCategory("columns")})
+  //     .then(data => {
+  //               return stateSetObj[columns] = data
+  //     }).then(() => APIManager.getAllCategory("tasks"))
+  //       .then (data => {
+  //         return stateSetObj[tasks] = data
+  //       }).then(()=> {
+
+  //         console.log(stateSetObj)
+  //         this.setState(stateSetObj)
+  //       })
+
+  //     // .then(data => this.setState({ columns: data }))
+  // }
+
   newTaskSave = () => {
+    const stateToChange = {}
     APIManager.saveItem("tasks", {
       task: this.state.formFieldContent,
       userId: 1,
@@ -189,13 +224,16 @@ export default class TaskDragging extends Component {
         arrayofColumn1Tasks.push(data.id)
 
         return APIManager.updateItem("columns", 1, { columnTasks: arrayofColumn1Tasks })
-
-
-
       })
-
       .then(() => APIManager.getAllCategory("columns"))
-      .then(data => this.setState({ columns: data }))
+      .then(data => {
+        stateToChange.columns = data
+        return APIManager.getAllCategory("tasks/?_expand=userId")
+      })
+      .then(data => {
+        stateToChange.tasks = data
+        this.setState(stateToChange)
+      })
   }
 
   handleFieldChange = (evt) => {
