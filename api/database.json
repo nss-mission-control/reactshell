@@ -618,6 +618,24 @@
       "userId": 1,
       "columnId": 1,
       "id": 56
+    },
+    {
+      "task": "ghhg",
+      "userId": 1,
+      "columnId": 1,
+      "id": 57
+    },
+    {
+      "task": "sdfsdf",
+      "userId": 1,
+      "columnId": 1,
+      "id": 58
+    },
+    {
+      "task": "iii",
+      "userId": 1,
+      "columnId": 1,
+      "id": 59
     }
   ],
   "friends": [
@@ -653,9 +671,7 @@
       "id": 1,
       "columnTasks": [
         10,
-        17,
         6,
-        19,
         21,
         22,
         23,
@@ -679,16 +695,21 @@
         53,
         54,
         55,
-        56
+        56,
+        57,
+        58,
+        59
       ]
     },
     {
       "name": "InProgress",
       "id": 2,
       "columnTasks": [
+        17,
         4,
-        20,
+        19,
         12,
+        20,
         14,
         18,
         15,

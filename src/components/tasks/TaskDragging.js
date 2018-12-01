@@ -25,6 +25,21 @@ export default class TaskDragging extends Component {
   }
 
   componentDidMount = () => {
+    // let stateSetter = {}
+
+    // APIManager.getAllCategory('columns')
+    //   .then(data => {return stateSetter[columns] = data})
+    //   APIManager.getAllCategory("column_order")
+    //     .then(data => stateSetter[column_order = data])
+    //  APIManager.getAllCategory("tasks/?_expand=userId")
+    //       .then(data => stateSetter[stateSetter[tasks]=data]
+    //       .then(() => {
+    //         stateSetter[taskLoaded] = true;
+    //         console.log(stateSetter)
+    //         this.setState(stateSetter);}))
+
+
+
     APIManager.getAllCategory("columns").then(data =>
       this.setState({ columns: data })
     ).then(() =>
