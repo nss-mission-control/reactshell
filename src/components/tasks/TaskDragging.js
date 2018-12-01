@@ -25,35 +25,23 @@ export default class TaskDragging extends Component {
   }
 
   componentDidMount = () => {
-    // let stateSetter = {}
+    let stateSetter = {}
 
-    // APIManager.getAllCategory('columns')
-    //   .then(data => {return stateSetter[columns] = data})
-    //   APIManager.getAllCategory("column_order")
-    //     .then(data => stateSetter[column_order = data])
-    //  APIManager.getAllCategory("tasks/?_expand=userId")
-    //       .then(data => stateSetter[stateSetter[tasks]=data]
-    //       .then(() => {
-    //         stateSetter[taskLoaded] = true;
-    //         console.log(stateSetter)
-    //         this.setState(stateSetter);}))
-
-
-
-    APIManager.getAllCategory("columns").then(data =>
-      this.setState({ columns: data })
-    ).then(() =>
-      APIManager.getAllCategory("column_order")
-    )
+    APIManager.getAllCategory('columns')
       .then(data => {
-        this.setState({ column_order: data })
-      }).then(() => APIManager.getAllCategory("tasks/?_expand=userId"))
-      .then(data => {
-        this.setState({ tasks: data })
-      }).then(() => {
-        this.setState({ taskLoaded: true })
-
+        stateSetter.columns = data
+        return APIManager.getAllCategory("column_order")
       })
+        .then(data => {
+          stateSetter.column_order = data
+          return APIManager.getAllCategory("tasks/?_expand=userId")
+          })
+          .then(data => {
+            stateSetter.tasks = data
+            stateSetter.taskLoaded = true;
+            console.log(stateSetter)
+            this.setState(stateSetter)
+          })
   }
 
   createNewTask = () => {
@@ -177,65 +165,47 @@ export default class TaskDragging extends Component {
     this.setState({ timeForForm: true })
   }
 
-  // newTaskSave = () => {
-
-  //   let stateSetObj = {}
-  //   APIManager.saveItem("tasks", {
-  //     task: this.state.formFieldContent,
-  //     userId: 1,
-  //     columnId: 1
-  //   })
-  //     //copying state array and adding a value
-  //     .then(data => {
-  //       let arrayofColumn1Tasks = Array.from(this.state.columns[0].columnTasks)
-  //       arrayofColumn1Tasks.push(data.id)
-
-  //       return APIManager.updateItem("columns", 1, { columnTasks: arrayofColumn1Tasks })
-
-
-
-  //     })
-
-  //     .then(() => {return APIManager.getAllCategory("columns")})
-  //     .then(data => {
-  //               return stateSetObj[columns] = data
-  //     }).then(() => APIManager.getAllCategory("tasks"))
-  //       .then (data => {
-  //         return stateSetObj[tasks] = data
-  //       }).then(()=> {
-
-  //         console.log(stateSetObj)
-  //         this.setState(stateSetObj)
-  //       })
-
-  //     // .then(data => this.setState({ columns: data }))
-  // }
-
-  newTaskSave = () => {
+// Function to save value of the new task form to database
+  newTaskSave = (evt) => {
+    //capturing the id of the button that was clicked
+    let columnOfButton = evt.target.id;
+    //splits that id into an array of the text and number
+    let columnOfButtonSplit = columnOfButton.split('-');
+    //use that number and combine it with the text that starts the item in state to be able to call on that info
+    let buildingVarable = "formFieldContent-"+columnOfButtonSplit[1]
+    //turns it from a string of a number to a number number
+    let individualColId = Number(columnOfButtonSplit[1])
+    // build a task and send it to the database
     const stateToChange = {}
     APIManager.saveItem("tasks", {
-      task: this.state.formFieldContent,
+      task: this.state[buildingVarable],
       userId: 1,
-      columnId: 1
+      columnId: individualColId
     })
-      //copying state array and adding a value
+      //copying state array and adding the id of the new task
       .then(data => {
-        let arrayofColumn1Tasks = Array.from(this.state.columns[0].columnTasks)
+        //is minus one to convert an id to an array value which is always one less
+        let arrayofColumn1Tasks = Array.from(this.state.columns[individualColId-1].columnTasks)
         arrayofColumn1Tasks.push(data.id)
-
-        return APIManager.updateItem("columns", 1, { columnTasks: arrayofColumn1Tasks })
+        //sends new column data to database
+        return APIManager.updateItem("columns", individualColId, { columnTasks: arrayofColumn1Tasks })
       })
+      //get the updated columns from database
       .then(() => APIManager.getAllCategory("columns"))
+      //get updated tasks
       .then(data => {
         stateToChange.columns = data
         return APIManager.getAllCategory("tasks/?_expand=userId")
       })
+      //updated state
       .then(data => {
         stateToChange.tasks = data
         this.setState(stateToChange)
       })
   }
 
+
+  //sets state to the value of an input as it is typed
   handleFieldChange = (evt) => {
     const stateToChange = {}
     stateToChange[evt.target.id] = evt.target.value
@@ -255,7 +225,7 @@ export default class TaskDragging extends Component {
               const tasks = column.columnTasks.map(taskId => {
                 return this.state.tasks.filter(oneTask => oneTask.id === taskId)
               });
-              return <Column newButtonClick={this.newButtonClick} refreshCol={this.refreshCol} passedState={this.state} key={column.id} column={column} tasks={tasks} />
+              return <Column newButtonClick={this.newButtonClick} refreshCol={this.refreshCol} passedState={this.state} key={column.id} column={column} tasks={tasks} handleFieldChange = {this.handleFieldChange} newTaskSave = {this.newTaskSave}/>
             })
 
             }
@@ -275,7 +245,7 @@ export default class TaskDragging extends Component {
 
     return (
       <React.Fragment>
-        {addTaskForm}
+        {/* {addTaskForm} */}
         {newvar}
 
       </React.Fragment>

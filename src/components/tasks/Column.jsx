@@ -15,50 +15,28 @@ const TodoBody = styled.div`
 
 export default class Column extends Component {
 
-  // newTask() {
-  //   APIManager.saveItem("tasks", {
-  //     task: "Test new app",
-  //     userId: 1
-  //   }).then(data =>{
 
-  //     console.log(this.props.passedState)
-  //     let columnTasks = this.props.passedState.columns.columnTasks
-  //     columnTasks.shift(data.id)
-  //     APIManager.updateItem("columns", 1, {columnTasks}).then(()=>{this.props.refreshCol()})
-  //   }
-  //   )}
+//builds the to add tasks
+addTaskForm(columnId) {
+
+       return(<div className = 'box'>
+                    <label value="Add New">Add New</label>
+                    <input id= {`formFieldContent-`+columnId} onChange={this.props.handleFieldChange} type = 'text'/>
+                    <button id={`formFieldButton-`+columnId} onClick={(e) => this.props.newTaskSave(e)}>Save</button>
+                  </div>)
+
+
+
+   }
+
 
   addButtonFilter() {
-    if (this.props.column.id===1){
-      return(<Container id = "container" className="column ">
-      <div >
-        <div className = "level">
-      <Title id = "title" className="title level-left">{this.props.column.name}</Title>
-        <button className = "" onClick = {()=> this.props.newButtonClick()}>+</button>
-      </div>
-      <TodoBody className = "has-background-grey-lighter">
-      <Droppable droppableId={`col-${this.props.column.id}`}>
-      {
-        provided => (
-          // if ref doesn't work try innerRef
-          <TaskList ref={provided.innerRef} {...provided.droppableProps}>
-            {this.props.tasks.map((task, index) =>
-              <Task key={task[0].id} task={task} index={index} />
-
-            )}
-            {provided.placeholder}
-          </TaskList>
-        )
-      }
-      </Droppable>
-      </TodoBody>
-      </div>
-    </Container>)
-    } else {  return (
+        return (
       <Container id = "container" className="column ">
         <div >
         <Title id = "title" className="title">{this.props.column.name}</Title>
         <TodoBody className = "has-background-grey-lighter">
+        {this.addTaskForm(this.props.column.id)}
         <Droppable droppableId={`col-${this.props.column.id}`}>
         {
           provided => (
@@ -76,7 +54,7 @@ export default class Column extends Component {
         </Droppable>
         </TodoBody>
         </div>
-      </Container>) }
+      </Container>)
   }
 
 
