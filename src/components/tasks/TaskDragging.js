@@ -44,49 +44,6 @@ export default class TaskDragging extends Component {
           })
   }
 
-  createNewTask = () => {
-
-
-  }
-
-  // refreshCol = () => {
-
-
-  //   APIManager.saveItem("tasks", {
-  //     task: "Test",
-  //     userId: 1,
-  //     columnId: 1
-  //   })
-
-  //   .then(data =>{
-  //     console.log("columns", this.state.columns[0].columnTasks)
-  //     let columnTaskAdd = this.state.columns
-
-
-  //     columnTaskAdd = this.state.columns[0].columnTasks
-  //     columnTaskAdd.push(data.id)
-  //     console.log("column", columnTaskAdd)
-  //     return columnTaskAdd
-  //   })
-
-
-
-  //     .then((data) => APIManager.updateItem("columns", 1, {columnTasks: data}))
-
-  //     .then(()=>{
-
-  //      return APIManager.getAllCategory("columns")})
-
-
-  //       .then(data => {
-  //         console.log("LOOKHERE:", this.state)
-  //         this.setState({ columns: data,
-  //         })
-
-  //       }
-  //   )
-  // }
-
 
   onDragEnd = result => {
     // results is the object that contains info on the drag and drop
@@ -143,29 +100,14 @@ export default class TaskDragging extends Component {
           columns: newColumnObj
         }))
     }
-
-    // const newColumn = {
-    //   ...column,
-    //   taskIds: destinationTaskIds,
-    // }
-
-    // const newState = {
-    //   ...this.state,
-    //   columns: {
-    //     ...this.state.columns,
-    //     [newColumn.id]: newColumn,
-    //   },
-    // }
-    // this.setState(newState);
   }
-
 
 
   newButtonClick = () => {
     this.setState({ timeForForm: true })
   }
 
-// Function to save value of the new task form to database
+  // Function to save value of the new task form to database
   newTaskSave = (evt) => {
     //capturing the id of the button that was clicked
     let columnOfButton = evt.target.id;
@@ -204,6 +146,35 @@ export default class TaskDragging extends Component {
       })
   }
 
+  deleteTask = (evt) => {
+    const stateToChange = {}
+    let buttonId = evt.target.id
+    //array postition [1] is task id and [2] is column id
+    let splicedButtonId = buttonId.split('-')
+    let taskId = Number(splicedButtonId[1]);
+    let columnId = Number(splicedButtonId[2])
+
+    //delete task from database
+    APIManager.deleteItem("tasks", taskId)
+    // get updated tasks
+    .then(() => {return APIManager.getAllCategory("tasks/?_expand=userId")})
+    // update column array in database
+    .then(data => {
+      stateToChange.tasks = data
+      let arrayofColumnTasks = Array.from(this.state.columns[columnId-1].columnTasks)
+      arrayofColumnTasks = arrayofColumnTasks.filter(item => item !== taskId)
+      return APIManager.updateItem("columns", columnId, {columnTasks: arrayofColumnTasks})
+
+    })
+    //get updated columns
+    .then(()=> APIManager.getAllCategory("columns"))
+    //update state
+    .then(data =>{
+      stateToChange.columns = data
+      this.setState(stateToChange)
+    })
+  }
+
 
   //sets state to the value of an input as it is typed
   handleFieldChange = (evt) => {
@@ -211,6 +182,7 @@ export default class TaskDragging extends Component {
     stateToChange[evt.target.id] = evt.target.value
     this.setState(stateToChange)
   }
+
 
 
   render() {
@@ -225,7 +197,7 @@ export default class TaskDragging extends Component {
               const tasks = column.columnTasks.map(taskId => {
                 return this.state.tasks.filter(oneTask => oneTask.id === taskId)
               });
-              return <Column newButtonClick={this.newButtonClick} refreshCol={this.refreshCol} passedState={this.state} key={column.id} column={column} tasks={tasks} handleFieldChange = {this.handleFieldChange} newTaskSave = {this.newTaskSave}/>
+              return <Column newButtonClick={this.newButtonClick} passedState={this.state} key={column.id} column={column} tasks={tasks} handleFieldChange = {this.handleFieldChange} newTaskSave = {this.newTaskSave} deleteTask= {this.deleteTask}/>
             })
 
             }

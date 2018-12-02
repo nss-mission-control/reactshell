@@ -13,6 +13,7 @@ export default class Tasks extends Component {
         {provided =>
 
          <Container
+
           {...provided.draggableProps}
           highlight_line
           {...provided.dragHandleProps}
@@ -20,7 +21,7 @@ export default class Tasks extends Component {
           ref={provided.innerRef}
           className="level box has-background-primary">
             {this.props.task[0].task}
-            <button onClick= {() => console.log("delete me")}>Delete</button>
+            <button id ={`deleteButton-${this.props.task[0].id}-${this.props.columnId}`} onClick= {(evt) => this.props.deleteTask(evt)}>Delete</button>
           </Container>}
 
       </Draggable>

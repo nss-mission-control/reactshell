@@ -270,14 +270,6 @@
       "columnId": 1
     },
     {
-      "task": "Take in the trash",
-      "complete": true,
-      "dueDate": "2018-11-29",
-      "userId": 4,
-      "id": 4,
-      "columnId": 1
-    },
-    {
       "task": "Take around the trash",
       "complete": true,
       "dueDate": "2018-11-29",
@@ -350,27 +342,11 @@
       "columnId": 1
     },
     {
-      "task": "Fight Santa",
-      "complete": false,
-      "dueDate": "2018-12-25",
-      "userId": 3,
-      "id": 14,
-      "columnId": 1
-    },
-    {
       "task": "Videotape Santa",
       "complete": false,
       "dueDate": "2018-12-25",
       "userId": 3,
       "id": 15,
-      "columnId": 1
-    },
-    {
-      "task": "Look at Alfonso's Good Morning gif",
-      "complete": false,
-      "dueDate": "2018-11-15",
-      "userId": 3,
-      "id": 16,
       "columnId": 1
     },
     {
@@ -396,126 +372,6 @@
       "userId": 1,
       "id": 19,
       "columnId": 2
-    },
-    {
-      "task": "New",
-      "userId": 1,
-      "columnId": 1,
-      "id": 20
-    },
-    {
-      "task": "New",
-      "userId": 1,
-      "columnId": 1,
-      "id": 21
-    },
-    {
-      "task": "New",
-      "userId": 1,
-      "columnId": 1,
-      "id": 22
-    },
-    {
-      "task": "New",
-      "userId": 1,
-      "columnId": 1,
-      "id": 23
-    },
-    {
-      "task": "New",
-      "userId": 1,
-      "columnId": 1,
-      "id": 24
-    },
-    {
-      "task": "New",
-      "userId": 1,
-      "columnId": 1,
-      "id": 25
-    },
-    {
-      "task": "New",
-      "userId": 1,
-      "columnId": 1,
-      "id": 26
-    },
-    {
-      "task": "New",
-      "userId": 1,
-      "columnId": 1,
-      "id": 27
-    },
-    {
-      "task": "New",
-      "userId": 1,
-      "columnId": 1,
-      "id": 28
-    },
-    {
-      "task": "New",
-      "userId": 1,
-      "columnId": 1,
-      "id": 29
-    },
-    {
-      "task": "New",
-      "userId": 1,
-      "columnId": 1,
-      "id": 30
-    },
-    {
-      "task": "New",
-      "userId": 1,
-      "columnId": 1,
-      "id": 31
-    },
-    {
-      "task": "New",
-      "userId": 1,
-      "columnId": 1,
-      "id": 32
-    },
-    {
-      "task": "New",
-      "userId": 1,
-      "columnId": 1,
-      "id": 33
-    },
-    {
-      "task": "New",
-      "userId": 1,
-      "columnId": 1,
-      "id": 34
-    },
-    {
-      "task": "New",
-      "userId": 1,
-      "columnId": 1,
-      "id": 35
-    },
-    {
-      "task": "Test",
-      "userId": 1,
-      "columnId": 1,
-      "id": 36
-    },
-    {
-      "task": "Test",
-      "userId": 1,
-      "columnId": 1,
-      "id": 37
-    },
-    {
-      "task": "Test",
-      "userId": 1,
-      "columnId": 1,
-      "id": 38
-    },
-    {
-      "task": "Test",
-      "userId": 1,
-      "columnId": 1,
-      "id": 39
     },
     {
       "task": "sdf",
@@ -548,18 +404,6 @@
       "id": 44
     },
     {
-      "task": "ssss",
-      "userId": 1,
-      "columnId": 1,
-      "id": 45
-    },
-    {
-      "task": "asdf",
-      "userId": 1,
-      "columnId": 1,
-      "id": 46
-    },
-    {
       "task": "will it work",
       "userId": 1,
       "columnId": 1,
@@ -572,34 +416,10 @@
       "id": 48
     },
     {
-      "task": "ff",
-      "userId": 1,
-      "columnId": 1,
-      "id": 49
-    },
-    {
       "task": "werwe",
       "userId": 1,
       "columnId": 1,
       "id": 50
-    },
-    {
-      "task": "dddd",
-      "userId": 1,
-      "columnId": 1,
-      "id": 51
-    },
-    {
-      "task": "eee",
-      "userId": 1,
-      "columnId": 1,
-      "id": 52
-    },
-    {
-      "task": "sdfgh",
-      "userId": 1,
-      "columnId": 1,
-      "id": 53
     },
     {
       "task": "hello",
@@ -614,25 +434,13 @@
       "id": 55
     },
     {
-      "task": "sdfghjm,.",
-      "userId": 1,
-      "columnId": 1,
-      "id": 56
-    },
-    {
       "task": "ghhg",
       "userId": 1,
       "columnId": 1,
       "id": 57
     },
     {
-      "task": "sdfsdf",
-      "userId": 1,
-      "columnId": 1,
-      "id": 58
-    },
-    {
-      "task": "iii",
+      "task": "Test if add still works",
       "userId": 1,
       "columnId": 1,
       "id": 59
@@ -670,54 +478,25 @@
       "name": "Upcoming",
       "id": 1,
       "columnTasks": [
-        21,
-        4,
-        22,
-        23,
-        30,
-        14,
-        32,
-        33,
-        34,
-        35,
-        36,
-        37,
-        38,
-        39,
-        45,
-        46,
         47,
         48,
-        49,
         50,
-        51,
-        52,
-        53,
         54,
         55,
-        56,
-        57,
-        58,
-        59
+        57
       ]
     },
     {
       "name": "InProgress",
       "id": 2,
       "columnTasks": [
-        10,
         17,
-        19,
+        10,
         12,
-        20,
         18,
         15,
-        16,
-        24,
+        59,
         13,
-        25,
-        26,
-        27,
         8,
         2
       ]
@@ -726,14 +505,12 @@
       "name": "Completed",
       "id": 3,
       "columnTasks": [
-        29,
+        19,
         7,
         6,
         3,
         1,
-        28,
         5,
-        31,
         11,
         9
       ]

@@ -30,7 +30,7 @@ addTaskForm(columnId) {
    }
 
 
-  addButtonFilter() {
+  columns() {
         return (
       <Container id = "container" className="column ">
         <div >
@@ -44,7 +44,7 @@ addTaskForm(columnId) {
             <TaskList ref={provided.innerRef} {...provided.droppableProps}>
               {
                 this.props.tasks.map((task, index) =>{
-                return <Task key={task[0].id} task={task} index={index} />}
+                return <Task key={task[0].id} task={task} index={index} deleteTask = {this.props.deleteTask} columnId = {this.props.column.id} />}
 
               )}
               {provided.placeholder}
@@ -60,6 +60,6 @@ addTaskForm(columnId) {
 
 
   render() {
-   return this.addButtonFilter()
+   return this.columns()
   }
 }
