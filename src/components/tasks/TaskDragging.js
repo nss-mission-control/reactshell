@@ -122,14 +122,14 @@ export default class TaskDragging extends Component {
     const stateToChange = {}
     APIManager.saveItem("tasks", {
       task: this.state[buildingVarable],
-      userId: 1,
+      userId: Number(sessionStorage.getItem("id")),
       columnId: individualColId
     })
       //copying state array and adding the id of the new task
       .then(data => {
         //is minus one to convert an id to an array value which is always one less
         let arrayofColumn1Tasks = Array.from(this.state.columns[individualColId-1].columnTasks)
-        arrayofColumn1Tasks.push(data.id)
+        arrayofColumn1Tasks.unshift(data.id)
         //sends new column data to database
         return APIManager.updateItem("columns", individualColId, { columnTasks: arrayofColumn1Tasks })
       })

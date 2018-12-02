@@ -31,16 +31,17 @@ const URL = "http://localhost:8088/"
     })
   }
 
-  updateItem(category, id, item){
+  updateItem(category, id, item) {
+    console.log(item)
     return fetch(`${URL}${category}/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(item)
-    }
-    )
+    })
   }
+
 }
 
 export default new APIManager()

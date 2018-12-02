@@ -23,7 +23,7 @@ export default class Tasks extends Component {
           ref={provided.innerRef}
           className="level box has-background-primary">
             {this.props.task[0].task}
-            <button id = {`editButton-${this.props.task[0].id}-${this.props.columnId}`} onClick= {(evt) => this.props.editButtonClick(evt)}>Edit</button>
+            <img className = "editIcon" id = {`editButton-${this.props.task[0].id}-${this.props.columnId}`} onClick= {(evt) => this.props.editButtonClick(evt)} src="images/edit.png" alt="edit"/>
             <button id ={`deleteButton-${this.props.task[0].id}-${this.props.columnId}`} onClick= {(evt) => this.props.deleteTask(evt)}>Delete</button>
           </Container>}
         </Draggable>
