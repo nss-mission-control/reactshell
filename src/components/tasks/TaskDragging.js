@@ -143,6 +143,7 @@ export default class TaskDragging extends Component {
       //updated state
       .then(data => {
         stateToChange.tasks = data
+        stateToChange[`formFieldContent-${individualColId}`]=""
         this.setState(stateToChange)
       })
   }
@@ -182,6 +183,16 @@ export default class TaskDragging extends Component {
     let taskIdStringArray = taskIdString.split('-')
     let taskId = Number(taskIdStringArray[1])
     let columnId = Number(taskIdStringArray[2])
+    APIManager.updateItem('tasks', taskId, {task: this.state.editedTaskValue})
+    .then(() => {return APIManager.getAllCategory("tasks")})
+    .then((data) => {
+      this.setState({
+        tasks: data,
+        editedTaskValue: "",
+        editButtonCheck: 0
+
+      })
+    } )
   }
 
   //determins which edit button was clicked

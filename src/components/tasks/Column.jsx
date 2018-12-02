@@ -21,7 +21,7 @@ addTaskForm(columnId) {
 
        return(<div className = 'box'>
                     <label value="Add New">Add New</label>
-                    <input id= {`formFieldContent-`+columnId} onChange={this.props.handleFieldChange} type = 'text'/>
+                    <input id= {`formFieldContent-`+columnId} onChange={this.props.handleFieldChange} type = 'text' value={this.props.passedState[`formFieldContent-`+columnId]}/>
                     <button id={`formFieldButton-`+columnId} onClick={(e) => this.props.newTaskSave(e)}>Save</button>
                   </div>)
 
