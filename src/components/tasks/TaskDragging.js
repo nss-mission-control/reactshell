@@ -19,7 +19,11 @@ export default class TaskDragging extends Component {
 
     timeForForm: false,
 
-    formFieldContent: ""
+    formFieldContent: "",
+    //stores the id of the task who's edit button has been clicked
+    editButtonCheck: 0,
+
+    editedTaskValue: ""
 
 
   }
@@ -103,9 +107,6 @@ export default class TaskDragging extends Component {
   }
 
 
-  newButtonClick = () => {
-    this.setState({ timeForForm: true })
-  }
 
   // Function to save value of the new task form to database
   newTaskSave = (evt) => {
@@ -175,6 +176,36 @@ export default class TaskDragging extends Component {
     })
   }
 
+  editTaskSave = (evt) => {
+    console.log(evt.target.id)
+    let taskIdString = evt.target.id
+    let taskIdStringArray = taskIdString.split('-')
+    let taskId = Number(taskIdStringArray[1])
+    let columnId = Number(taskIdStringArray[2])
+  }
+
+  //determins which edit button was clicked
+  editButtonClick = (evt) => {
+    //gets the id
+    console.log(evt.target.id)
+    let taskIdString = evt.target.id
+    let taskIdStringArray = taskIdString.split('-')
+    let taskId = Number(taskIdStringArray[1])
+    //sets that id to state
+    APIManager.getOneFromCategory('tasks', taskId)
+    .then(data => {
+
+      this.setState({editButtonCheck: taskId,
+        editedTaskValue: data.task
+      })
+    })
+  }
+
+  editFieldChange = (evt) => {
+    const stateToChange = {}
+    stateToChange.editedTaskValue = evt.target.value
+    this.setState(stateToChange)
+  }
 
   //sets state to the value of an input as it is typed
   handleFieldChange = (evt) => {
@@ -197,7 +228,11 @@ export default class TaskDragging extends Component {
               const tasks = column.columnTasks.map(taskId => {
                 return this.state.tasks.filter(oneTask => oneTask.id === taskId)
               });
-              return <Column newButtonClick={this.newButtonClick} passedState={this.state} key={column.id} column={column} tasks={tasks} handleFieldChange = {this.handleFieldChange} newTaskSave = {this.newTaskSave} deleteTask= {this.deleteTask}/>
+              return <Column  passedState={this.state} key={column.id} column={column}
+                              tasks={tasks} handleFieldChange = {this.handleFieldChange}
+                              newTaskSave = {this.newTaskSave} deleteTask= {this.deleteTask}
+                              editTaskSave={this.editTaskSave} editButtonClick = {this.editButtonClick}
+                              editFieldChange = {this.editFieldChange}/>
             })
 
             }
