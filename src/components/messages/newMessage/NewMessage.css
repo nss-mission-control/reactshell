@@ -4,3 +4,6 @@
 .alert {
   color: red;
 }
+.bottom {
+  overflow: hidden;
+}

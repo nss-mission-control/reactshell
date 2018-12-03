@@ -112,7 +112,7 @@ export default class OldMessages extends Component {
           </figure>
           <div className="media-content">
             <div className="content">
-              <p><strong>{message.user.firstName}</strong> <small className="oldMsgTitle tag">{message.user.username}</small> <small className="oldMsgTitle tag">{moment(`${message.timeStamp}`).fromNow()}</small></p>
+              <p><strong>{message.user.firstName}</strong> <small className="oldMsgTitle tag">@{message.user.username}</small> <small className="oldMsgTitle tag">{moment(`${message.timeStamp}`).fromNow()}</small></p>
               <p className="oldMsgTitle">{message.messageContent}</p>
             </div>
           </div>
