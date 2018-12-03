@@ -175,6 +175,7 @@ export default class FriendFollowingMePrint extends Component {
   render() {
     $(document).keyup(function (e) {
       if (e.keyCode === 27) {
+        $(".navbar").removeClass("isBlurred")
         $(".followingThem").removeClass("isBlurred")
         $(".followingMe").removeClass("isBlurred")
         $(".needToFollow").removeClass("isBlurred")
