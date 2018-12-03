@@ -46,7 +46,7 @@ export default class News extends Component{
               <div className="media">
                   <img src={article.articleImage} alt="Article" />
                 <div className="media-content">
-                  <h2>{article.articleName}</h2>
+                  <h2 className="is-size-4 has-text-weight-semibold">{article.articleName}</h2>
                   <h4>Saved by: {article.user.firstName} | Article Saved {moment(`${article.dateSaved}`).fromNow()}</h4>
                   <p>{article.about}</p>
                 </div>

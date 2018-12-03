@@ -7,7 +7,6 @@ import $ from 'jquery'
 
 export default class NewsContainer extends Component{
   //TODO: Need to add this as a column layout and work on changing the display based on if the article is from the user, friends or people they are not friends with
-  //TODO: Form validation
   state={
     showNews: false,
     addNews: false,
@@ -150,16 +149,16 @@ export default class NewsContainer extends Component{
         articleImage: this.state.articleImage,
         dateSaved: new Date(),
         about: this.state.about,
-        userId: 1
+        userId: this.state.currentUserId
       }
       APICall.saveItem("articles", article)
       .then(()=> APICall.getAllCategory("articles/?_expand=user")
       .then(data => this.setState({
         news: data,
-        articleName: [],
-        articleImage: [],
-        about: [],
-        url: [],
+        articleName: "",
+        articleImage: "",
+        about: "",
+        url: "",
       })))
     }
   }
@@ -168,17 +167,32 @@ export default class NewsContainer extends Component{
   editArticleChanges=(evt, id)=>{
     evt.preventDefault()
     if(this.state.articleName === ""){
-      this.resetState()
-      // this.setState({})
+      $("#articleName").addClass("is-danger")
+      $("#url").removeClass("is-danger")
+      $("#about").removeClass("is-danger")
+      $("#articleImage").removeClass("is-danger")
+      this.setState({warningMessage: "Please add an Article Name"})
       return
     } else if(this.state.url === ""){
-      this.setState({})
+      $("#articleName").removeClass("is-danger")
+      $("#url").addClass("is-danger")
+      $("#about").removeClass("is-danger")
+      $("#articleImage").removeClass("is-danger")
+      this.setState({warningMessageURL: "Please enter an Article URL"})
       return
     } else if(this.state.about === ""){
-      this.setState({})
+      $("#articleName").removeClass("is-danger")
+      $("#url").removeClass("is-danger")
+      $("#about").addClass("is-danger")
+      $("#articleImage").removeClass("is-danger")
+      this.setState({warningMessageAbout: "Please add an Article Description"})
       return
     } else if(this.state.articleImage === ""){
-      this.setState({})
+      $("#articleName").removeClass("is-danger")
+      $("#url").removeClass("is-danger")
+      $("#about").removeClass("is-danger")
+      $("#articleImage").addClass("is-danger")
+      this.setState({warningMessageImg: "Please add an Image Link"})
       return
     } else{
     const article ={
@@ -186,15 +200,15 @@ export default class NewsContainer extends Component{
       url: this.state.url,
       articleImage: this.state.articleImage,
       about: this.state.about,
-      userId: 1,
+      userId: this.state.currentUserId,
     }
     APICall.updateItem("articles", id, article).then(()=> APICall.getAllCategory("articles/?_expand=user")).then((data)=> this.setState({
       editNews: false,
       news: data,
-      url: [],
-      articleName: [],
-      about: [],
-      articleImage: [],
+      url: "",
+      articleName: "",
+      about: "",
+      articleImage: "",
     }))
 
   }
