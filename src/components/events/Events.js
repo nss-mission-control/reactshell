@@ -5,12 +5,20 @@ export default class Events extends Component{
   //TODO: update date formatting
   addEditCapability=(event)=>{
     if(event.user.id === this.props.currentUserId){
-      return <button value={event.id} onClick={() => this.props.clickEvent(event)}>Edit</button>
+      return <span className="icon level-item" onClick={()=> this.props.clickEvent(event)}>
+        <i className="fas fa-pencil-alt is-link"></i>
+      </span>
+
+      // <button value={event.id} onClick={() => this.props.clickEvent(event)}>Edit</button>
     }
   }
   addDeleteCapability=(event)=>{
     if(event.user.id === this.props.currentUserId){
-      return <button value={event.id} onClick={() => this.props.delete(event.id)}>Delete</button>
+      return <span className="icon is-link level-item" onClick={()=> this.props.delete(event.id)}>
+        <i className="fas fa-trash-alt"></i>
+      </span>
+
+      // <button value={event.id} onClick={() => this.props.delete(event.id)}>Delete</button>
     }
   }
 
@@ -56,8 +64,12 @@ export default class Events extends Component{
                 </article>
               </div>
             </article>
-            {this.addEditCapability(event)}
-            {this.addDeleteCapability(event)}
+            <div className="level">
+              <div className="level-left">
+                {this.addEditCapability(event)}
+                {this.addDeleteCapability(event)}
+            </div>
+          </div>
           </div>
           }
       )

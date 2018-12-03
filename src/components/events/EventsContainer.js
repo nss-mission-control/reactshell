@@ -7,8 +7,8 @@ import APIManager from "../../modules/APIManager";
 import moment from 'moment'
 
 export default class EventsContainer extends Component{
-  //TODO: Add click event on events modal to save new event
-  //TODO: Add functionality to edit event
+  //TODO: Allow them to add new event
+
   state={
     editEvent: false,
     addEvent: false,
@@ -27,6 +27,7 @@ export default class EventsContainer extends Component{
 
   showAllEvents=()=>{
     this.setState({
+      dateEvents: false,
       allEvents: true
     })
   }
@@ -39,44 +40,32 @@ export default class EventsContainer extends Component{
       {name: "Mar", number: "3"},
       {name: "Apr", number: "4"},
       {name: "May", number: "5"},
-      {
-        name: "Jun",
-        number: "6",
-      },
-      {
-        name: "Jul",
-        number: "7",
-      },
-      {
-        name: "Aug",
-        number: "8",
-      },
-      {
-        name: "Sep",
-        number: "9",
-      },
-      {
-        name: "Oct",
-        number: "10",
-      },
-      {
-        name: "Nov",
-        number: "11",
-      },
-      {
-        name: "Dec",
-        number: "12",
-      }]
+      {name: "Jun", number: "6"},
+      {name: "Jul", number: "7"},
+      {name: "Aug", number: "8"},
+      {name: "Sep", number: "9"},
+      {name: "Oct", number: "10"},
+      {name: "Nov", number: "11"},
+      {name: "Dec", number: "12"}]
 
     let correctMonth = months.filter(month => month.name === datearr[1])
     datearr[1]= correctMonth[0].number
     datearr = [datearr[3], datearr[1], datearr[2]].join("-")
-    let myEvents = this.props.events
-    .filter(event => event.date === datearr)
-    this.setState({
-      dateEvents: true,
-      dateFilteredEvents: myEvents
-    })
+    if(this.state.allEvents === true){
+      let myEvents = this.props.events
+      .filter(event => event.date === datearr)
+      this.setState({
+        dateEvents: true,
+        dateFilteredEvents: myEvents
+      })
+    } else if(this.state.allEvents === false){
+      let myEvents = this.state.filteredEvents
+      .filter(event => event.date === datearr)
+      this.setState({
+        dateEvents: true,
+        dateFilteredEvents: myEvents
+      })
+    }
   }
 
   showMyEvents=()=>{
@@ -84,7 +73,8 @@ export default class EventsContainer extends Component{
     .filter(event => event.user.id === this.props.currentUser.id)
     this.setState({
       filteredEvents: filter,
-      allEvents:false
+      allEvents:false,
+      dateEvents: false
     })
   }
   addEventClick=(event)=>{
@@ -132,6 +122,10 @@ export default class EventsContainer extends Component{
     return(
       <React.Fragment>
       <div className="container">
+        <div className="field is-grouped is-grouped-centered">
+          <h2 className="is-size-4"><strong>Events</strong></h2>
+          <button onClick={()=> this.addEventClick()}>+</button>
+        </div>
         <div className="columns">
           <div className="column has-background-primary">
             <EventsCalendar onSelect={this.saveDate} addEventClick={this.addEventClick} filterEventByDate={this.filterEventByDate}/>
