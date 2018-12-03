@@ -183,7 +183,7 @@ export default class FriendIFollowPrint extends Component {
     });
     return (followingList.map(person => {
       return (
-        <div className="indivUser" key={person.id} >
+        <div className="indivUser box" key={person.id} >
           <section className="tagline" id={person.id} onClick={this.showUserDetails}>
             <img src={person.profilePic} id={person.id} className="followerImage" alt="Follower"></img>
             <p className="followerUsername" id={person.id} >{person.username}</p>
@@ -212,7 +212,7 @@ export default class FriendIFollowPrint extends Component {
     });
     return (toFollowList.map(person => {
       return (
-        <div className="indivUser" key={person.id} >
+        <div className="indivUser box" key={person.id} >
           <section className="tagline" id={person.id} onClick={this.showUserDetails}>
             <img src={person.profilePic} id={person.id} className="followerImage" alt="Follower"></img>
             <p className="followerUsername" id={person.id} >{person.username}</p>
@@ -237,16 +237,16 @@ export default class FriendIFollowPrint extends Component {
     let availableFriend = this.newToFollow()
     return (
       <div>
-        <div className="followingThem">
+        <div className="followingThem box">
           <section>
-            <h1 className="followingTitles">People I Follow</h1>
+            <h1 className="followingTitles box">People I Follow</h1>
           </section>
           <div className="userToAdd">
             {tempFriend}
           </div>
         </div>
-        <div className="needToFollow">
-          <h1 className="followingTitles">Start Following</h1>
+        <div className="needToFollow box">
+          <h1 className="followingTitles box">Start Following</h1>
           <div className="userToAdd">
             {availableFriend}
           </div>

@@ -163,7 +163,7 @@ export default class FriendFollowingMePrint extends Component {
     });
     return (followingList.map(person => {
       return (
-        <div className="indivUser" key={person.id} >
+        <div className="indivUser box" key={person.id} >
           <section className="tagline" id={person.id} onClick={this.showUserDetails}>
             <img src={person.profilePic} id={person.id} className="followerImage" alt="Follower"></img>
             <p className="followerUsername" id={person.id} >{person.username}</p>
@@ -187,8 +187,8 @@ export default class FriendFollowingMePrint extends Component {
 
     let tempFriend = this.sortUsers()
     return (
-      <div className="followingMe">
-        <h1 className="followingTitles">People Following Me</h1>
+      <div className="followingMe box">
+        <h1 className="followingTitles box">People Following Me</h1>
         <div className="userToAdd">
           {tempFriend}
         </div>
