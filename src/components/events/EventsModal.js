@@ -52,7 +52,7 @@ export default class EventsModal extends Component{
               <label>Event Name</label>
               <input id="name" type="text" defaultValue={this.state.name} onChange={this.handleChange} placeholder="Enter the event name."></input>
 
-              <label>Event Name</label>
+              <label>Event Date</label>
               <input id="date" type="date" defaultValue={this.props.date} onChange={this.handleChange} ></input>
 
               <label>Event Location</label>
