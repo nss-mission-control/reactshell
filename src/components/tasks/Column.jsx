@@ -22,12 +22,14 @@ export default class Column extends Component {
 //builds the to add tasks
 addTaskForm(columnId) {
 
-       return(<div className = 'box'>
-                    <label value="Add New">Add New</label>
-                    <input id= {`formFieldContent-`+columnId} onChange={this.props.handleFieldChange} type = 'text' value={this.props.passedState[`formFieldContent-`+columnId]}/>
-                    <input id = {`dateFieldContent-`+columnId} onChange={this.props.handleFieldChange} type="date" value={this.props.passedState[`dateFieldContent-`+columnId]}/>
-                    <button id={`formFieldButton-`+columnId} onClick={(e) => this.props.newTaskSave(e)}>Save</button>
-                  </div>)
+       return(<div className = 'box has-text-centered'>
+                    <label className="label" value="Add New">Add New</label>
+                    <div>
+                      <input className="input is-small"id= {`formFieldContent-`+columnId} onChange={this.props.handleFieldChange} type = 'text' value={this.props.passedState[`formFieldContent-`+columnId]}/>
+                      <input className="input is-small"id = {`dateFieldContent-`+columnId} onChange={this.props.handleFieldChange} type="date" value={this.props.passedState[`dateFieldContent-`+columnId]}/>
+                    </div>
+                    <button className="button"id={`formFieldButton-`+columnId} onClick={(e) => this.props.newTaskSave(e)}>Save</button>
+              </div>)
 
 
 
@@ -35,7 +37,7 @@ addTaskForm(columnId) {
 ifFieldBlank() {
   if(this.props.passedState.emptyFieldAlert && this.props.passedState.emptyFieldCheck===this.props.column.id)
   return(
-    <p className = "red" >Fields cannot be blank</p>
+    <p className = "red has-text-centered" >Fields cannot be blank</p>
   )
 }
 
@@ -46,7 +48,7 @@ columns() {
         return (
       <Container id = "container" className="column ">
         <div >
-        <Title id = "title" className="title">{this.props.column.name}</Title>
+        <Title id = "title" className="title has-text-centered">{this.props.column.name}</Title>
         {this.ifFieldBlank()}
         <TodoBody className = "has-background-grey-lighter">
         {this.addTaskForm(this.props.column.id)}

@@ -15,29 +15,39 @@ export default class EventsModal extends Component{
 
   handleChange = (event) => {
     this.setState({
-      [event.target.id]: event.target.value
+      [event.target.id]: event.target.value,
+      oldEvent: this.props.event
     });
   }
 
   saveEvent = () => {
     let userId = parseInt(sessionStorage.getItem("id"));
-    let canSave = true;
-    if (this.state.name === "" || this.state.location === "" || this.state.date === "" || this.state.time === "") {
-      canSave = false;
-      return canSave;
+    let editEvent = {
+      name: this.state.name,
+      date: this.state.date,
+      location: this.state.location,
+      time: this.state.time,
+      userId: userId
     }
-    if (canSave) {
-      let newEvent = {userId: userId, name: this.state.name, location: this.state.location, date: this.state.date, time: this.state.time}
-      APIManager.saveItem("events", newEvent)
-      .then(() => {
-        this.resetState();
-        this.props.closeModal();
-        this.props.refresh();
-      })
+    if (editEvent.name === "") {
+      editEvent.name = this.props.event.name;
     }
-  }
-
-
+    if (editEvent.location === "") {
+      editEvent.location = this.props.event.location;
+    }
+    if (editEvent.date === "") {
+      editEvent.date = this.props.event.date;
+    }
+    if (editEvent.time === "") {
+      editEvent.time = this.props.event.time;
+    }
+    APIManager.updateItem("events", this.props.event.id, editEvent)
+    .then(() => {
+      this.resetState();
+      this.props.closeModal();
+      this.props.refresh();
+    })
+    }
 
   render(){
     return(
@@ -50,16 +60,16 @@ export default class EventsModal extends Component{
           <div className="modal-card-body">
             <div className="field">
               <label>Event Name</label>
-              <input id="name" type="text" defaultValue={this.state.name} onChange={this.handleChange} placeholder="Enter the event name."></input>
+              <input id="name" type="text" defaultValue={this.props.event.name} onChange={this.handleChange} ></input>
 
               <label>Event Date</label>
-              <input id="date" type="date" defaultValue={this.props.date} onChange={this.handleChange} ></input>
+              <input id="date" type="date" defaultValue={this.props.event.date} onChange={this.handleChange} ></input>
 
               <label>Event Location</label>
-              <input id="location" type="text" defaultValue={this.state.location} onChange={this.handleChange} placeholder="Enter the event location."></input>
+              <input id="location" type="text" defaultValue={this.props.event.location} onChange={this.handleChange}></input>
 
               <label>Event Time</label>
-              <input id="time" type="time" defaultValue={this.state.time} onChange={this.handleChange}></input>
+              <input id="time" type="time" defaultValue={this.props.event.time} onChange={this.handleChange}></input>
 
             </div>
           </div>

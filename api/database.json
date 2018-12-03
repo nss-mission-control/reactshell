@@ -604,11 +604,6 @@
   ],
   "friends": [
     {
-      "id": 1,
-      "request_userId": 2,
-      "userId": 1
-    },
-    {
       "id": 3,
       "request_userId": 3,
       "userId": 2
@@ -630,8 +625,28 @@
     },
     {
       "request_userId": 2,
-      "userId": 5,
+      "userId": 1,
       "id": 7
+    },
+    {
+      "request_userId": 2,
+      "userId": 2,
+      "id": 8
+    },
+    {
+      "request_userId": 4,
+      "userId": 6,
+      "id": 9
+    },
+    {
+      "request_userId": 4,
+      "userId": 8,
+      "id": 10
+    },
+    {
+      "request_userId": 4,
+      "userId": 9,
+      "id": 11
     }
   ],
   "columns": [
@@ -639,6 +654,7 @@
       "name": "Upcoming",
       "id": 1,
       "columnTasks": [
+        2,
         74,
         57,
         61,
@@ -650,7 +666,6 @@
       "name": "InProgress",
       "id": 2,
       "columnTasks": [
-        78,
         76,
         75,
         77,
@@ -666,7 +681,6 @@
         59,
         13,
         8,
-        2,
         63
       ]
     },
@@ -674,8 +688,8 @@
       "name": "Completed",
       "id": 3,
       "columnTasks": [
+        78,
         7,
-        10,
         6,
         3,
         1,

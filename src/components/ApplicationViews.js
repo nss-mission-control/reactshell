@@ -5,8 +5,8 @@ import LogIn from "./login/LogIn"
 import SignUp from "./login/SignUp"
 import TaskDragging from "./tasks/TaskDragging"
 import Friends from "./friends/Friends"
-import Events from "./events/Events"
-import News from "./news/News"
+import EventsContainer from "./events/EventsContainer"
+import NewsContainer from "./news/NewsContainer"
 
 export default class ApplicationViews extends Component {
 
@@ -32,14 +32,14 @@ export default class ApplicationViews extends Component {
         }} />
         <Route exact path="/events" render={(props) => {
           if (this.isAuthenticated()) {
-            return <Events />
+            return <EventsContainer events={this.props.data.events} refresh={this.props.refresh}/>
           } else {
             return <LogIn {...props} activeUser={this.props.activeUser} />
           }
         }} />
         <Route exact path="/news" render={(props) => {
           if (this.isAuthenticated()) {
-            return <News />
+            return <NewsContainer {...props} news={this.props.data.articles} currentUser={this.props.data.currentUser} />
           } else {
             return <LogIn {...props} activeUser={this.props.activeUser} />
           }
