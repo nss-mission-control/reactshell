@@ -35,7 +35,7 @@ class NavBar extends Component {
         <nav className="navbar has-background-link" role="navigation" aria-label="main navigation">
           <div className="navbar-brand">
             <a className="navbar-item" href="#">
-              <img src="images/white-react-logo.png" alt="" width="28" height="28" />
+              <img src="images/white-react-logo.png" width="28" height="28"/>
             </a>
             <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="reactShellNav">
               <span aria-hidden="true"></span>

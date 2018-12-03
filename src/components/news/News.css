@@ -1,11 +1,4 @@
-img{
-  width: 120px;
-}
 
-/* .media{
-  display: flex;
-  align-items: center;
-} */
 .column:hover{
   cursor: pointer;
 }
