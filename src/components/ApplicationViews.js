@@ -5,8 +5,8 @@ import LogIn from "./login/LogIn"
 import SignUp from "./login/SignUp"
 import TaskDragging from "./tasks/TaskDragging"
 import Friends from "./friends/Friends"
-import EventsContainer from "./events/EventsContainer"
-import News from "./news/News"
+import EventsContainer from "./events/Events"
+import NewsContainer from "./news/NewsContainer"
 
 export default class ApplicationViews extends Component {
 
@@ -39,7 +39,7 @@ export default class ApplicationViews extends Component {
         }} />
         <Route exact path="/news" render={(props) => {
           if (this.isAuthenticated()) {
-            return <News />
+            return <NewsContainer {...props} news={this.props.data.articles} currentUser={this.props.data.currentUser} />
           } else {
             return <LogIn {...props} activeUser={this.props.activeUser} />
           }

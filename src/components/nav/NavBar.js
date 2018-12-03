@@ -35,7 +35,7 @@ class NavBar extends Component {
         <nav className="navbar has-background-link" role="navigation" aria-label="main navigation">
           <div className="navbar-brand">
             <a className="navbar-item" href="#">
-              <img src="images/white-react-logo.png" width="28" height="28" />
+              <img src="images/white-react-logo.png" width="28" height="28"/>
             </a>
             <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="reactShellNav">
               <span aria-hidden="true"></span>
@@ -60,7 +60,7 @@ class NavBar extends Component {
               <div className="navbar-item has-dropdown is-hoverable">
                 <a className="navbar-link has-text-white" id="dropdown-top" onMouseOver={this.handleDropDownColor} onMouseOut={this.handleDropDownColor}>
                   <figure className="image is-24x24">
-                    <img src={this.props.user.profilePic} className="is-rounded"/>
+                    <img src={this.props.user.profilePic} alt="" className="is-rounded"/>
                   </figure>
                   &nbsp; &nbsp;
                     {this.props.user.username}
