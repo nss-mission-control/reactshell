@@ -655,10 +655,10 @@
       "name": "Upcoming",
       "id": 1,
       "columnTasks": [
+        48,
+        71,
         2,
         74,
-        71,
-        70,
         57,
         60,
         61,
@@ -673,8 +673,8 @@
       "columnTasks": [
         10,
         72,
-        48,
         50,
+        70,
         15,
         17,
         47,
@@ -700,13 +700,19 @@
         11,
         9
       ]
+    },
+    {
+      "name": "New COlumn",
+      "columnTasks": [],
+      "userId": 1,
+      "id": 4
     }
   ],
   "column_order": {
     "columnId": [
       1,
       2,
-      3
+      3,4
     ]
   }
 }

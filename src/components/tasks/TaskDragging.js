@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component, PureComponent } from 'react'
 import Tasks from './Tasks'
 import { DragDropContext } from 'react-beautiful-dnd'
 import APIManager from '../../modules/APIManager'
 import Column from './Column'
 
-export default class TaskDragging extends Component {
+export default class TaskDragging extends PureComponent {
 
   state = {
     tasks: [],
@@ -23,7 +23,8 @@ export default class TaskDragging extends Component {
     //stores the id of the task who's edit button has been clicked
     editButtonCheck: 0,
 
-    editedTaskValue: ""
+    editedTaskValue: "",
+    newColText: ""
 
 
   }
@@ -225,6 +226,22 @@ export default class TaskDragging extends Component {
     this.setState(stateToChange)
   }
 
+  // newColCreater = () => {
+  //   let buildObj = {
+  //     name: this.state.newColText,
+  //     columnTasks:[],
+  //     userId: Number(sessionStorage.getItem("id"))
+  //   }
+  //   let updateState = {
+
+  //   }
+  //   APIManager.saveItem("columns", buildObj)
+  //     .then(() => APIManager.getAllCategory("columns")
+  //     .then((data) => {updateState.columns= data
+
+  //     }))
+
+  // }
 
 
   render() {
@@ -264,6 +281,11 @@ export default class TaskDragging extends Component {
     return (
       <React.Fragment>
         {/* {addTaskForm} */}
+        <div>
+          <label className="label" value="New Column"/>New Column
+          <input id="newColText" className = "input"  onChange = {this.handleFieldChange}/>
+          <button id = "newColumn" onClick={this.newColCreater} className = "button">Save</button>
+        </div>
         {newvar}
 
       </React.Fragment>
