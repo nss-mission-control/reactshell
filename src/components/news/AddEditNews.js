@@ -33,7 +33,7 @@ export default class AddEditNews extends Component{
     return(
       <div className="modal is-active" id="newsModal">
         <div className="modal-background"></div>
-        <div className="modal-card has-background-white">
+        <div className="modal-card has-background-white box">
           <div className="has-text-centered">
             {this.buildHeader(this.props.addNews, this.props.editNews)}
           </div>

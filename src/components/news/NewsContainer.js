@@ -243,8 +243,8 @@ export default class NewsContainer extends Component{
       <React.Fragment>
       <section className="container">
         <div className="field is-grouped is-grouped-centered">
-            <h2 className="is-size-4"><strong>News</strong></h2>
-            <button onClick={()=>{
+            <h2 className="is-size-4"><strong>News &nbsp;</strong></h2>
+            <button className="button is-link" onClick={()=>{
               this.addNewsClick()
             }}>+</button>
         </div>

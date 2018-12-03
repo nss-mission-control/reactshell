@@ -28,7 +28,7 @@ export default class NewsModule extends Component{
       <React.Fragment>
       <div className="modal is-active" id="newsModal">
         <div className="modal-background"></div>
-        <div className="modal-card has-background-white">
+        <div className="modal-card has-background-white box">
           <article className="media">
             <figure className="media-left">
               <p className="image is-128x128">
