@@ -1,6 +1,7 @@
 import React, { Component, PureComponent } from 'react'
 import { Draggable } from 'react-beautiful-dnd'
 import styled from 'styled-components'
+import './tasks.css'
 
 
 
@@ -22,7 +23,7 @@ export default class Tasks extends PureComponent {
           {...provided.dragHandleProps}
           end_highlight_line
           ref={provided.innerRef}
-          className="level box has-background-primary">
+          className="level box">
             <p>{this.props.task[0].task}</p>
             <p>{moment(this.props.task[0].dueDate).format("MM/DD/YYYY")}</p>
             <img className = "editIcon" id = {`editButton-${this.props.task[0].id}-${this.props.columnId}`} onClick= {(evt) => this.props.editButtonClick(evt)} src="images/edit.png" alt="edit"/>
