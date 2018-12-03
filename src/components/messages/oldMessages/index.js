@@ -127,7 +127,7 @@ export default class OldMessages extends Component {
           </figure>
           <div className="media-content">
             <div className="content">
-              <p><strong>{message.user.firstName}</strong> <small className="oldMsgTitle tag">@{message.user.username}</small> <small className="oldMsgTitle tag">{moment(`${message.timeStamp}`).fromNow()}</small><button className="button is-small is-link addToFollowingBtn" onClick={() => this.saveFriend(message.userId)}>Follow {message.user.username}</button></p>
+              <p><strong>{message.user.firstName}</strong> <small className="oldMsgTitle tag">@{message.user.username}</small> <small className="oldMsgTitle tag">{moment(`${message.timeStamp}`).fromNow()}</small><button className="button is-small is-outlined is-link addToFollowingBtn" onClick={() => this.saveFriend(message.userId)}>Follow {message.user.username}</button></p>
               <p className="oldMsgTitle">{message.messageContent}</p>
             </div>
           </div>
