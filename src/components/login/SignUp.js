@@ -122,7 +122,7 @@ export default class Login extends Component {
               <div className="box">
                 <div style={centerContenthorizontally}>
                   <figure className="image is-128x128">
-                    <img src="images/white-react-logo.png" />
+                    <img src="images/white-react-logo.png" alt=""/>
                   </figure>
                 </div>
                 <form onSubmit={(e) => this.createNewUser(e)} className="has-text-centered">

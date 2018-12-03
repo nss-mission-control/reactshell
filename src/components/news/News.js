@@ -25,7 +25,7 @@ export default class News extends Component{
     let showNews = ""
     if(this.props.showNews === true){
       showNews= <NewsModule
-      articleName={this.props.articleName} about={this.props.about} articleImage={this.props.articleImage} url={this.props.url} closeModal={this.props.closeModal} editNewsClick={this.props.editNewsClick} deleteArticle={this.props.deleteArticle} deleteNewsClick={this.props.deleteNewsClick}/>
+      articleName={this.props.articleName} about={this.props.about} articleImage={this.props.articleImage} url={this.props.url} closeModal={this.props.closeModal} editNewsClick={this.props.editNewsClick} deleteArticle={this.props.deleteArticle} deleteNewsClick={this.props.deleteNewsClick} currentUserId={this.props.currentUserId} userId={this.props.userId}/>
     } else if(this.props.editNews === true){
       showNews= <AddEditNews
       handleFieldChange={this.props.handleFieldChange}
@@ -41,7 +41,7 @@ export default class News extends Component{
       {
         this.props.news.map((article, index)=>{
           return(
-          <div className={this.createClass(index)} key={article.id} onClick={()=> this.props.showNewsClick(article.url, article.articleName, article.about, article.articleImage, article.id)}>
+          <div className={this.createClass(index)} key={article.id} onClick={()=> this.props.showNewsClick(article.url, article.articleName, article.about, article.articleImage, article.id, article.userId)}>
             <div className="has-background-primary">
               <div className="media">
                   <img src={article.articleImage} alt="Article" />

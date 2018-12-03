@@ -60,7 +60,7 @@ class NavBar extends Component {
               <div className="navbar-item has-dropdown is-hoverable">
                 <a className="navbar-link has-text-white" id="dropdown-top" onMouseOver={this.handleDropDownColor} onMouseOut={this.handleDropDownColor}>
                   <figure className="image is-24x24">
-                    <img src={this.props.user.profilePic} className="is-rounded"/>
+                    <img src={this.props.user.profilePic} alt="" className="is-rounded"/>
                   </figure>
                   &nbsp; &nbsp;
                     {this.props.user.username}

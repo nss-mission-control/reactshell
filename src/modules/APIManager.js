@@ -7,11 +7,6 @@ class APIManager {
       .then(entries => entries.json())
   }
 
-  getAllCategory(category) {
-    return fetch(`${URL}${category}`)
-      .then(entries => entries.json())
-  }
-
   getOneFromCategory(category, id) {
     return fetch(`${URL}${category}/${id}`)
       .then(inputs => inputs.json())

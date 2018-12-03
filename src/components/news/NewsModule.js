@@ -2,10 +2,8 @@ import React, {Component} from 'react'
 
 export default class NewsModule extends Component{
 
-  //TODO: UPDATE THESE TWO FUNCTIONS AS SOON AS SESSION STORAGE IS INTEGRATED
-
   addEditCapability=(id)=>{
-    if(id === 1){
+    if(id === this.props.currentUserId){
       return <button className="button" onClick={()=>  this.props.editNewsClick()}>Edit Article</button>
     } else{
       return
@@ -13,7 +11,7 @@ export default class NewsModule extends Component{
   }
 
   addDeleteCapability=(id)=>{
-    if(id === sessionStorage.id){
+    if(id === this.props.currentUserId){
       return <button className="button" onClick={()=> this.props.deleteNewsClick()}>Delete Article</button>
     }
   }
@@ -35,7 +33,7 @@ export default class NewsModule extends Component{
         </div>
         <footer className="modal-card-foot">
           <a className="button" href={this.props.url} target="_blank" rel="noopener noreferrer">Read More</a>
-          {this.addEditCapability(1)}
+          {this.addEditCapability(this.props.userId)}
           {this.addDeleteCapability(this.props.userId)}
         </footer>
       </div>
