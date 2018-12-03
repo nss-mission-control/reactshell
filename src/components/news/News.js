@@ -41,18 +41,48 @@ export default class News extends Component{
       {
         this.props.news.map((article, index)=>{
           return(
-          <div className={this.createClass(index)} key={article.id} onClick={()=> this.props.showNewsClick(article.url, article.articleName, article.about, article.articleImage, article.id, article.userId)}>
+          <div className={this.createClass(index)}
+          key={article.id} onClick={()=> this.props.showNewsClick(article.url, article.articleName, article.about, article.articleImage, article.id, article.userId)}>
             <div className="has-background-primary">
-              <div className="media">
-                  <img src={article.articleImage} alt="Article" />
-                <div className="media-content">
-                  <h2 className="is-size-4 has-text-weight-semibold">{article.articleName}</h2>
-                  <h4>Saved by: {article.user.firstName} | Article Saved {moment(`${article.dateSaved}`).fromNow()}</h4>
-                  <p>{article.about}</p>
+              <article className="media">
+                <figure className="media-left">
+                  <p className="image is-64x64">
+                    <img src={article.user.profilePic} alt="" />
+                  </p>
+                </figure>
+                  <div className="media-content">
+                    <div className="content">
+                      <p id="userInfo" className="">
+                      <strong>{article.user.firstName} {article.user.lastName}</strong>
+                      <small className="tag is-link">@{article.user.username}</small>
+                      <small className="tag is-link">{moment(`${article.dateSaved}`).fromNow()}</small>
+                      </p>
+                      <p className="">{article.about}</p>
+                    </div>
+
+                  <article className="media">
+                    <figure className="media-left">
+                      <p className="image is-128x128">
+                        <img src={article.articleImage} alt=""/>
+                      </p>
+                    </figure>
+                    <div className="media-content">
+                      <div className="content">
+                        <p>
+                        <strong>{article.articleName}</strong>
+                        </p>
+                      </div>
+                    </div>
+                  </article>
+                  </div>
+                </article>
+
+
+
+
                 </div>
               </div>
-            </div>
-          </div>
+
           )
         })
       }

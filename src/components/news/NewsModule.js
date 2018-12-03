@@ -4,7 +4,9 @@ export default class NewsModule extends Component{
 
   addEditCapability=(id)=>{
     if(id === this.props.currentUserId){
-      return <button className="button" onClick={()=>  this.props.editNewsClick()}>Edit Article</button>
+      return <span className="icon level-item" onClick={()=> this.props.editNewsClick()}>
+        <i className="fas fa-pencil-alt is-link"></i>
+      </span>
     } else{
       return
     }
@@ -12,7 +14,9 @@ export default class NewsModule extends Component{
 
   addDeleteCapability=(id)=>{
     if(id === this.props.currentUserId){
-      return <button className="button" onClick={()=> this.props.deleteNewsClick()}>Delete Article</button>
+      return <span className="icon is-link level-item" onClick={()=> this.props.deleteNewsClick()}>
+          <i className="fas fa-trash-alt"></i>
+      </span>
     }
   }
 
@@ -24,21 +28,35 @@ export default class NewsModule extends Component{
       <React.Fragment>
       <div className="modal is-active" id="newsModal">
         <div className="modal-background"></div>
-        <div className="modal-card">
-          <header className="modal-card-head">    {this.props.articleName}
-          </header>
-        <div className="modal-content">
-          <img src={this.props.articleImage} alt="Article"/>
-          <p>{this.props.about}</p>
+        <div className="modal-card has-background-white">
+          <article className="media">
+            <figure className="media-left">
+              <p className="image is-128x128">
+                <img src={this.props.articleImage} alt="Article"/>
+              </p>
+            </figure>
+            <div className="media-content">
+              <div className="content">
+                <strong>{this.props.articleName}</strong>
+                <p>{this.props.about}</p>
+              </div>
+              <nav className="level">
+                <div className="level-left">
+                <span className="icon level-item">
+                    <a href={this.props.url} target="_blank" rel="noopener noreferrer">
+                      <i className="fas fa-book-open">
+                      </i>
+                    </a>
+                </span>
+              {this.addEditCapability(this.props.userId)}
+              {this.addDeleteCapability(this.props.userId)}
+              </div>
+            </nav>
+            </div>
+          </article>
         </div>
-        <footer className="modal-card-foot">
-          <a className="button" href={this.props.url} target="_blank" rel="noopener noreferrer">Read More</a>
-          {this.addEditCapability(this.props.userId)}
-          {this.addDeleteCapability(this.props.userId)}
-        </footer>
+        <button className="modal-close is-large" aria-label="close" onClick={()=> this.props.closeModal()}></button>
       </div>
-      <button className="modal-close is-large" aria-label="close" onClick={()=> this.props.closeModal()}></button>
-    </div>
     </React.Fragment>
     )
   }

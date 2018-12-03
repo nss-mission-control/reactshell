@@ -4,9 +4,13 @@ export default class AddEditNews extends Component{
 
   buildHeader(addNews, editNews){
     if(addNews === true){
-      return "Add a New Article"
+      return <div className="has-text-centered">
+      <strong>Add a New Article</strong>
+      </div>
     } else if(editNews === true){
-      return "Edit your article"
+      return <div className="has-text-centered">
+      <strong>Edit your article</strong>
+      </div>
     }
   }
 
@@ -28,9 +32,12 @@ export default class AddEditNews extends Component{
   render(){
     return(
       <div className="modal is-active" id="newsModal">
-      <div className="modal-background is-primary"></div>
-      <div className="modal-card">
-        <header className="modal-card-head">{this.buildHeader(this.props.addNews, this.props.editNews)}
+      <div className="modal-background"></div>
+      <div className="modal-card has-background-white">
+        <header className="modal-card-head">
+          {/* <div className="level"> */}
+            {this.buildHeader(this.props.addNews, this.props.editNews)}
+          {/* </div> */}
         </header>
         <div className="modal-content">
           <div className="field">

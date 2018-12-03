@@ -1,4 +1,19 @@
 img{
-  /* height: 120px; */
-  width: 200px;
+  width: 120px;
+}
+
+/* .media{
+  display: flex;
+  align-items: center;
+} */
+.column:hover{
+  cursor: pointer;
+}
+
+.icon{
+  color: hsl(217, 71%, 53%)
+}
+
+.icon:hover{
+  cursor: pointer;
 }
