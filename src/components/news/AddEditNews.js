@@ -4,13 +4,13 @@ export default class AddEditNews extends Component{
 
   buildHeader(addNews, editNews){
     if(addNews === true){
-      return <div className="has-text-centered">
+      return <span className="has-text-centered is-size-4">
       <strong>Add a New Article</strong>
-      </div>
+      </span>
     } else if(editNews === true){
-      return <div className="has-text-centered">
+      return <span className="has-text-centered is-size-4">
       <strong>Edit your article</strong>
-      </div>
+      </span>
     }
   }
 
@@ -32,14 +32,11 @@ export default class AddEditNews extends Component{
   render(){
     return(
       <div className="modal is-active" id="newsModal">
-      <div className="modal-background"></div>
-      <div className="modal-card has-background-white">
-        <header className="modal-card-head">
-          {/* <div className="level"> */}
+        <div className="modal-background"></div>
+        <div className="modal-card has-background-white">
+          <div className="has-text-centered">
             {this.buildHeader(this.props.addNews, this.props.editNews)}
-          {/* </div> */}
-        </header>
-        <div className="modal-content">
+          </div>
           <div className="field">
           <label className="label">Article Name</label>
           <div className="control">
@@ -62,10 +59,7 @@ export default class AddEditNews extends Component{
             <div className="help is-danger">{this.props.warningMessageImg}</div>
           </div>
         </div>
-      </div>
-      <footer className="modal-card-foot">
         {this.buildButton(this.props.addNews, this.props.editNews)}
-      </footer>
       </div>
       <button className="modal-close is-large" aria-label="close" onClick={()=> this.props.closeModal()}></button>
     </div>
