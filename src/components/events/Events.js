@@ -1,6 +1,19 @@
 import React, {Component} from 'react'
+import moment from 'moment'
 
 export default class Events extends Component{
+  //TODO: update date formatting
+  addEditCapability=(event)=>{
+    if(event.user.id === this.props.currentUserId){
+      return <button value={event.id} onClick={() => this.props.clickEvent(event)}>Edit</button>
+    }
+  }
+  addDeleteCapability=(event)=>{
+    if(event.user.id === this.props.currentUserId){
+      return <button value={event.id} onClick={() => this.props.delete(event.id)}>Delete</button>
+    }
+  }
+
   render(){
     let userId = parseInt(sessionStorage.getItem("id"))
     if (this.props.events.length > 1) {
@@ -12,17 +25,42 @@ export default class Events extends Component{
       <React.Fragment>
       {
         this.props.events.map(event => {
-          if (event.userId === userId) {
-          return <div className="notification" key={event.id} id={event.id}>
-            <div>{event.name}</div>
-            <div>{event.location}</div>
-            <div>{event.date}</div>
-            <div>{event.time}</div>
-            <button value={event.id} onClick={() => this.props.clickEvent(event)}>Edit</button>
-            <button value={event.id} onClick={() => this.props.delete(event.id)}>Delete</button>
+          return <div className="box notification" key={event.id} id={event.id}>
+            <article className="media">
+              <figure className="media-left">
+                <p className="image is-64x64">
+                  <img src={event.user.profilePic} alt="" />
+                </p>
+              </figure>
+              <div className="media-content">
+                <div className="content">
+                <p id="userInfo" className="">
+                <strong>{event.user.firstName} {event.user.lastName}</strong> <small className="tag">@ {event.user.username}</small>
+                </p>
+              </div>
+                <article className="media">
+                  <figure className="media-left">
+                    <p className="has-text-centered has-text-primary">
+                    <strong>{moment(`${event.date}`).format("MMMM")} </strong>
+                    <br />
+                    <strong className="is-size-3">{moment(`${event.date}`).format("D")}</strong>
+                    </p>
+                  </figure>
+                  <div className="media-content">
+                    <div className="content">
+                      <p className="is-size-4"><strong>{event.name}</strong></p>
+                      <p>{event.location}</p>
+                      <p>{moment(`${event.time}`).format("HH mm A")}</p>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </article>
+            {this.addEditCapability(event)}
+            {this.addDeleteCapability(event)}
           </div>
           }
-        })
+      )
       }
     </React.Fragment>
     )
