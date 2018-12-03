@@ -597,11 +597,9 @@
       "id": 78
     },
     {
-      "task": "Jase is doign stuff",
       "userId": 1,
-      "columnId": 1,
-      "dueDate": "2018-12-14",
-      "id": 79
+      "columnId": 2,
+      "id": 80
     }
   ],
   "friends": [
@@ -641,8 +639,6 @@
       "name": "Upcoming",
       "id": 1,
       "columnTasks": [
-        79,
-        78,
         74,
         57,
         61,
@@ -654,6 +650,12 @@
       "name": "InProgress",
       "id": 2,
       "columnTasks": [
+        78,
+        76,
+        75,
+        77,
+        72,
+        80,
         71,
         48,
         50,
@@ -672,10 +674,6 @@
       "name": "Completed",
       "id": 3,
       "columnTasks": [
-        72,
-        77,
-        76,
-        75,
         7,
         10,
         6,

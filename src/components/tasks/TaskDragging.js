@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Tasks from './Tasks'
 import { DragDropContext } from 'react-beautiful-dnd'
 import APIManager from '../../modules/APIManager'
 import Column from './Column'
@@ -9,24 +8,18 @@ export default class TaskDragging extends Component {
   state = {
     tasks: [],
     columns: [],
-
-
     column_order: {
       columnId: []
     },
-
     taskLoaded: false,
-
     timeForForm: false,
-
     formFieldContent: "",
     //stores the id of the task who's edit button has been clicked
     editButtonCheck: 0,
-
     editedTaskValue: "",
-    editedDateValue: ""
-
-
+    editedDateValue: "",
+    emptyFieldAlert: false,
+    emptyFieldCheck: 0
   }
 
   componentDidMount = () => {
@@ -111,6 +104,7 @@ export default class TaskDragging extends Component {
 
   // Function to save value of the new task form to database
   newTaskSave = (evt) => {
+
     //capturing the id of the button that was clicked
     let columnOfButton = evt.target.id;
     //splits that id into an array of the text and number
@@ -118,7 +112,12 @@ export default class TaskDragging extends Component {
     //use that number and combine it with the text that starts the item in state to be able to call on that info
     let buildingVarable = "formFieldContent-"+columnOfButtonSplit[1]
     let dateBuildingVarable = "dateFieldContent-"+columnOfButtonSplit[1];
-    console.log(dateBuildingVarable);
+
+    //checks to make sure there is a value in the input
+    if(this.state[buildingVarable] === undefined||this.state[buildingVarable] === ""|| this.state[dateBuildingVarable] === undefined||this.state[dateBuildingVarable] === ""){
+      return this.setState({emptyFieldAlert: true, emptyFieldCheck: Number(columnOfButtonSplit[1])})
+
+    }
     //turns it from a string of a number to a number number
     let individualColId = Number(columnOfButtonSplit[1])
     // build a task and send it to the database
@@ -147,7 +146,10 @@ export default class TaskDragging extends Component {
       //updated state
       .then(data => {
         stateToChange.tasks = data
+        stateToChange.emptyFieldAlert = false
+        stateToChange.emptyFieldCheck = 0
         stateToChange[`formFieldContent-${individualColId}`]=""
+        stateToChange[`dateFieldContent-${individualColId}`]=""
         this.setState(stateToChange)
       })
   }
@@ -187,6 +189,10 @@ export default class TaskDragging extends Component {
     let taskIdStringArray = taskIdString.split('-')
     let taskId = Number(taskIdStringArray[1])
     let columnId = Number(taskIdStringArray[2])
+    if(this.state.editedTaskValue === ""|| this.state.editedTaskValue === ""){
+      return this.setState({emptyFieldAlert: true, emptyFieldCheck: columnId})
+
+    }
     APIManager.updateItem('tasks', taskId, {task: this.state.editedTaskValue,dueDate: this.state.editedDateValue})
     .then(() => {return APIManager.getAllCategory("tasks")})
     .then((data) => {
@@ -194,7 +200,10 @@ export default class TaskDragging extends Component {
         tasks: data,
         editedTaskValue: "",
         editButtonCheck: 0,
-        editDateChange: ""
+        editDateChange: "",
+        emptyFieldAlert: false,
+        emptyFieldCheck: 0
+
 
       })
     } )
@@ -239,9 +248,9 @@ export default class TaskDragging extends Component {
 
 
   render() {
-    let newvar
+    let columnRender
     if (this.state.taskLoaded === true) {
-      newvar = (<section className="container">
+      columnRender = (<section className="container">
         <div className="columns is-variable is-3">
           <DragDropContext onDragEnd={this.onDragEnd}>
             {this.state.column_order.columnId.map(columnId => {
@@ -263,19 +272,10 @@ export default class TaskDragging extends Component {
       </section>
       )
     }
-
-
-    //new task form
-    let addTaskForm = ""
-    if (this.state.timeForForm === true) {
-      addTaskForm = (<div><input id="formFieldContent" type="text" onChange={this.handleFieldChange} /> <button onClick={this.newTaskSave}>Save</button></div>)
-    }
-
-
     return (
       <React.Fragment>
-        {/* {addTaskForm} */}
-        {newvar}
+
+        {columnRender}
 
       </React.Fragment>
     )
