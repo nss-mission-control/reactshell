@@ -1,37 +1,44 @@
 const URL = "http://localhost:8088/"
 
-class APIManager{
+class APIManager {
+
   getAllCategory(category) {
     return fetch(`${URL}${category}`)
       .then(entries => entries.json())
   }
+
+  getAllCategory(category) {
+    return fetch(`${URL}${category}`)
+      .then(entries => entries.json())
+  }
+
   getOneFromCategory(category, id) {
-      return fetch(`${URL}${category}/${id}`)
-        .then(inputs => inputs.json())
-    }
+    return fetch(`${URL}${category}/${id}`)
+      .then(inputs => inputs.json())
+  }
 
   saveItem(category, item) {
-      return fetch(`${URL}${category}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(item)
-      }
-      ).then(jsonData => jsonData.json())
+    return fetch(`${URL}${category}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(item)
+    }
+    ).then(jsonData => jsonData.json())
   }
 
   deleteItem(category, id) {
-      return fetch(`${URL}${category}/${id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json"
-        }
-      })
-    }
+    return fetch(`${URL}${category}/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+  }
 
   updateItem(category, id, item) {
-      console.log(item)
+    console.log(item)
     return fetch(`${URL}${category}/${id}`, {
       method: "PATCH",
       headers: {
@@ -40,6 +47,7 @@ class APIManager{
       body: JSON.stringify(item)
     })
   }
+
 }
 
 export default new APIManager()

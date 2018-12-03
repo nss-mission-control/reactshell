@@ -1,0 +1,161 @@
+.followingThem {
+  width: 44%;
+  overflow: scroll;
+  position: absolute;
+  left: 0px;
+  height: 44%;
+  background-color: grey;
+  padding: 1%;
+  padding-top:0px;
+  margin: 2%;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+.followingMe {
+  width: 44%;
+  overflow: scroll;
+  position: absolute;
+  right: 0px;
+  height: 44%;
+  background-color: grey;
+  padding: 1%;
+  padding-top:0px;
+  margin: 2%;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+.needToFollow {
+  width: 44%;
+  overflow: scroll;
+  position: absolute;
+  bottom: 0px;
+  height: 44%;
+  background-color: grey;
+  padding: 1%;
+  padding-top:0px;
+  margin-left: 28%;
+  margin-bottom: 2%;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+.followingTitles {
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+  text-align: center;
+  position: fixed;
+  background-color: gray;
+  width: 42%;
+  padding-top:2%
+}
+
+.indivUser {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
+  margin-top: 4%;
+  margin-bottom: 4%;
+}
+
+.tagline {
+  width: 60%;
+}
+.tagline:hover {
+  cursor: pointer;
+}
+
+.followerImage {
+  width: 30px;
+  display: inline-flex;
+  margin-right: 10px;
+}
+
+.followerUsername {
+  display: inline-flex;
+  font-weight: bold;
+  font-size: 15px;
+}
+.detailsModularContainer {
+  position: absolute;
+  width: 80%;
+  top: 4%;
+  background-color: lightgray;
+  padding: 10px;
+  text-align: center;
+  margin-left: 10%;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-bottom: 50px;
+}
+#userDetailsContainer {
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+#indivUserModularPic {
+  max-height: 250px;
+  border-radius: 8px;
+}
+#indivUserName {
+  font-weight: bold;
+  font-size: 25px;
+}
+.indivUserModularDetails {
+  font-weight: bold;
+  padding: 2px;
+}
+#indivUserModularEmail {
+  text-decoration: none;
+  font-weight:bold;
+  color: darkslategray;
+}
+.isBlurred {
+  filter: blur(10px)
+}
+.userToAdd {
+  margin-top: 18%;
+}
+.modularButton {
+  margin-left: 5%;
+  margin-right: 5%;
+  font-weight: bold;
+  font-size: 15px;
+  border: 2px solid;
+  border-radius: 10px;
+  width: 40%;
+}
+.modularButton:hover {
+  background-color: grey;
+  color: white
+}
+.userMessagesTitle {
+  font-weight:bold;
+  margin-top: 30px;
+  border-bottom: 2px solid black;
+  margin-bottom: 10px;
+}
+.dateInfo {
+  font-weight: bold;
+  font-size: 12px;
+}
+.messageDetailsFollow {
+  border: 1px solid;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 5px;
+  margin-bottom: 15px;
+  background-color: white;
+}
+.articleImageDetails {
+  max-width: 75%;
+  max-height: 300px;
+  border-radius: 8px;
+}
+.messageDetailsFollowContentAbout {
+  font-weight: bold;
+  font-size: 16px;
+}
