@@ -3,7 +3,7 @@ import React, { Component } from "react"
 import Messages from "./messages"
 import LogIn from "./login/LogIn"
 import SignUp from "./login/SignUp"
-import Tasks from "./tasks/Tasks"
+import TaskDragging from "./tasks/TaskDragging"
 import Friends from "./friends/Friends"
 import Events from "./events/Events"
 import NewsContainer from "./news/NewsContainer"
@@ -25,7 +25,7 @@ export default class ApplicationViews extends Component {
         }} />
         <Route exact path="/tasks" render={(props) => {
           if (this.isAuthenticated()) {
-            return <Tasks />
+            return <TaskDragging  {...props} tasks={this.props.tasks} />
           } else {
             return <LogIn {...props} activeUser={this.props.activeUser} />
           }
