@@ -636,8 +636,18 @@
     },
     {
       "request_userId": 4,
-      "userId": 2,
+      "userId": 6,
+      "id": 9
+    },
+    {
+      "request_userId": 4,
+      "userId": 8,
       "id": 10
+    },
+    {
+      "request_userId": 4,
+      "userId": 9,
+      "id": 11
     }
   ],
   "columns": [
@@ -645,6 +655,7 @@
       "name": "Upcoming",
       "id": 1,
       "columnTasks": [
+        2,
         74,
         71,
         70,
@@ -660,6 +671,7 @@
       "name": "InProgress",
       "id": 2,
       "columnTasks": [
+        10,
         72,
         48,
         50,
@@ -670,7 +682,6 @@
         59,
         13,
         8,
-        2,
         63
       ]
     },
@@ -682,7 +693,6 @@
         76,
         75,
         7,
-        10,
         6,
         3,
         1,
