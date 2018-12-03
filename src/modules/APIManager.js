@@ -1,12 +1,6 @@
 const URL = "http://localhost:8088/"
 
-class APIManager {
-
-  getAllCategory(category) {
-    return fetch(`${URL}${category}`)
-      .then(entries => entries.json())
-  }
-
+ class APIManager{
   getAllCategory(category) {
     return fetch(`${URL}${category}`)
       .then(entries => entries.json())
