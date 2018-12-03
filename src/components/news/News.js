@@ -15,6 +15,15 @@ export default class News extends Component{
     }
   }
 
+  activeUserClass=(id)=>{
+    if(id === this.props.currentUserId){
+      return "tag is-link"
+    } else{
+      return "tag"
+    }
+
+  }
+
   //Step 4: When section renders, using the following logic:
   // If showNews props passed down from NewsContainer component are true, display the NewsModule component that captures the direct information for that article and passes it down as props
   //If editNews props passed down from NewsContainer component are true, display AddEditNews component with edit news view
@@ -43,7 +52,7 @@ export default class News extends Component{
           return(
           <div className={this.createClass(index)}
           key={article.id} onClick={()=> this.props.showNewsClick(article.url, article.articleName, article.about, article.articleImage, article.id, article.userId)}>
-            <div className="has-background-primary">
+            <div className="box">
               <article className="media">
                 <figure className="media-left">
                   <p className="image is-64x64">
@@ -53,9 +62,7 @@ export default class News extends Component{
                   <div className="media-content">
                     <div className="content">
                       <p id="userInfo" className="">
-                      <strong>{article.user.firstName} {article.user.lastName}</strong>
-                      <small className="tag is-link">@{article.user.username}</small>
-                      <small className="tag is-link">{moment(`${article.dateSaved}`).fromNow()}</small>
+                      <strong>{article.user.firstName} {article.user.lastName}</strong> <small className={this.activeUserClass(article.userId)}>@{article.user.username}</small> <small className={this.activeUserClass(article.userId)}>{moment(`${article.dateSaved}`).fromNow()}</small>
                       </p>
                       <p className="">{article.about}</p>
                     </div>
@@ -76,10 +83,6 @@ export default class News extends Component{
                   </article>
                   </div>
                 </article>
-
-
-
-
                 </div>
               </div>
 
