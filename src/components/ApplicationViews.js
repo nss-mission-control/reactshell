@@ -39,7 +39,7 @@ export default class ApplicationViews extends Component {
         }} />
         <Route exact path="/news" render={(props) => {
           if (this.isAuthenticated()) {
-            return <NewsContainer {...props} news={this.props.data.articles} currentUser={this.props.data.currentUser} />
+            return <NewsContainer {...props} news={this.props.data.articles} currentUser={this.props.data.currentUser} friends={this.props.data.friends} />
           } else {
             return <LogIn {...props} activeUser={this.props.activeUser} />
           }
