@@ -4,10 +4,6 @@ import APIManager from "../../../modules/APIManager";
 import "./OldMessages.css";
 import $ from "jquery";
 
-//FIXME: TODO: clicking edit button multiple times opens multiple edit fields
-
-//TODO: add absolute styling to new message box and edit message box
-//TODO: fix word wrap issue with long messages in the message body
 export default class OldMessages extends Component {
 
   deleteMessage = (event) => {
@@ -74,7 +70,25 @@ export default class OldMessages extends Component {
     })
   }
 
+  saveFriend = (newFriend) => {
+    let currentUser = parseInt(sessionStorage.getItem("id"));
+    let newRelationship = {
+      request_userId: currentUser, userId: newFriend
+    }
+    APIManager.saveItem("friends", newRelationship)
+    .then (() => this.props.refresh())
+  }
+
   printMessages = () => {
+    let currentUser = parseInt(sessionStorage.getItem("id"));
+    let currentFriends = [];
+    this.props.data.friends.forEach(person => {
+      if (person.request_userId === currentUser) {
+        if (currentFriends.indexOf(person.userId) === -1) {
+          currentFriends.push(person.userId)
+        }
+      }
+    })
     let moment = require('moment');
     let messages = this.props.messages;
     if (messages.length > 1) {
@@ -104,6 +118,21 @@ export default class OldMessages extends Component {
           </div>
         </section>
       } else {
+        if (currentFriends.indexOf(message.userId) === -1) {
+        return <section className="media" key={message.id}>
+          <figure className="media-left">
+            <p className="image is-64x64">
+              <img src={message.user.profilePic} alt=""/>
+            </p>
+          </figure>
+          <div className="media-content">
+            <div className="content">
+              <p><strong>{message.user.firstName}</strong> <small className="oldMsgTitle tag">@{message.user.username}</small> <small className="oldMsgTitle tag">{moment(`${message.timeStamp}`).fromNow()}</small><button className="button is-small is-link addToFollowingBtn" onClick={() => this.saveFriend(message.userId)}>Follow {message.user.username}</button></p>
+              <p className="oldMsgTitle">{message.messageContent}</p>
+            </div>
+          </div>
+        </section>
+      } else {
         return <section className="media" key={message.id}>
           <figure className="media-left">
             <p className="image is-64x64">
@@ -118,6 +147,7 @@ export default class OldMessages extends Component {
           </div>
         </section>
       }
+    }
     }
     ))
   }
@@ -137,70 +167,3 @@ export default class OldMessages extends Component {
     )
   }
 }
-
-
-// let userId = Number(sessionStorage.getItem("id"))
-// if (message.user.id === userId) {
-//   return <section className="level" key={message.id}>
-//     <div className="level-left"></div>
-//     <div className="level-right">
-//       <p className={`oldMsgBody ${message.id}body level-item`}>{message.messageContent}</p>
-//       <figure id="editDelete" className="level-item">
-//         <img className="editIcon" id={parseInt(message.id)} onClick={this.editMessage} src="images/edit.png" alt="edit"></img>
-//       </figure>
-//       <figure className="image is-24x24">
-//         <img src={message.user.profilePic} className="is-rounded" />
-//       </figure> &nbsp;
-//       <p id="dateInfo" className="tag level-item is-link">{message.user.username}</p>
-//       <p id="dateInfo" className="tag level-item">{moment(`${message.timeStamp}`).fromNow()} </p>
-//     </div>
-//   </section>
-// }
-// else {
-//   return <section className="level" key={message.id}>
-//     <div className="level-left">
-//       <div className="level-item is-flex">
-//         <p className="oldMsgTitle tag">{moment(`${message.timeStamp}`).fromNow()}</p>
-//         <figure className="image is-24x24">
-//           <img src={message.user.profilePic} className="is-rounded" />
-//         </figure> &nbsp;
-//         <p className="oldMsgTitle tag is-link">{message.user.username}</p>
-//       </div>
-//       <p className="oldMsgTitle level-item">{message.messageContent}</p>
-//     </div>
-//     <div className="level-right"></div>
-//   </section>
-// }
-
-{/* <article class="media">
-  <figure class="media-left">
-    <p class="image is-64x64">
-      <img src="https://bulma.io/images/placeholders/128x128.png">
-    </p>
-  </figure>
-  <div class="media-content">
-    <div class="content">
-      <p>
-        <strong>John Smith</strong> <small>@johnsmith</small> <small>31m</small>
-        <br>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
-      </p>
-    </div>
-    <nav class="level is-mobile">
-      <div class="level-left">
-        <a class="level-item">
-          <span class="icon is-small"><i class="fas fa-reply"></i></span>
-        </a>
-        <a class="level-item">
-          <span class="icon is-small"><i class="fas fa-retweet"></i></span>
-        </a>
-        <a class="level-item">
-          <span class="icon is-small"><i class="fas fa-heart"></i></span>
-        </a>
-      </div>
-    </nav>
-  </div>
-  <div class="media-right">
-    <button class="delete"></button>
-  </div>
-</article> */}
