@@ -5,7 +5,7 @@ import LogIn from "./login/LogIn"
 import SignUp from "./login/SignUp"
 import TaskDragging from "./tasks/TaskDragging"
 import Friends from "./friends/Friends"
-import EventsContainer from "./events/Events"
+import EventsContainer from "./events/EventsContainer"
 import NewsContainer from "./news/NewsContainer"
 
 export default class ApplicationViews extends Component {

@@ -9,6 +9,7 @@ export default class EventsContainer extends Component{
   //TODO: Add click event on events modal to save new event
   //TODO: Add functionality to edit event
   state={
+    editEvent: false,
     addEvent: false
   }
 
@@ -54,7 +55,6 @@ export default class EventsContainer extends Component{
           </div>
           <div className="column has-background-info">
             <Events events={this.props.events} clickEvent={this.addEditClick} delete={this.deleteEvent}/>
-            This is another column
           </div>
         </div>
       </div>

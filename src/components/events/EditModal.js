@@ -30,18 +30,18 @@ export default class EventsModal extends Component{
       userId: userId
     }
     if (editEvent.name === "") {
-      editEvent.name = this.state.oldEvent.name;
+      editEvent.name = this.props.event.name;
     }
     if (editEvent.location === "") {
-      editEvent.location = this.state.oldEvent.location;
+      editEvent.location = this.props.event.location;
     }
     if (editEvent.date === "") {
-      editEvent.date = this.state.oldEvent.date;
+      editEvent.date = this.props.event.date;
     }
     if (editEvent.time === "") {
-      editEvent.time = this.state.oldEvent.time;
+      editEvent.time = this.props.event.time;
     }
-    APIManager.updateItem("events", this.state.oldEvent.id, editEvent)
+    APIManager.updateItem("events", this.props.event.id, editEvent)
     .then(() => {
       this.resetState();
       this.props.closeModal();
