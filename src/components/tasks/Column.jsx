@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import { Droppable } from 'react-beautiful-dnd'
 import Task from './Tasks'
 import styled from 'styled-components'
-import APIManager from '../../modules/APIManager'
 import './tasks.css'
 
 
@@ -14,6 +13,8 @@ const TodoBody = styled.div`
   padding: 20px
   border-radius: 4%`;
 
+let moment = require('moment');
+
 export default class Column extends Component {
 
 
@@ -23,6 +24,7 @@ addTaskForm(columnId) {
        return(<div className = 'box'>
                     <label value="Add New">Add New</label>
                     <input id= {`formFieldContent-`+columnId} onChange={this.props.handleFieldChange} type = 'text' value={this.props.passedState[`formFieldContent-`+columnId]}/>
+                    <input id = {`dateFieldContent-`+columnId} onChange={this.props.handleFieldChange} type="date"/>
                     <button id={`formFieldButton-`+columnId} onClick={(e) => this.props.newTaskSave(e)}>Save</button>
                   </div>)
 
@@ -53,7 +55,9 @@ addTaskForm(columnId) {
                               editButtonClick = {this.props.editButtonClick}
                               passedState = {this.props.passedState}
                               handleFieldChange = {this.props.handleFieldChange}
-                              editFieldChange = {this.props.editFieldChange}/>}
+                              editFieldChange = {this.props.editFieldChange}
+                              editDateChange = {this.props.editDateChange}/>
+                              }
 
               )}
               {provided.placeholder}

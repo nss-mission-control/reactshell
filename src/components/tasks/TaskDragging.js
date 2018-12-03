@@ -23,7 +23,8 @@ export default class TaskDragging extends Component {
     //stores the id of the task who's edit button has been clicked
     editButtonCheck: 0,
 
-    editedTaskValue: ""
+    editedTaskValue: "",
+    editedDateValue: ""
 
 
   }
@@ -116,6 +117,8 @@ export default class TaskDragging extends Component {
     let columnOfButtonSplit = columnOfButton.split('-');
     //use that number and combine it with the text that starts the item in state to be able to call on that info
     let buildingVarable = "formFieldContent-"+columnOfButtonSplit[1]
+    let dateBuildingVarable = "dateFieldContent-"+columnOfButtonSplit[1];
+    console.log(dateBuildingVarable);
     //turns it from a string of a number to a number number
     let individualColId = Number(columnOfButtonSplit[1])
     // build a task and send it to the database
@@ -123,7 +126,8 @@ export default class TaskDragging extends Component {
     APIManager.saveItem("tasks", {
       task: this.state[buildingVarable],
       userId: Number(sessionStorage.getItem("id")),
-      columnId: individualColId
+      columnId: individualColId,
+      dueDate: this.state[dateBuildingVarable]
     })
       //copying state array and adding the id of the new task
       .then(data => {
@@ -183,13 +187,14 @@ export default class TaskDragging extends Component {
     let taskIdStringArray = taskIdString.split('-')
     let taskId = Number(taskIdStringArray[1])
     let columnId = Number(taskIdStringArray[2])
-    APIManager.updateItem('tasks', taskId, {task: this.state.editedTaskValue})
+    APIManager.updateItem('tasks', taskId, {task: this.state.editedTaskValue,dueDate: this.state.editedDateValue})
     .then(() => {return APIManager.getAllCategory("tasks")})
     .then((data) => {
       this.setState({
         tasks: data,
         editedTaskValue: "",
-        editButtonCheck: 0
+        editButtonCheck: 0,
+        editDateChange: ""
 
       })
     } )
@@ -207,7 +212,8 @@ export default class TaskDragging extends Component {
     .then(data => {
 
       this.setState({editButtonCheck: taskId,
-        editedTaskValue: data.task
+        editedTaskValue: data.task,
+        editedDateValue: data.dueDate
       })
     })
   }
@@ -215,6 +221,11 @@ export default class TaskDragging extends Component {
   editFieldChange = (evt) => {
     const stateToChange = {}
     stateToChange.editedTaskValue = evt.target.value
+    this.setState(stateToChange)
+  }
+  editDateChange = (evt) => {
+    const stateToChange = {}
+    stateToChange.editedDateValue = evt.target.value
     this.setState(stateToChange)
   }
 
@@ -243,7 +254,7 @@ export default class TaskDragging extends Component {
                               tasks={tasks} handleFieldChange = {this.handleFieldChange}
                               newTaskSave = {this.newTaskSave} deleteTask= {this.deleteTask}
                               editTaskSave={this.editTaskSave} editButtonClick = {this.editButtonClick}
-                              editFieldChange = {this.editFieldChange}/>
+                              editFieldChange = {this.editFieldChange} editDateChange = {this.editDateChange}/>
             })
 
             }
