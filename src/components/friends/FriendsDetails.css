@@ -3,7 +3,7 @@
   overflow: scroll;
   position: absolute;
   left: 0px;
-  height: 44%;
+  height: 40%;
   background-color: grey;
   padding: 1%;
   padding-top:0px;
@@ -17,7 +17,7 @@
   overflow: scroll;
   position: absolute;
   right: 0px;
-  height: 44%;
+  height: 40%;
   background-color: grey;
   padding: 1%;
   padding-top:0px;
@@ -82,7 +82,7 @@
 .detailsModularContainer {
   position: absolute;
   width: 80%;
-  top: 4%;
+  top: 10%;
   background-color: lightgray;
   padding: 10px;
   text-align: center;
@@ -116,7 +116,7 @@
   filter: blur(10px)
 }
 .userToAdd {
-  margin-top: 18%;
+  margin-top: 16%;
 }
 .modularButton {
   margin-left: 5%;

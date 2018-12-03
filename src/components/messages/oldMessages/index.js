@@ -15,6 +15,18 @@ export default class OldMessages extends Component {
       .then(() => this.props.refresh())
   }
 
+  blurPage = () => {
+    $(".navbar").addClass("isBlurred");
+    $(".top").addClass("isBlurred");
+    $(".bottom").addClass("isBlurred");
+  }
+
+  unblurPage() {
+    $(".navbar").removeClass("isBlurred");
+    $(".top").removeClass("isBlurred");
+    $(".bottom").removeClass("isBlurred");
+  }
+
   saveMessage = (event) => {
     if (this.content.value !== "") {
       event.messageContent = this.content.value;
@@ -26,27 +38,34 @@ export default class OldMessages extends Component {
   editMessage = (event) => {
     confirmAlert({
       customUI: ({ onClose }) => {
+        this.blurPage();
+        this.setState({editting: true})
         let tempId = parseInt(event.target.id);
         let thisMessage = this.props.messages.filter(message => message.id === tempId);
         thisMessage = thisMessage[0];
-        thisMessage = { id: thisMessage.id, messageContent: thisMessage.messageContent, timeStamp: thisMessage.timeStamp, userId: thisMessage.userId }
+        thisMessage = { id: thisMessage.id, profilePic: thisMessage.user.profilePic, messageContent: thisMessage.messageContent, timeStamp: thisMessage.timeStamp, userId: thisMessage.userId }
         return (
-          <div className="messageEdit box container">
+          <div className="messageEdit box">
             <div className="control">
-              <p className="alert hide" id="noMessageContent">Message Details</p>
+              <p className="editMessageHeader" id="noMessageContent">Message Details</p>
+              <img className="editMessageProfilePic" src={thisMessage.profilePic} alt="profile pic" />
+              <p className="editMessageTitleDescription">Message Content</p>
               <input className="input" defaultValue={thisMessage.messageContent} ref={content => this.content = content} />
             </div>
             <div id="editMessageBtns" className="buttons">
               <button className="messageButton button" onClick={() => {
-                onClose()
+                this.unblurPage();
+                onClose();
               }}>Back to Messages</button>
               <button className="messageButton button" onClick={() => {
                 this.saveMessage(thisMessage);
-                onClose()
+                this.unblurPage();
+                onClose();
               }}>Save Message Changes</button>
               <button className="messageButton button" onClick={() => {
-                this.deleteMessage(thisMessage)
-                onClose()
+                this.deleteMessage(thisMessage);
+                this.unblurPage();
+                onClose();
               }}>Delete Message</button>
             </div>
           </div>
@@ -93,8 +112,8 @@ export default class OldMessages extends Component {
           </figure>
           <div className="media-content">
             <div className="content">
-            <p><strong>{message.user.firstName}</strong> <small className="oldMsgTitle tag">{message.user.username}</small> <small className="oldMsgTitle tag">{moment(`${message.timeStamp}`).fromNow()}</small></p>
-            <p className="oldMsgTitle">{message.messageContent}</p>
+              <p><strong>{message.user.firstName}</strong> <small className="oldMsgTitle tag">{message.user.username}</small> <small className="oldMsgTitle tag">{moment(`${message.timeStamp}`).fromNow()}</small></p>
+              <p className="oldMsgTitle">{message.messageContent}</p>
             </div>
           </div>
         </section>
@@ -106,9 +125,9 @@ export default class OldMessages extends Component {
   render() {
     $(document).keyup(function (e) {
       if (e.keyCode === 27) {
-        $(".followingThem").removeClass("isBlurred")
-        $(".followingMe").removeClass("isBlurred")
-        $(".needToFollow").removeClass("isBlurred")
+        $(".navbar").removeClass("isBlurred");
+        $(".top").removeClass("isBlurred");
+        $(".bottom").removeClass("isBlurred");
       }
     });
     return (

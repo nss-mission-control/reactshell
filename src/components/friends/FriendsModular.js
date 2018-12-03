@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import "./IndividualDetails.css";
+// import "./IndividualDetails.css";
 
 export default class IndividualDetails extends Component {
 

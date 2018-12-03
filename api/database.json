@@ -605,11 +605,6 @@
   ],
   "friends": [
     {
-      "id": 1,
-      "request_userId": 2,
-      "userId": 1
-    },
-    {
       "id": 3,
       "request_userId": 3,
       "userId": 2
@@ -628,6 +623,31 @@
       "request_userId": 2,
       "userId": 3,
       "id": 6
+    },
+    {
+      "request_userId": 2,
+      "userId": 1,
+      "id": 7
+    },
+    {
+      "request_userId": 2,
+      "userId": 2,
+      "id": 8
+    },
+    {
+      "request_userId": 4,
+      "userId": 6,
+      "id": 9
+    },
+    {
+      "request_userId": 4,
+      "userId": 8,
+      "id": 10
+    },
+    {
+      "request_userId": 4,
+      "userId": 9,
+      "id": 11
     }
   ],
   "columns": [
@@ -635,6 +655,7 @@
       "name": "Upcoming",
       "id": 1,
       "columnTasks": [
+        2,
         74,
         71,
         70,
@@ -650,6 +671,7 @@
       "name": "InProgress",
       "id": 2,
       "columnTasks": [
+        10,
         72,
         48,
         50,
@@ -660,7 +682,6 @@
         59,
         13,
         8,
-        2,
         63
       ]
     },
@@ -672,7 +693,6 @@
         76,
         75,
         7,
-        10,
         6,
         3,
         1,
