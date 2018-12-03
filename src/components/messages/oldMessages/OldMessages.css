@@ -2,3 +2,72 @@
   width: 20px;
   cursor: pointer;
 }
+.isBlurred {
+  filter: blur(10px)
+}
+.messageEdit {
+  position: fixed;
+  width: 80%;
+  top: 10%;
+  background-color: lightgray;
+  padding: 10px;
+  text-align: center;
+  margin-left: 10%;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+.editMessageHeader {
+  text-align: center;
+  font-weight: bold;
+  font-size: 22px;
+  margin-bottom: 2%;
+}
+.editMessageProfilePic {
+  max-width: 100%;
+  display: flex;
+  max-height: 300px;
+  margin: auto;
+  margin-bottom: 2%;
+}
+.editMessageTitleDescription {
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: .5%;
+}
+#editMessageBtns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 3%;
+  margin-bottom: 2%;
+}
+.messageButton {
+  border: 2px solid;
+  border-radius: 10px;
+  color: darkgray;
+  margin-top: 1%;
+}
+.messageButton:hover {
+  border: 2px solid black;
+  color: black;
+}
+.top {
+  position: fixed;
+  text-overflow: clip;
+  overflow: scroll;
+  width: 80%;
+  height: 67%;
+}
+.bottom {
+  position: fixed;
+  text-overflow: clip;
+  overflow: scroll;
+  width: 80%;
+  bottom: 0px;
+  height: 22%;
+}
+.addMessageTitle {
+  text-align: center;
+  font-weight: bold;
+  padding-bottom: 5px;
+}

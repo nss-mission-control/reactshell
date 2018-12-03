@@ -31,7 +31,7 @@ export default class FriendIFollowPrint extends Component {
         let canFollow = true;
         let moment = require('moment');
         let relationship = 0;
-        let currentUser = 2;
+        let currentUser = parseInt(sessionStorage.getItem("id"));
         let thisUserMessages = [];
         let thisUserArticles = [];
         $(".followingThem").addClass("isBlurred")
@@ -79,7 +79,7 @@ export default class FriendIFollowPrint extends Component {
                 }}>Back to Following</button>
                 <button className="modularButton" onClick={() => {
                   // TODO: Need to replace currentUser with id for current user for saving
-                  let currentUser = 2;
+                  let currentUser = parseInt(sessionStorage.getItem("id"));
                   let data = { request_userId: currentUser, userId: thisUser.id }
                   APIManager.saveItem("friends", data).then(() => this.props.refresh())
                   $(".followingThem").removeClass("isBlurred")
@@ -168,7 +168,7 @@ export default class FriendIFollowPrint extends Component {
 
   sortUsers = () => {
     // TODO: Current user needs changed from hard coded to currentUser from state
-    let currentUserId = 2;
+    let currentUserId = parseInt(sessionStorage.getItem("id"));
     let followingList = [];
     this.props.data.friends.forEach(person => {
       if (currentUserId === person.request_userId) {
@@ -190,7 +190,7 @@ export default class FriendIFollowPrint extends Component {
   }
 
   newToFollow = () => {
-    let currentUserId = 2;
+    let currentUserId = parseInt(sessionStorage.getItem("id"));
     let toFollowList = [];
     let followingList = [];
     this.props.data.friends.forEach(person => {

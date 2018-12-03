@@ -29,7 +29,7 @@ export default class NewMessage extends Component {
   createNewMessage = () => {
     return (
       <div className="control">
-      <h1 className="">Add A New Message</h1>
+      <h1 className="addMessageTitle">Add A New Message</h1>
         <p className="alert hide" id="noMessageContent">Please add a message before saving.</p>
         <input className="input" value={this.state.messageContent} id="messageValue" onChange={this.handleChange} placeholder="Enter your message here" ref={info => this.messageContent = info} />
         <button className="messageButton button" onClick={this.saveMessage}>Save Message</button>
@@ -39,7 +39,7 @@ export default class NewMessage extends Component {
 
   render() {
     return (
-      <div className="bottom box container">
+      <div className="bottom box">
         {this.createNewMessage()}
       </div>
     )

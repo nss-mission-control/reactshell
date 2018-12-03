@@ -416,11 +416,6 @@
   ],
   "friends": [
     {
-      "id": 1,
-      "request_userId": 2,
-      "userId": 1
-    },
-    {
       "id": 3,
       "request_userId": 3,
       "userId": 2
@@ -439,6 +434,21 @@
       "request_userId": 2,
       "userId": 3,
       "id": 6
+    },
+    {
+      "request_userId": 2,
+      "userId": 1,
+      "id": 7
+    },
+    {
+      "request_userId": 2,
+      "userId": 2,
+      "id": 8
+    },
+    {
+      "request_userId": 4,
+      "userId": 2,
+      "id": 10
     }
   ]
 }
