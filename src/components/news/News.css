@@ -1,0 +1,12 @@
+
+.column:hover{
+  cursor: pointer;
+}
+
+.icon{
+  color: hsl(217, 71%, 53%)
+}
+
+.icon:hover{
+  cursor: pointer;
+}

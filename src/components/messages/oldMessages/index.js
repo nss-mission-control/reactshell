@@ -88,7 +88,7 @@ export default class OldMessages extends Component {
         return <section className="media" key={message.id}>
           <figure className="media-left">
             <p className="image is-64x64">
-              <img src={message.user.profilePic} />
+              <img src={message.user.profilePic} alt=""/>
             </p>
           </figure>
           <div className="media-content">
@@ -107,7 +107,7 @@ export default class OldMessages extends Component {
         return <section className="media" key={message.id}>
           <figure className="media-left">
             <p className="image is-64x64">
-              <img src={message.user.profilePic} />
+              <img src={message.user.profilePic} alt=""/>
             </p>
           </figure>
           <div className="media-content">
