@@ -239,7 +239,7 @@ export default class TaskDragging extends Component {
               const tasks = column.columnTasks.map(taskId => {
                 return this.state.tasks.filter(oneTask => oneTask.id === taskId)
               });
-              return <Column  passedState={this.state} key={column.id} column={column}
+              return <Column passedState={this.state} key={column.id} column={column}
                               tasks={tasks} handleFieldChange = {this.handleFieldChange}
                               newTaskSave = {this.newTaskSave} deleteTask= {this.deleteTask}
                               editTaskSave={this.editTaskSave} editButtonClick = {this.editButtonClick}

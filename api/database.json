@@ -435,14 +435,6 @@
       "columnId": 2
     },
     {
-      "task": "Get some sleep",
-      "complete": false,
-      "dueDate": "2018-10-31",
-      "userId": 1,
-      "id": 19,
-      "columnId": 2
-    },
-    {
       "task": "sdf",
       "userId": 1,
       "columnId": 1,
@@ -539,12 +531,6 @@
       "id": 63
     },
     {
-      "task": "How about this?",
-      "userId": 1,
-      "columnId": 3,
-      "id": 64
-    },
-    {
       "task": "Test",
       "userId": 1,
       "columnId": 1,
@@ -593,16 +579,28 @@
       "id": 72
     },
     {
-      "task": "TEst",
-      "userId": 1,
-      "columnId": 3,
-      "id": 73
-    },
-    {
       "task": "Testerster",
       "userId": 2,
       "columnId": 1,
       "id": 74
+    },
+    {
+      "task": "Get some sleep",
+      "userId": 1,
+      "columnId": 3,
+      "id": 75
+    },
+    {
+      "task": "Code Everything",
+      "userId": 1,
+      "columnId": 3,
+      "id": 76
+    },
+    {
+      "task": "Fight the fight",
+      "userId": 1,
+      "columnId": 3,
+      "id": 77
     }
   ],
   "friends": [
@@ -670,8 +668,9 @@
       "name": "Completed",
       "id": 3,
       "columnTasks": [
-        73,
-        19,
+        77,
+        76,
+        75,
         7,
         10,
         6,
@@ -679,8 +678,7 @@
         1,
         5,
         11,
-        9,
-        64
+        9
       ]
     }
   ],

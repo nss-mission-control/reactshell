@@ -3,6 +3,7 @@ import { Draggable } from 'react-beautiful-dnd'
 import styled from 'styled-components'
 
 
+
 const Container = styled.div``;
 
 
@@ -24,7 +25,7 @@ export default class Tasks extends Component {
           className="level box has-background-primary">
             {this.props.task[0].task}
             <img className = "editIcon" id = {`editButton-${this.props.task[0].id}-${this.props.columnId}`} onClick= {(evt) => this.props.editButtonClick(evt)} src="images/edit.png" alt="edit"/>
-            <button id ={`deleteButton-${this.props.task[0].id}-${this.props.columnId}`} onClick= {(evt) => this.props.deleteTask(evt)}>Delete</button>
+            <img className = "editIcon" src="images/trash.png" id ={`deleteButton-${this.props.task[0].id}-${this.props.columnId}`} onClick= {(evt) => this.props.deleteTask(evt)}/>
           </Container>}
         </Draggable>
 
@@ -50,25 +51,12 @@ export default class Tasks extends Component {
   }
 
   render() {
+    let filterByUserId =""
+    if(this.props.task[0].userId===Number(sessionStorage.getItem("id")))
+      filterByUserId = this.editButtonClick()
+
     return (
-      this.editButtonClick()
-      // <Draggable draggableId={`task-${this.props.task[0].id}`} index={this.props.index}>
-      //   {provided =>
-
-      //    <Container
-
-      //     {...provided.draggableProps}
-      //     highlight_line
-      //     {...provided.dragHandleProps}
-      //     end_highlight_line
-      //     ref={provided.innerRef}
-      //     className="level box has-background-primary">
-      //       {this.props.task[0].task}
-      //       <button id = {`EditButton-${this.props.task[0].id}-${this.props.columnId}`} onClick= {(evt) => this.props.editTaskSave(evt)}>Edit</button>
-      //       <button id ={`deleteButton-${this.props.task[0].id}-${this.props.columnId}`} onClick= {(evt) => this.props.deleteTask(evt)}>Delete</button>
-      //     </Container>}
-
-      // </Draggable>
-    )
+      filterByUserId
+      )
   }
 }
