@@ -73,3 +73,7 @@
   font-weight: bold;
   padding-bottom: 5px;
 }
+.addToFollowingBtn {
+  margin-left: 3%;
+  border-radius: 10px !important;
+}
