@@ -13,9 +13,10 @@ export default class FriendFollowingMePrint extends Component {
         let canFollow = true;
         let moment = require('moment');
         let relationship = 0;
-        let currentUser = parseInt(sessionStorage("id"));
+        let currentUser = parseInt(sessionStorage.getItem("id"));
         let thisUserMessages = [];
         let thisUserArticles = [];
+        $(".navbar").addClass("isBlurred")
         $(".followingThem").addClass("isBlurred")
         $(".followingMe").addClass("isBlurred")
         $(".needToFollow").addClass("isBlurred")
@@ -53,6 +54,7 @@ export default class FriendFollowingMePrint extends Component {
               <IndividualDetails user={thisUser} data={this.props.data}/>
               <div id="detailsModularBtnsSection">
                 <button className="modularButton" onClick={() => {
+                  $(".navbar").removeClass("isBlurred")
                   $(".followingThem").removeClass("isBlurred")
                   $(".followingMe").removeClass("isBlurred")
                   $(".needToFollow").removeClass("isBlurred")
@@ -60,9 +62,10 @@ export default class FriendFollowingMePrint extends Component {
                 }}>Back to Following</button>
                 <button className="modularButton" onClick={() => {
                   // TODO: Need to replace currentUser with id for current user for saving
-                  let currentUser = 2;
+                  let currentUser = parseInt(sessionStorage.getItem("id"));
                   let data = { request_userId: currentUser, userId: thisUser.id }
                   APIManager.saveItem("friends", data).then(() => this.props.refresh())
+                  $(".navbar").removeClass("isBlurred")
                   $(".followingThem").removeClass("isBlurred")
                   $(".followingMe").removeClass("isBlurred")
                   $(".needToFollow").removeClass("isBlurred")
