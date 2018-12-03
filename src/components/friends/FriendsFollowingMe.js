@@ -13,7 +13,7 @@ export default class FriendFollowingMePrint extends Component {
         let canFollow = true;
         let moment = require('moment');
         let relationship = 0;
-        let currentUser = 2;
+        let currentUser = parseInt(sessionStorage("id"));
         let thisUserMessages = [];
         let thisUserArticles = [];
         $(".followingThem").addClass("isBlurred")
