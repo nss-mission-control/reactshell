@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./FriendsDetails.css";
+// import "./FriendsDetails.css";
 import { confirmAlert } from "react-confirm-alert";
 import IndividualDetails from "./FriendsModular";
 import APIManager from "../../modules/APIManager";
@@ -150,7 +150,7 @@ export default class FriendFollowingMePrint extends Component {
 
   sortUsers = () => {
     // TODO: Current user needs changed from hard coded to currentUser from state
-    let currentUserId = 2;
+    let currentUserId = parseInt(sessionStorage.getItem("id"));
     let followingList = [];
     this.props.data.friends.forEach(person => {
       if (currentUserId === person.userId) {
@@ -175,6 +175,7 @@ export default class FriendFollowingMePrint extends Component {
   render() {
     $(document).keyup(function (e) {
       if (e.keyCode === 27) {
+        $(".navbar").removeClass("isBlurred")
         $(".followingThem").removeClass("isBlurred")
         $(".followingMe").removeClass("isBlurred")
         $(".needToFollow").removeClass("isBlurred")
