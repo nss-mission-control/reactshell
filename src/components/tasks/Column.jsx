@@ -1,5 +1,5 @@
 
-import React, { Component } from 'react'
+import React, { Component, PureComponent } from 'react'
 import { Droppable } from 'react-beautiful-dnd'
 import Task from './Tasks'
 import styled from 'styled-components'
@@ -16,7 +16,10 @@ const TodoBody = styled.div`
 
 
 
-export default class Column extends Component {
+
+
+
+export default class Column extends PureComponent {
 
 
 //builds the to add tasks

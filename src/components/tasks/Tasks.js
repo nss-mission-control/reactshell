@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PureComponent } from 'react'
 import { Draggable } from 'react-beautiful-dnd'
 import styled from 'styled-components'
 
@@ -7,7 +7,7 @@ import styled from 'styled-components'
 const Container = styled.div``;
 let moment = require('moment');
 
-export default class Tasks extends Component {
+export default class Tasks extends PureComponent {
   editButtonClick() {
     let taskContents = ''
     //if a task's edit button has been clicked this will be false and an input field will appear on that task

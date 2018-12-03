@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component, PureComponent } from 'react'
 import { DragDropContext } from 'react-beautiful-dnd'
 import APIManager from '../../modules/APIManager'
 import Column from './Column'
 
-export default class TaskDragging extends Component {
+export default class TaskDragging extends PureComponent {
 
   state = {
     tasks: [],

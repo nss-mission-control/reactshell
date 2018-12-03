@@ -600,6 +600,27 @@
       "userId": 1,
       "columnId": 2,
       "id": 80
+    },
+    {
+      "task": "add",
+      "userId": 1,
+      "columnId": 1,
+      "dueDate": "2018-12-13",
+      "id": 81
+    },
+    {
+      "task": "asd",
+      "userId": 1,
+      "columnId": 1,
+      "dueDate": "2018-12-13",
+      "id": 82
+    },
+    {
+      "task": "Fight the good fight",
+      "userId": 1,
+      "columnId": 2,
+      "dueDate": "2018-12-13",
+      "id": 83
     }
   ],
   "friends": [
@@ -654,21 +675,24 @@
       "name": "Upcoming",
       "id": 1,
       "columnTasks": [
-        2,
-        74,
-        57,
+        66,
         61,
-        62,
-        66
+        81,
+        2,
+        74
       ]
     },
     {
       "name": "InProgress",
       "id": 2,
       "columnTasks": [
+        83,
+        57,
         76,
-        75,
         77,
+        75,
+        82,
+        62,
         72,
         80,
         71,
