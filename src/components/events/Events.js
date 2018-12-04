@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import moment from 'moment'
 
 export default class Events extends Component{
+
   addEditCapability=(event)=>{
     if(event.user.id === this.props.currentUserId){
       return <span className="icon level-item" onClick={()=> this.props.clickEvent(event)}>
@@ -17,18 +18,8 @@ export default class Events extends Component{
     }
   }
 
-  reformatDate=()=>{
-
-  }
-
   render(){
     let userId = parseInt(sessionStorage.getItem("id"))
-    if (this.props.events.length > 1) {
-      this.props.events.sort(function (a, b) {
-        // return (b.event.id) - (a.event.id)
-        return new Date(b.date) - new Date(a.date);
-      });
-    }
     return(
       <React.Fragment>
       {

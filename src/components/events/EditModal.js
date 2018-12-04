@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import APIManager from "../../modules/APIManager";
+import moment from 'moment'
 
 export default class EventsModal extends Component{
   state = {
@@ -20,10 +21,14 @@ export default class EventsModal extends Component{
     });
   }
 
+  //TODO: Need to update the format in which date and time is saving in the post
+
   saveEvent = () => {
     let userId = parseInt(sessionStorage.getItem("id"));
     let editEvent = {
       name: this.state.name,
+      timestamp: moment(this.state.date).toJSON(),
+      timestamp2: moment(this.state.time).format("kk:mm"),
       date: this.state.date,
       location: this.state.location,
       time: this.state.time,
@@ -41,12 +46,13 @@ export default class EventsModal extends Component{
     if (editEvent.time === "") {
       editEvent.time = this.props.event.time;
     }
-    APIManager.updateItem("events", this.props.event.id, editEvent)
-    .then(() => {
-      this.resetState();
-      this.props.closeModal();
-      this.props.refresh();
-    })
+    console.log(editEvent)
+    // APIManager.updateItem("events", this.props.event.id, editEvent)
+    // .then(() => {
+    //   this.resetState();
+    //   this.props.closeModal();
+    //   this.props.refresh();
+    // })
     }
 
   render(){

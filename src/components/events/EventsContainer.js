@@ -4,6 +4,7 @@ import Events from './Events'
 import EventsModal from './EventsModal'
 import EditModal from "./EditModal";
 import APIManager from "../../modules/APIManager";
+import moment from 'moment'
 
 export default class EventsContainer extends Component{
   state={
@@ -12,14 +13,42 @@ export default class EventsContainer extends Component{
     allEvents: false,
     dateEvents: false,
     filteredEvents: [],
-    dateFilteredEvents: []
+    dateFilteredEvents: [],
+    sortedEvents: []
   }
   componentDidMount=()=>{
+    let updatedEvents = []
+    let today = new moment().toJSON()
     let myEvents = this.props.events
     .filter(event => event.userId === this.props.currentUser.id)
-    this.setState({
-      filteredEvents: myEvents
+    let previousEvents = myEvents.filter(event => event.timestamp < today)
+    previousEvents.sort(function(a,b){
+      return new Date(b.timestamp) - new Date(a.timestamp)
     })
+    let upcomingEvents = myEvents.filter(event => event.timestamp > today)
+    upcomingEvents.sort(function(a,b){
+      return new Date(a.timestamp) - new Date(b.timestamp)
+    })
+    upcomingEvents.map(event => updatedEvents.push(event))
+    previousEvents.map(event => updatedEvents.push(event))
+    this.setState({
+      filteredEvents: updatedEvents
+    })
+    if (this.props.events.length > 1) {
+      let updatedEvents = []
+      let today = new moment().toJSON()
+      let previousEvents = this.props.events.filter(event => event.timestamp < today)
+      previousEvents.sort(function(a,b){
+        return new Date(b.timestamp) - new Date (a.timestamp)
+      })
+      let upcomingEvents = this.props.events.filter(event => event.timestamp > today)
+      upcomingEvents.sort(function(a,b){
+        return new Date(a.timestamp) - new Date (b.timestamp)
+      })
+      upcomingEvents.map(event => updatedEvents.push(event))
+      previousEvents.map(event => updatedEvents.push(event))
+      this.setState({sortedEvents: updatedEvents})
+  }
   }
 
   showAllEvents=()=>{
@@ -49,15 +78,15 @@ export default class EventsContainer extends Component{
     datearr[1]= correctMonth[0].number
     datearr = [datearr[3], datearr[1], datearr[2]].join("-")
     if(this.state.allEvents === true){
-      let myEvents = this.props.events
-      .filter(event => event.date === datearr)
+      let myEvents = this.state.sortedEvents
+      .filter(event => event.timestamp.substring(0,10) === datearr)
       this.setState({
         dateEvents: true,
         dateFilteredEvents: myEvents
       })
     } else if(this.state.allEvents === false){
       let myEvents = this.state.filteredEvents
-      .filter(event => event.date === datearr)
+      .filter(event => event.timestamp.substring(0, 10) === datearr)
       this.setState({
         dateEvents: true,
         dateFilteredEvents: myEvents
@@ -66,10 +95,7 @@ export default class EventsContainer extends Component{
   }
 
   showMyEvents=()=>{
-    let filter = this.props.events
-    .filter(event => event.user.id === this.props.currentUser.id)
     this.setState({
-      filteredEvents: filter,
       allEvents:false,
       dateEvents: false
     })
@@ -89,7 +115,13 @@ export default class EventsContainer extends Component{
   }
 
   addEditClick = (event) => {
-    this.setState({ editEvent: true, addEvent: false, event: event})
+    let updatedEvent = {
+      location: event.location,
+      name: event.name,
+      date: moment(event.timestamp).format("YYYY-MM-DD"),
+      time: moment(event.timestamp).format("kk:mm")
+    }
+    this.setState({ editEvent: true, addEvent: false, event: updatedEvent})
   }
 
   deleteEvent = (event) => {
@@ -109,7 +141,7 @@ export default class EventsContainer extends Component{
       addEvent = <EventsModal closeModal={this.closeModal} date={this.state.dateSelected} refresh={this.props.refresh}/>
     }
     if(this.state.allEvents === true){
-      displayEvents = <Events events={this.props.events} clickEvent={this.addEditClick} delete={this.deleteEvent} currentUserId={this.props.currentUser.id}/>
+      displayEvents = <Events events={this.state.sortedEvents} clickEvent={this.addEditClick} delete={this.deleteEvent} currentUserId={this.props.currentUser.id}/>
     } else if(this.state.allEvents === false){
       displayEvents = <Events events={this.state.filteredEvents} clickEvent={this.addEditClick} delete={this.deleteEvent} currentUserId={this.props.currentUser.id} />
     }
