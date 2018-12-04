@@ -10,10 +10,7 @@ export default class EventsCalendar extends Component{
     })
     calendars.forEach(calendar => {
       calendar.on('date:selected', date => {
-        // date.split(" ")
-        // console.log(date)
         this.props.filterEventByDate(date)
-        // this.props.addEventClick()
       })
     })
   }
