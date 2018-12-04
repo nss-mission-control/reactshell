@@ -24,6 +24,17 @@ export default class News extends Component{
 
   }
 
+  friendClassName=(id)=>{
+    let classNameDetails =""
+    this.props.filteredFriends.map(friend => {
+      if(friend.userId === id){
+        classNameDetails= "content is-italic"
+      }
+    })
+    return classNameDetails
+  }
+
+
   //Step 4: When section renders, using the following logic:
   // If showNews props passed down from NewsContainer component are true, display the NewsModule component that captures the direct information for that article and passes it down as props
   //If editNews props passed down from NewsContainer component are true, display AddEditNews component with edit news view
@@ -74,7 +85,9 @@ export default class News extends Component{
                       </p>
                     </figure>
                     <div className="media-content">
-                      <div className="content">
+                      <div className=
+                      {this.friendClassName(article.userId)}
+                      >
                         <p>
                         <strong>{article.articleName}</strong>
                         </p>
