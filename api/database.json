@@ -244,7 +244,7 @@
     },
     {
       "name": "Coffee with Jim",
-      "timestamp": "2018-12-13T15:00:52.339Z",
+      "timestamp": "2018-12-12T19:45:00.000Z",
       "location": "Starbucks",
       "userId": 1,
       "id": 11
@@ -304,6 +304,13 @@
       "location": "Nashville Software School",
       "userId": 4,
       "id": 20
+    },
+    {
+      "userId": 1,
+      "name": "Test",
+      "location": "NSS",
+      "timestamp": "2018-12-07T03:30:00.000Z",
+      "id": 21
     }
   ],
   "tasks": [

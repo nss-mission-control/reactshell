@@ -119,7 +119,8 @@ export default class EventsContainer extends Component{
   closeModal=()=>{
     this.setState({
       addEvent: false,
-      editEvent: false
+      editEvent: false,
+      dateEvents: false
     })
   }
 

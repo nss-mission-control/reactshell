@@ -73,7 +73,7 @@ export default class Events extends Component{
                     <div className="content">
                       <p className="is-size-4"><strong>{event.name}</strong></p>
                       <p>{event.location}</p>
-                      <p>{moment(`${event.timestamp}`).format("hh:mm A")}</p>
+                      <p>{event.timestamp}{moment(`${event.timestamp}`).format("HH:mm A")}</p>
                     </div>
                   </div>
                 </article>
