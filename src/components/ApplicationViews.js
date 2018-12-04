@@ -32,7 +32,7 @@ export default class ApplicationViews extends Component {
         }} />
         <Route exact path="/events" render={(props) => {
           if (this.isAuthenticated()) {
-            return <EventsContainer events={this.props.data.events} refresh={this.props.refresh}/>
+            return <EventsContainer events={this.props.data.events} refresh={this.props.refresh} currentUser={this.props.data.currentUser}/>
           } else {
             return <LogIn {...props} activeUser={this.props.activeUser} />
           }

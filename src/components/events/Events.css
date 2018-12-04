@@ -1,0 +1,7 @@
+#next-event{
+  box-shadow: 0 2px 3px hsl(171, 100%, 41%), 0 0 0 1px hsl(171, 100%, 41%);
+}
+
+.calendar-footer-clear{
+  display: none;
+}

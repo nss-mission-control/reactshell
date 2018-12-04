@@ -9,6 +9,15 @@ export default class EventsModal extends Component{
     date: ""
   }
 
+  componentDidMount=()=>{
+    this.setState({
+      name: this.props.event.name,
+      location: this.props.event.location,
+      time: this.props.event.time,
+      date: this.props.event.date
+    })
+  }
+
   resetState = () => {
     this.setState({ name: "", location: "", time: "", date: ""})
   }
@@ -24,9 +33,8 @@ export default class EventsModal extends Component{
     let userId = parseInt(sessionStorage.getItem("id"));
     let editEvent = {
       name: this.state.name,
-      date: this.state.date,
+      timestamp:`${this.state.date}T${this.state.time}:00.000`,
       location: this.state.location,
-      time: this.state.time,
       userId: userId
     }
     if (editEvent.name === "") {
@@ -43,9 +51,10 @@ export default class EventsModal extends Component{
     }
     APIManager.updateItem("events", this.props.event.id, editEvent)
     .then(() => {
-      this.resetState();
-      this.props.closeModal();
-      this.props.refresh();
+      this.resetState()
+      this.props.refresh()
+      this.props.closeModal()
+      this.props.refreshEvents()
     })
     }
 
@@ -55,21 +64,29 @@ export default class EventsModal extends Component{
         <div className="modal-background"></div>
         <div className="modal-card">
           <div className="modal-card-head">
-            <div className="modal-card-title">Add New Events</div>
+            <div className="modal-card-title">Edit Your Event</div>
           </div>
           <div className="modal-card-body">
             <div className="field">
-              <label>Event Name</label>
-              <input id="name" type="text" defaultValue={this.props.event.name} onChange={this.handleChange} ></input>
+              <label className="label">Event Name</label>
+              <div className="control">
+                <input id="name" type="text" defaultValue={this.props.event.name} onChange={this.handleChange} ></input>
+              </div>
 
-              <label>Event Date</label>
-              <input id="date" type="date" defaultValue={this.props.event.date} onChange={this.handleChange} ></input>
+              <label className="label">Event Date</label>
+              <div className="control">
+                <input id="date" type="date" defaultValue={this.props.event.date} onChange={this.handleChange} ></input>
+              </div>
 
-              <label>Event Location</label>
-              <input id="location" type="text" defaultValue={this.props.event.location} onChange={this.handleChange}></input>
+              <label className="label">Event Location</label>
+              <div className="control">
+                <input id="location" type="text" defaultValue={this.props.event.location} onChange={this.handleChange}></input>
+              </div>
 
-              <label>Event Time</label>
-              <input id="time" type="time" defaultValue={this.props.event.time} onChange={this.handleChange}></input>
+              <label className="label">Event Time</label>
+              <div className="control">
+                <input id="time" type="time" defaultValue={this.props.event.time} onChange={this.handleChange}></input>
+              </div>
 
             </div>
           </div>

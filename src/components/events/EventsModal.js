@@ -27,17 +27,21 @@ export default class EventsModal extends Component{
       return canSave;
     }
     if (canSave) {
-      let newEvent = {userId: userId, name: this.state.name, location: this.state.location, date: this.state.date, time: this.state.time}
+      let newEvent = {
+        userId: userId,
+        name: this.state.name,
+        location: this.state.location,
+        timestamp: `${this.state.date}T${this.state.time}:00.000`
+      }
       APIManager.saveItem("events", newEvent)
       .then(() => {
         this.resetState();
         this.props.closeModal();
         this.props.refresh();
+        this.props.refreshEvents()
       })
     }
   }
-
-
 
   render(){
     return(
@@ -49,17 +53,25 @@ export default class EventsModal extends Component{
           </div>
           <div className="modal-card-body">
             <div className="field">
-              <label>Event Name</label>
-              <input id="name" type="text" defaultValue={this.state.name} onChange={this.handleChange} placeholder="Enter the event name."></input>
+              <label className="label">Event Name</label>
+              <div className="control">
+                <input id="name" type="text" defaultValue={this.state.name} onChange={this.handleChange} placeholder="Enter the event name."></input>
+              </div>
 
-              <label>Event Date</label>
-              <input id="date" type="date" defaultValue={this.props.date} onChange={this.handleChange} ></input>
+              <label className="label">Event Date</label>
+              <div className="control">
+                <input id="date" type="date" defaultValue={this.props.date} onChange={this.handleChange} ></input>
+              </div>
 
-              <label>Event Location</label>
-              <input id="location" type="text" defaultValue={this.state.location} onChange={this.handleChange} placeholder="Enter the event location."></input>
+              <label className="label">Event Location</label>
+              <div className="control">
+                <input id="location" type="text" defaultValue={this.state.location} onChange={this.handleChange} placeholder="Enter the event location."></input>
+              </div>
 
-              <label>Event Time</label>
-              <input id="time" type="time" defaultValue={this.state.time} onChange={this.handleChange}></input>
+              <label className="label">Event Time</label>
+              <div className="control">
+                <input id="time" type="time" defaultValue={this.state.time} onChange={this.handleChange}></input>
+              </div>
 
             </div>
           </div>
