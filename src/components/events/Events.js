@@ -8,8 +8,6 @@ export default class Events extends Component{
       return <span className="icon level-item" onClick={()=> this.props.clickEvent(event)}>
         <i className="fas fa-pencil-alt is-link"></i>
       </span>
-
-      // <button value={event.id} onClick={() => this.props.clickEvent(event)}>Edit</button>
     }
   }
   addDeleteCapability=(event)=>{
@@ -17,15 +15,19 @@ export default class Events extends Component{
       return <span className="icon is-link level-item" onClick={()=> this.props.delete(event.id)}>
         <i className="fas fa-trash-alt"></i>
       </span>
-
-      // <button value={event.id} onClick={() => this.props.delete(event.id)}>Delete</button>
     }
+  }
+
+  reformatDate=()=>{
+
   }
 
   render(){
     let userId = parseInt(sessionStorage.getItem("id"))
     if (this.props.events.length > 1) {
       this.props.events.sort(function (a, b) {
+        // return (b.event.id) - (a.event.id)
+        console.log("b.date", new Date(b.date), "a.date", new Date(a.date))
         return new Date(b.date) - new Date(a.date);
       });
     }
@@ -33,7 +35,7 @@ export default class Events extends Component{
       <React.Fragment>
       {
         this.props.events.map(event => {
-          return <div className="box notification" key={event.id} id={event.id}>
+          return <div className="box" key={event.id} id={event.id}>
             <article className="media">
               <figure className="media-left">
                 <p className="image is-64x64">
@@ -49,9 +51,9 @@ export default class Events extends Component{
                 <article className="media">
                   <figure className="media-left">
                     <p className="has-text-centered has-text-primary">
-                    <strong>{moment(`${event.date}`).format("MMMM")} </strong>
+                    <strong>{moment(`${event.timestamp}`).format("MMMM")} </strong>
                     <br />
-                    <strong className="is-size-3">{moment(`${event.date}`).format("D")}</strong>
+                    <strong className="is-size-3">{moment(`${event.timestamp}`).format("D")}</strong>
                     </p>
                   </figure>
                   <div className="media-content">

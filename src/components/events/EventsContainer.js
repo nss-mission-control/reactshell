@@ -127,18 +127,16 @@ export default class EventsContainer extends Component{
           <button onClick={()=> this.addEventClick()}>+</button>
         </div>
         <div className="columns">
-          <div className="column has-background-primary">
+          <div className="column">
             <EventsCalendar onSelect={this.saveDate} addEventClick={this.addEventClick} filterEventByDate={this.filterEventByDate}/>
           </div>
-          <div className="column has-background-info">
-            <div className="columns">
-              <div className="column" onClick={this.showMyEvents}>
-                My Events
+          <div className="column">
+            <nav className="navbar is-primary has-text-white">
+              <div className="navbar-brand">
+                <div className="navbar-item" onClick={()=> this.showMyEvents()}><strong className="has-text-white">My Events</strong></div>
               </div>
-              <div className="column" onClick={this.showAllEvents}>
-                All Events
-              </div>
-            </div>
+              <div className="navbar-item" onClick={()=> this.showAllEvents()}><strong className="has-text-white">All Events</strong></div>
+            </nav>
               {displayEvents}
           </div>
         </div>
