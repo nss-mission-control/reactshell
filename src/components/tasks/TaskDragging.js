@@ -1,4 +1,4 @@
-import React, { Component, PureComponent } from 'react'
+import React, { PureComponent } from 'react'
 import { DragDropContext } from 'react-beautiful-dnd'
 import APIManager from '../../modules/APIManager'
 import Column from './Column'
@@ -37,7 +37,6 @@ export default class TaskDragging extends PureComponent {
           .then(data => {
             stateSetter.tasks = data
             stateSetter.taskLoaded = true;
-            console.log(stateSetter)
             this.setState(stateSetter)
           })
   }
@@ -184,7 +183,6 @@ export default class TaskDragging extends PureComponent {
   }
 
   editTaskSave = (evt) => {
-    console.log(evt.target.id)
     let taskIdString = evt.target.id
     let taskIdStringArray = taskIdString.split('-')
     let taskId = Number(taskIdStringArray[1])
@@ -212,7 +210,6 @@ export default class TaskDragging extends PureComponent {
   //determins which edit button was clicked
   editButtonClick = (evt) => {
     //gets the id
-    console.log(evt.target.id)
     let taskIdString = evt.target.id
     let taskIdStringArray = taskIdString.split('-')
     let taskId = Number(taskIdStringArray[1])

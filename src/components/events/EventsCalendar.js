@@ -8,7 +8,6 @@ export default class EventsCalendar extends Component{
     const calendars = bulmaCalendar.attach('[type="date"]')
     calendars.forEach(calendar => {
       calendar.on('date:selected', date => {
-        console.log(date)
         this.props.addEventClick()
       })
     })
