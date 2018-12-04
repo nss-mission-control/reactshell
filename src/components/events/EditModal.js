@@ -33,7 +33,7 @@ export default class EventsModal extends Component{
     let userId = parseInt(sessionStorage.getItem("id"));
     let editEvent = {
       name: this.state.name,
-      timestamp:`${this.state.date}T${this.state.time}:00.000Z`,
+      timestamp:`${this.state.date}T${this.state.time}:00.000`,
       location: this.state.location,
       userId: userId
     }

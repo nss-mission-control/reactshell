@@ -31,7 +31,7 @@ export default class EventsModal extends Component{
         userId: userId,
         name: this.state.name,
         location: this.state.location,
-        timestamp: `${this.state.date}T${this.state.time}:00.000Z`
+        timestamp: `${this.state.date}T${this.state.time}:00.000`
       }
       APIManager.saveItem("events", newEvent)
       .then(() => {
