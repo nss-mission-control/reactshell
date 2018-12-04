@@ -98,6 +98,15 @@
       "email": "dede@dude.com",
       "profilePic": "images/avatar-placeholder.png",
       "id": 11
+    },
+    {
+      "firstName": "Dude",
+      "lastName": "Dude",
+      "username": "Dude123",
+      "password": "password",
+      "email": "Dude@Dude",
+      "profilePic": "images/avatar-placeholder.png",
+      "id": 12
     }
   ],
   "messages": [
@@ -696,6 +705,8 @@
       "name": "InProgress",
       "id": 2,
       "columnTasks": [
+        12,
+        15,
         83,
         57,
         76,
@@ -708,10 +719,7 @@
         71,
         48,
         50,
-        15,
-        17,
         47,
-        12,
         59,
         13,
         8,
@@ -722,6 +730,7 @@
       "name": "Completed",
       "id": 3,
       "columnTasks": [
+        17,
         78,
         7,
         6,

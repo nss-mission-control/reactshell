@@ -129,8 +129,8 @@ export default class Login extends Component {
                   </div>
                   <p className="has-text-grey">
                     <Link to="/signup">Sign Up</Link> &nbsp;·&nbsp;
-                        <a href="../">Forgot Password</a> &nbsp;·&nbsp;
-                        <a href="../">Need Help?</a>
+                        <a href="http://i.imgur.com/ZBpR0Sc.gifv" target="_blank">Forgot Password</a> &nbsp;·&nbsp;
+                        <a href="https://i.gifer.com/5KCL.gif" target="_blank">Need Help?</a>
                   </p>
                 </div>
               </div>
