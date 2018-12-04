@@ -158,7 +158,8 @@
   padding-bottom: 10px;
 }
 #searchUsers {
-  width: 50%;
+  width: 66%;
+  margin-left: 17%;
   position: relative;
   margin-top: 55px;
 }

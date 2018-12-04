@@ -630,20 +630,6 @@
       "columnId": 2,
       "dueDate": "2018-12-13",
       "id": 83
-    },
-    {
-      "task": "test",
-      "userId": 3,
-      "columnId": 1,
-      "dueDate": "2018-12-04",
-      "id": 84
-    },
-    {
-      "task": "Test2",
-      "userId": 3,
-      "columnId": 2,
-      "dueDate": "2018-12-15",
-      "id": 85
     }
   ],
   "friends": [
@@ -708,7 +694,6 @@
       "name": "Upcoming",
       "id": 1,
       "columnTasks": [
-        85,
         66,
         61,
         81,
@@ -745,7 +730,6 @@
       "name": "Completed",
       "id": 3,
       "columnTasks": [
-        84,
         17,
         78,
         7,
