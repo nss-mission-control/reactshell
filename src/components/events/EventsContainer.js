@@ -139,6 +139,9 @@ export default class EventsContainer extends Component{
     .then(() => {
       this.props.refresh()
       this.refreshEvents()
+      this.setState({
+        dateEvents: false
+      })
     })
   }
 
@@ -166,11 +169,11 @@ export default class EventsContainer extends Component{
       <div className="container">
         <div className="field is-grouped is-grouped-centered">
           <h2 className="is-size-4"><strong>Events</strong></h2>
-          <button onClick={()=> this.addEventClick()}>+</button>
+          &nbsp;<button className="button is-link" onClick={()=> this.addEventClick()}>+</button>
         </div>
         <div className="columns">
           <div className="column">
-            <EventsCalendar onSelect={this.saveDate} addEventClick={this.addEventClick} filterEventByDate={this.filterEventByDate}/>
+            <EventsCalendar onSelect={this.saveDate} addEventClick={this.addEventClick} filterEventByDate={this.filterEventByDate} refreshEvents={this.refreshEvents}/>
           </div>
           <div className="column">
             <nav className="navbar is-primary has-text-white">
