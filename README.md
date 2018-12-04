@@ -269,7 +269,7 @@ touch api/database.json
       "dueDate": "2018-11-11",
       "userId": 4,
       "id": 2,
-      "columnId": 1
+      "columnId": 2
     },
     {
       "task": "Plan project",
@@ -277,31 +277,7 @@ touch api/database.json
       "dueDate": "2018-11-09",
       "userId": 2,
       "id": 3,
-      "columnId": 1
-    },
-    {
-      "task": "Take around the trash",
-      "complete": true,
-      "dueDate": "2018-11-29",
-      "userId": 4,
-      "id": 5,
-      "columnId": 1
-    },
-    {
-      "task": "Take out the trash",
-      "complete": true,
-      "dueDate": "2018-11-29",
-      "userId": 4,
-      "id": 6,
-      "columnId": 1
-    },
-    {
-      "task": "Balance checking account",
-      "complete": false,
-      "dueDate": "2018-11-06",
-      "userId": 2,
-      "id": 7,
-      "columnId": 1
+      "columnId": 3
     }
    ],
   "friends": [
@@ -335,7 +311,37 @@ touch api/database.json
       "userId": 2,
       "id": 8
     }
-  ]
+  ],
+  "columns": [
+    {
+      "name": "Upcoming",
+      "id": 1,
+      "columnTasks": [
+        1
+      ]
+    },
+    {
+      "name": "InProgress",
+      "id": 2,
+      "columnTasks": [
+        2
+      ]
+    },
+    {
+      "name": "Completed",
+      "id": 3,
+      "columnTasks": [
+        3
+      ]
+    }
+  ],
+  "column_order": {
+    "columnId": [
+      1,
+      2,
+      3
+    ]
+  }
 }
 ```
 
