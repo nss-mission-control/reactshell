@@ -220,66 +220,113 @@ touch api/database.json
       "id": 4
     }
    ],
-   "events": [
+     "events": [
     {
-      "id": 1,
-      "name": "Fancy",
-      "date": "2014-09-09",
-      "location": "Here",
-      "time": "03:02",
+      "id": 2,
+      "name": "Fancy Party",
+      "timestamp": "2018-12-09T15:02:52.339",
+      "location": "My House",
       "userId": 2
     },
     {
       "name": "Soccer Practice Today",
-      "date": "2018-11-02",
-      "time": "22:11",
+      "timestamp": "2018-12-02T22:11:52.339",
       "location": "The Field",
       "userId": 2,
-      "id": 2
-    },
-    {
-      "name": "Sleep",
-      "date": "2018-11-15",
-      "time": "10:15",
-      "location": "My Bed",
-      "userId": 3,
       "id": 3
     },
     {
-      "name": "Class",
-      "date": "2018-11-12",
-      "time": "09:05",
-      "location": "NSS",
-      "userId": 1,
+      "name": "Sleep",
+      "timestamp": "2018-12-15T04:23:52.339",
+      "location": "My Bed",
+      "userId": 3,
       "id": 4
-    }
-   ],
-   "tasks": [
-    {
-      "task": "Homework",
-      "complete": true,
-      "dueDate": "2018-11-12",
-      "userId": 2,
-      "id": 1,
-      "columnId": 1
     },
     {
-      "task": "Finish MVP",
-      "complete": true,
-      "dueDate": "2018-11-11",
+      "name": "First day of school",
+      "timestamp": "2018-10-01T01:02:52.339",
+      "location": "NSS",
+      "userId": 2,
+      "id": 9
+    },
+    {
+      "name": "The Day I Was Born",
+      "timestamp": "1989-05-15T12:12:52.339",
+      "location": "Hospital",
+      "userId": 2,
+      "id": 10
+    },
+    {
+      "name": "Coffee with Jim",
+      "timestamp": "2018-12-12T08:45:00.000",
+      "location": "Starbucks",
+      "userId": 1,
+      "id": 11
+    },
+    {
+      "name": "Lunch with Jill",
+      "timestamp": "2018-12-15T17:23:52.339",
+      "location": "Pizza Hut",
+      "userId": 3,
+      "id": 12
+    },
+    {
+      "name": "Jase's Party",
+      "timestamp": "2018-12-20T22:10:52.339",
+      "location": "The Moon",
+      "userId": 2,
+      "id": 13
+    },
+    {
+      "name": "Brendan's House Warming",
+      "timestamp": "2018-12-17T20:16:52.339",
+      "location": "Nashville, TN",
       "userId": 4,
-      "id": 2,
-      "columnId": 2
+      "id": 14
     },
     {
-      "task": "Plan project",
-      "complete": true,
-      "dueDate": "2018-11-09",
+      "name": "Dance Class",
+      "timestamp": "2018-12-14T11:11:52.339",
+      "location": "Roots",
+      "userId": 4,
+      "id": 15
+    },
+    {
+      "name": "Spelling Bee",
+      "timestamp": "2018-12-11T11:11:52.339",
+      "location": "Highschool",
+      "userId": 3,
+      "id": 16
+    },
+    {
+      "name": "Lunch with Mike",
+      "timestamp": "2018-12-12T11:11:52.339",
+      "location": "South",
       "userId": 2,
-      "id": 3,
-      "columnId": 3
+      "id": 17
+    },
+    {
+      "name": "Start NSS",
+      "timestamp": "2018-10-01T09:00:52.339",
+      "location": "Nashville Software School",
+      "userId": 4,
+      "id": 19
+    },
+    {
+      "name": "Presentation of Mission Control Test",
+      "timestamp": "2018-12-04T09:00:52.339",
+      "location": "Nashville Software School",
+      "userId": 4,
+      "id": 20
+    },
+    {
+      "userId": 1,
+      "name": "Test",
+      "location": "NSS",
+      "timestamp": "2018-12-07T08:30:00.000",
+      "id": 21
     }
-   ],
+  ],
   "friends": [
     {
       "id": 3,
