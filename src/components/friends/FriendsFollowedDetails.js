@@ -4,10 +4,11 @@ import { confirmAlert } from "react-confirm-alert";
 import IndividualDetails from "./FriendsModular";
 import APIManager from "../../modules/APIManager";
 import $ from "jquery";
-
+import _ from 'lodash';
 export default class FriendIFollowPrint extends Component {
   state = {
-    following: []
+    following: [],
+    searchValue: ""
   }
 
   userMessagesDetails = (id) => {
@@ -28,6 +29,7 @@ export default class FriendIFollowPrint extends Component {
   showUserDetails = (event) => {
     confirmAlert({
       customUI: ({ onClose }) => {
+        this.setState({ searchValue: "" })
         let canFollow = true;
         let moment = require('moment');
         let relationship = 0;
@@ -101,12 +103,12 @@ export default class FriendIFollowPrint extends Component {
                     )
                   })
                 }
-                 <h1 className="userMessagesTitle">Articles from {thisUser.username}</h1>
+                <h1 className="userMessagesTitle">Articles from {thisUser.username}</h1>
                 {
                   thisUserArticles.map(article => {
                     return (
                       <div className="messageDetailsFollow" key={article.id}>
-                      <a href={article.url} target="blank" className="articleLinkDetails"><img src={article.articleImage} alt="New Story" className="articleImageDetails"></img> </a>
+                        <a href={article.url} target="blank" className="articleLinkDetails"><img src={article.articleImage} alt="New Story" className="articleImageDetails"></img> </a>
                         <p className="dateInfo">Added {moment(`${article.dateSaved}`).fromNow()} </p>
                         <p className="messageDetailsFollowContent">{article.articleName}</p>
                         <p className="messageDetailsFollowContentAbout">{article.about}</p>
@@ -141,29 +143,29 @@ export default class FriendIFollowPrint extends Component {
                 }}>Stop Following {thisUser.username}</button>
               </div>
               <h1 className="userMessagesTitle">Messages from {thisUser.username}</h1>
-                {
-                  thisUserMessages.map(message => {
-                    return (
-                      <div className="messageDetailsFollow" key={message.id}>
-                        <p className="dateInfo">Added {moment(`${message.timeStamp}`).fromNow()} </p>
-                        <p className="messageDetailsFollowContent">{message.messageContent}</p>
-                      </div>
-                    )
-                  })
-                }
-                 <h1 className="userMessagesTitle">Articles from {thisUser.username}</h1>
-                {
-                  thisUserArticles.map(article => {
-                    return (
-                      <div className="messageDetailsFollow" key={article.id}>
+              {
+                thisUserMessages.map(message => {
+                  return (
+                    <div className="messageDetailsFollow" key={message.id}>
+                      <p className="dateInfo">Added {moment(`${message.timeStamp}`).fromNow()} </p>
+                      <p className="messageDetailsFollowContent">{message.messageContent}</p>
+                    </div>
+                  )
+                })
+              }
+              <h1 className="userMessagesTitle">Articles from {thisUser.username}</h1>
+              {
+                thisUserArticles.map(article => {
+                  return (
+                    <div className="messageDetailsFollow" key={article.id}>
                       <a href={article.url} target="blank" className="articleLinkDetails"><img src={article.articleImage} alt="New Story" className="articleImageDetails"></img> </a>
-                        <p className="dateInfo">Added {moment(`${article.dateSaved}`).fromNow()} </p>
-                        <p className="messageDetailsFollowContent">{article.articleName}</p>
-                        <p className="messageDetailsFollowContentAbout">{article.about}</p>
-                      </div>
-                    )
-                  })
-                }
+                      <p className="dateInfo">Added {moment(`${article.dateSaved}`).fromNow()} </p>
+                      <p className="messageDetailsFollowContent">{article.articleName}</p>
+                      <p className="messageDetailsFollowContentAbout">{article.about}</p>
+                    </div>
+                  )
+                })
+              }
             </div>
           )
         }
@@ -204,23 +206,42 @@ export default class FriendIFollowPrint extends Component {
         followingList.push(thisPerson);
       }
     });
-
     this.props.data.users.forEach(person => {
       if (followingList.indexOf(person.id) === -1 && person.id !== currentUserId) {
         toFollowList.push(person);
       }
     });
-    return (toFollowList.map(person => {
-      return (
-        <div className="indivUser" key={person.id} >
-          <section className="tagline" id={person.id} onClick={this.showUserDetails}>
-            <img src={person.profilePic} id={person.id} className="followerImage" alt="Follower"></img>
-            <p className="followerUsername" id={person.id} >{person.username}</p>
-          </section>
-        </div>
-      )
-    })
-    )
+    if (this.state.searchValue === "") {
+      return toFollowList.map(person => {
+        return (
+          <div className="indivUser" key={person.id} >
+            <section className="tagline" id={person.id} onClick={this.showUserDetails}>
+              <img src={person.profilePic} id={person.id} className="followerImage" alt="Follower"></img>
+              <p className="followerUsername" id={person.id} >{person.username}</p>
+            </section>
+          </div>
+        )
+      })
+    } else {
+      let tempSearch = this.state.searchValue;
+      let searchedValue = _.filter(toFollowList, function (person) {
+        return person.username.indexOf(tempSearch) > -1;
+      });
+      return (searchedValue.map(person => {
+        return (
+          <div className="indivUser" key={person.id} >
+            <section className="tagline" id={person.id} onClick={this.showUserDetails}>
+              <img src={person.profilePic} id={person.id} className="followerImage" alt="Follower"></img>
+              <p className="followerUsername" id={person.id} >{person.username}</p>
+            </section>
+          </div>
+        )
+      }))
+    }
+  }
+
+  handleChange = (event) => {
+    this.setState({ searchValue: event.target.value })
   }
 
 
@@ -246,7 +267,10 @@ export default class FriendIFollowPrint extends Component {
           </div>
         </div>
         <div className="needToFollow">
-          <h1 className="followingTitles">Start Following</h1>
+          <section className="searchToAdd">
+            <p className="followingTitles">Start Following</p>
+            <input id="searchUsers" onChange={this.handleChange} defaultValue={this.state.searchValue} placeholder="Enter a username to search by."></input>
+          </section>
           <div className="userToAdd">
             {availableFriend}
           </div>

@@ -9,7 +9,7 @@ export default class Messages extends Component {
     return (
       <React.Fragment>
         <div className="container">
-          <OldMessages messages={this.props.messages} refresh={this.props.refresh}/>
+          <OldMessages messages={this.props.messages} data={this.props.data} refresh={this.props.refresh}/>
           <NewMessage  refresh={this.props.refresh} />
         </div>
       </React.Fragment>
