@@ -30,7 +30,7 @@ export default class Tasks extends PureComponent {
             <img className = "editIcon" src="images/trash.png" id ={`deleteButton-${this.props.task[0].id}-${this.props.columnId}`} onClick= {(evt) => this.props.deleteTask(evt)} alt="delete"/>
           </Container>}
         </Draggable>
-
+      return taskContents
     } else {
       taskContents =
       <Draggable draggableId={`task-${this.props.task[0].id}`} index={this.props.index}>

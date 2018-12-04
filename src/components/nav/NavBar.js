@@ -35,7 +35,7 @@ class NavBar extends Component {
         <nav className="navbar has-background-link" role="navigation" aria-label="main navigation">
           <div className="navbar-brand">
             <a className="navbar-item" href="#">
-              <img src="images/white-react-logo.png" width="28" height="28"/>
+              <img src="images/white-react-logo.png" width="28" height="28" alt="logo"/>
             </a>
             <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="reactShellNav">
               <span aria-hidden="true"></span>
@@ -66,9 +66,6 @@ class NavBar extends Component {
                     {this.props.user.username}
                 </a>
                   <div className="navbar-dropdown" onMouseOver={this.handleDropDownColor} onMouseOut={this.handleDropDownColor}>
-                    <a className="navbar-item has-text-white" id="dropdown-itm1" >
-                      Edit Profile
-                  </a>
                     <a className="navbar-item has-text-white" id="dropdown-itm2" onClick={this.props.logout}>
                       Logout
                   </a>
