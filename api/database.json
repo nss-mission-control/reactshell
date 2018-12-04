@@ -142,6 +142,12 @@
       "messageContent": "95% of people who say \"no pun intended\" are literally saying a pun.... Which means 9.5 puns intended.",
       "userId": 3,
       "id": 8
+    },
+    {
+      "timeStamp": "2018-12-03T15:06:14.831Z",
+      "messageContent": "testet",
+      "userId": 1,
+      "id": 9
     }
   ],
   "articles": [
@@ -492,12 +498,6 @@
       "id": 59
     },
     {
-      "task": "Test",
-      "userId": 1,
-      "columnId": 1,
-      "id": 60
-    },
-    {
       "task": "Here is another test",
       "userId": 1,
       "columnId": 1,
@@ -514,12 +514,6 @@
       "userId": 1,
       "columnId": 2,
       "id": 63
-    },
-    {
-      "task": "Test",
-      "userId": 1,
-      "columnId": 1,
-      "id": 65
     },
     {
       "task": "Jase",
@@ -544,12 +538,6 @@
       "userId": 1,
       "columnId": 1,
       "id": 69
-    },
-    {
-      "task": "Will it work",
-      "userId": 1,
-      "columnId": 1,
-      "id": 70
     },
     {
       "task": "Yep",
@@ -586,6 +574,38 @@
       "userId": 1,
       "columnId": 3,
       "id": 77
+    },
+    {
+      "task": "Test",
+      "userId": 1,
+      "columnId": 1,
+      "id": 78
+    },
+    {
+      "userId": 1,
+      "columnId": 2,
+      "id": 80
+    },
+    {
+      "task": "add",
+      "userId": 1,
+      "columnId": 1,
+      "dueDate": "2018-12-13",
+      "id": 81
+    },
+    {
+      "task": "asd",
+      "userId": 1,
+      "columnId": 1,
+      "dueDate": "2018-12-13",
+      "id": 82
+    },
+    {
+      "task": "Fight the good fight",
+      "userId": 1,
+      "columnId": 2,
+      "dueDate": "2018-12-13",
+      "id": 83
     }
   ],
   "friends": [
@@ -650,24 +670,27 @@
       "name": "Upcoming",
       "id": 1,
       "columnTasks": [
-        2,
-        74,
-        71,
-        70,
-        57,
-        60,
+        66,
         61,
-        62,
-        65,
-        66
+        81,
+        2,
+        74
       ]
     },
     {
       "name": "InProgress",
       "id": 2,
       "columnTasks": [
-        10,
+        83,
+        57,
+        76,
+        77,
+        75,
+        82,
+        62,
         72,
+        80,
+        71,
         48,
         50,
         15,
@@ -684,9 +707,7 @@
       "name": "Completed",
       "id": 3,
       "columnTasks": [
-        77,
-        76,
-        75,
+        78,
         7,
         6,
         3,
