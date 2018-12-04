@@ -21,6 +21,7 @@ export default class NewsContainer extends Component{
     userId: "",
     news: [],
     articleId: [],
+    filteredFriends: [],
     warningMessage: "",
     warningMessageAbout: "",
     warningMessageURL: "",
@@ -29,8 +30,11 @@ export default class NewsContainer extends Component{
 
   //Step 1: When the main container component mounts, do an API fetch, get all of the articles and pass them to state as news
   componentDidMount(){
+    let myFriends = this.props.friends
+    .filter(friend => friend.request_userId === this.props.currentUser.id)
     APICall.getAllCategory("articles/?_expand=user")
     .then((data)=> this.setState({
+      filteredFriends: myFriends,
       currentUserId: this.props.currentUser.id,
       news: data
     }))
@@ -251,7 +255,7 @@ export default class NewsContainer extends Component{
         <div className="columns is-multiline">
           <News showNews={this.state.showNews} showNewsClick={this.showNewsClick}
           addNews={this.state.addNews} handleFieldChange={this.handleFieldChange}
-          news={this.state.news} editNews={this.state.editNews} articleName={this.state.articleName} about={this.state.about} articleImage={this.state.articleImage} url={this.state.url} closeModal={this.closeModal} editNewsClick={this.editNewsClick} editArticleChanges={this.editArticleChanges} addNewArticle ={this.addNewArticle} articleId={this.state.articleId} deleteArticle={this.deleteArticle} deleteNewsClick={this.deleteNewsClick} deleteNews={this.state.deleteNews} warningMessage={this.state.warningMessage} warningMessageAbout={this.state.warningMessageAbout} warningMessageImg={this.state.warningMessageImg} warningMessageURL={this.state.warningMessageURL} currentUserId={this.state.currentUserId} userId={this.state.userId}/>
+          news={this.state.news} editNews={this.state.editNews} articleName={this.state.articleName} about={this.state.about} articleImage={this.state.articleImage} url={this.state.url} closeModal={this.closeModal} editNewsClick={this.editNewsClick} editArticleChanges={this.editArticleChanges} addNewArticle ={this.addNewArticle} articleId={this.state.articleId} deleteArticle={this.deleteArticle} deleteNewsClick={this.deleteNewsClick} deleteNews={this.state.deleteNews} warningMessage={this.state.warningMessage} warningMessageAbout={this.state.warningMessageAbout} warningMessageImg={this.state.warningMessageImg} warningMessageURL={this.state.warningMessageURL} currentUserId={this.state.currentUserId} userId={this.state.userId} friends={this.props.friends} filteredFriends={this.state.filteredFriends}/>
         </div>
       </section>
       {addNews}

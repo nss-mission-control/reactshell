@@ -25,7 +25,7 @@ export default class Column extends PureComponent {
 //builds the to add tasks
 addTaskForm(columnId) {
 
-       return(<div className = 'box has-text-centered'>
+       return(<div className = 'box has-text-centered has-background-white-ter'>
                     <label className="label" value="Add New">Add New</label>
                     <div>
                       <input className="input is-small"id= {`formFieldContent-`+columnId} onChange={this.props.handleFieldChange} type = 'text' value={this.props.passedState[`formFieldContent-`+columnId]}/>
@@ -60,7 +60,7 @@ columns() {
           provided => (
             // if ref doesn't work try innerRef
 
-            <TaskList ref={provided.innerRef} {...provided.droppableProps}>
+            <TaskList  ref={provided.innerRef} {...provided.droppableProps}>
               {
                 this.props.tasks.map((task, index) =>{
                 return <Task
