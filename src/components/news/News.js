@@ -30,8 +30,9 @@ export default class News extends Component{
       if(friend.userId === id){
         classNameDetails= "content is-italic"
       }
+      return classNameDetails;
     })
-    return classNameDetails
+    return classNameDetails;
   }
 
 
