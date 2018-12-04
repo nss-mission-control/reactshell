@@ -1,48 +1,66 @@
 
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { Droppable } from 'react-beautiful-dnd'
 import Task from './Tasks'
 import styled from 'styled-components'
-// import APIManager from '../../modules/APIManager'
 import './tasks.css'
 
 
 const Container = styled.div``;
 const Title = styled.h3``;
-const TaskList = styled.div``;
+const TaskList = styled.div`
+min-height: 10vh`;
 const TodoBody = styled.div`
   padding: 20px
   border-radius: 4%`;
 
-export default class Column extends Component {
+
+
+
+
+
+export default class Column extends PureComponent {
 
 
 //builds the to add tasks
 addTaskForm(columnId) {
 
-       return(<div className = 'box'>
-                    <label value="Add New">Add New</label>
-                    <input id= {`formFieldContent-`+columnId} onChange={this.props.handleFieldChange} type = 'text' value={this.props.passedState[`formFieldContent-`+columnId]}/>
-                    <button id={`formFieldButton-`+columnId} onClick={(e) => this.props.newTaskSave(e)}>Save</button>
-                  </div>)
+       return(<div className = 'box has-text-centered has-background-white-ter'>
+                    <label className="label" value="Add New">Add New</label>
+                    <div>
+                      <input className="input is-small"id= {`formFieldContent-`+columnId} onChange={this.props.handleFieldChange} type = 'text' value={this.props.passedState[`formFieldContent-`+columnId]}/>
+                      <input className="input is-small"id = {`dateFieldContent-`+columnId} onChange={this.props.handleFieldChange} type="date" value={this.props.passedState[`dateFieldContent-`+columnId]}/>
+                    </div>
+                    <button className="button"id={`formFieldButton-`+columnId} onClick={(e) => this.props.newTaskSave(e)}>Save</button>
+              </div>)
 
 
 
    }
+ifFieldBlank() {
+  if(this.props.passedState.emptyFieldAlert && this.props.passedState.emptyFieldCheck===this.props.column.id)
+  return(
+    <p className = "red has-text-centered" >Fields cannot be blank</p>
+  )
+}
 
 
-  columns() {
+
+
+columns() {
         return (
       <Container id = "container" className="column ">
         <div >
-        <Title id = "title" className="title">{this.props.column.name}</Title>
+        <Title id = "title" className="title has-text-centered">{this.props.column.name}</Title>
+        {this.ifFieldBlank()}
         <TodoBody className = "has-background-grey-lighter">
         {this.addTaskForm(this.props.column.id)}
         <Droppable droppableId={`col-${this.props.column.id}`}>
         {
           provided => (
             // if ref doesn't work try innerRef
-            <TaskList ref={provided.innerRef} {...provided.droppableProps}>
+
+            <TaskList  ref={provided.innerRef} {...provided.droppableProps}>
               {
                 this.props.tasks.map((task, index) =>{
                 return <Task
@@ -53,7 +71,9 @@ addTaskForm(columnId) {
                               editButtonClick = {this.props.editButtonClick}
                               passedState = {this.props.passedState}
                               handleFieldChange = {this.props.handleFieldChange}
-                              editFieldChange = {this.props.editFieldChange}/>}
+                              editFieldChange = {this.props.editFieldChange}
+                              editDateChange = {this.props.editDateChange}/>
+                              }
 
               )}
               {provided.placeholder}
