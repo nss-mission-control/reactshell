@@ -98,6 +98,15 @@
       "email": "dede@dude.com",
       "profilePic": "images/avatar-placeholder.png",
       "id": 11
+    },
+    {
+      "firstName": "Dude",
+      "lastName": "Dude",
+      "username": "Dude123",
+      "password": "password",
+      "email": "Dude@Dude",
+      "profilePic": "images/avatar-placeholder.png",
+      "id": 12
     }
   ],
   "messages": [
@@ -628,6 +637,13 @@
       "columnId": 1,
       "dueDate": "2018-12-04",
       "id": 84
+    },
+    {
+      "task": "Test2",
+      "userId": 3,
+      "columnId": 2,
+      "dueDate": "2018-12-15",
+      "id": 85
     }
   ],
   "friends": [
@@ -692,7 +708,7 @@
       "name": "Upcoming",
       "id": 1,
       "columnTasks": [
-        12,
+        85,
         66,
         61,
         81,
@@ -704,6 +720,8 @@
       "name": "InProgress",
       "id": 2,
       "columnTasks": [
+        12,
+        15,
         83,
         57,
         76,
@@ -715,8 +733,6 @@
         80,
         71,
         48,
-        15,
-        17,
         50,
         47,
         59,
@@ -730,6 +746,7 @@
       "id": 3,
       "columnTasks": [
         84,
+        17,
         78,
         7,
         6,

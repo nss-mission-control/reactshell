@@ -269,7 +269,7 @@ export default class FriendIFollowPrint extends Component {
         <div className="needToFollow box">
           <section className="searchToAdd">
             <p className="followingTitles box">Start Following</p>
-            <input id="searchUsers" onChange={this.handleChange} defaultValue={this.state.searchValue} placeholder="Enter a username to search by."></input>
+            <input id="searchUsers" className="input" onChange={this.handleChange} defaultValue={this.state.searchValue} placeholder="Enter a username to search by."></input>
           </section>
           <div className="userToAdd">
             {availableFriend}
