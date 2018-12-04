@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import moment from 'moment'
+import "./Events.css"
 
 export default class Events extends Component{
 
@@ -17,14 +18,36 @@ export default class Events extends Component{
       </span>
     }
   }
+  createClass=(num,event, index)=>{
+    let today = new moment().toJSON()
+    if(num === 1){
+      if(event.timestamp  > today){
+        return "has-text-centered has-text-primary"
+      } else if(event.timestamp < today){
+        return "has-text-centered has-text-gray-light"
+      }
+    } else if(num === 2){
+      if(event.timestamp > today){
+        return "is-size-3 has-text-centered has-text-primary"
+      } else if(event.timestamp < today){
+        return "is-size-3 has-text-centered has-text-gray-light"
+      }
+    } else if(num === 3){
+      if(index === 0){
+        return "next-event"
+      } else{
+        return
+      }
+    }
+  }
 
   render(){
     let userId = parseInt(sessionStorage.getItem("id"))
     return(
       <React.Fragment>
       {
-        this.props.events.map(event => {
-          return <div className="box" key={event.id} id={event.id}>
+        this.props.events.map((event, index) => {
+          return <div className="box" key={event.id} id={this.createClass(3, event, index)}>
             <article className="media">
               <figure className="media-left">
                 <p className="image is-64x64">
@@ -39,10 +62,11 @@ export default class Events extends Component{
               </div>
                 <article className="media">
                   <figure className="media-left">
-                    <p className="has-text-centered has-text-primary">
-                    <strong className="has-text-centered has-text-primary">{moment(`${event.timestamp}`).format("MMMM")} </strong>
+                    <p className="has-text-centered">
+                    <strong className={this.createClass(1,event)}>
+                    {moment(`${event.timestamp}`).format("MMMM")} </strong>
                     <br />
-                    <strong className="is-size-3 has-text-centered has-text-primary">{moment(`${event.timestamp}`).format("D")}</strong>
+                    <strong className={this.createClass(2, event)}>{moment(`${event.timestamp}`).format("D")}</strong>
                     </p>
                   </figure>
                   <div className="media-content">

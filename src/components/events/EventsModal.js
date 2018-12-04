@@ -27,7 +27,12 @@ export default class EventsModal extends Component{
       return canSave;
     }
     if (canSave) {
-      let newEvent = {userId: userId, name: this.state.name, location: this.state.location, date: this.state.date, time: this.state.time}
+      let newEvent = {
+        userId: userId,
+        name: this.state.name,
+        location: this.state.location,
+        timestamp: `${this.state.date}T${this.state.time}:00.000Z`
+      }
       APIManager.saveItem("events", newEvent)
       .then(() => {
         this.resetState();
@@ -36,8 +41,6 @@ export default class EventsModal extends Component{
       })
     }
   }
-
-
 
   render(){
     return(

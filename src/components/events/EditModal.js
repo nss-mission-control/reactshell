@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import APIManager from "../../modules/APIManager";
-import moment from 'moment'
 
 export default class EventsModal extends Component{
   state = {
@@ -8,6 +7,15 @@ export default class EventsModal extends Component{
     location: "",
     time: "",
     date: ""
+  }
+
+  componentDidMount=()=>{
+    this.setState({
+      name: this.props.event.name,
+      location: this.props.event.location,
+      time: this.props.event.time,
+      date: this.props.event.date
+    })
   }
 
   resetState = () => {
@@ -21,19 +29,15 @@ export default class EventsModal extends Component{
     });
   }
 
-  //TODO: Need to update the format in which date and time is saving in the post
-
   saveEvent = () => {
     let userId = parseInt(sessionStorage.getItem("id"));
     let editEvent = {
       name: this.state.name,
-      timestamp: moment(this.state.date).toJSON(),
-      timestamp2: moment(this.state.time).format("kk:mm"),
-      date: this.state.date,
+      timestamp:`${this.state.date}T${this.state.time}:00.000Z`,
       location: this.state.location,
-      time: this.state.time,
       userId: userId
     }
+
     if (editEvent.name === "") {
       editEvent.name = this.props.event.name;
     }
@@ -46,13 +50,12 @@ export default class EventsModal extends Component{
     if (editEvent.time === "") {
       editEvent.time = this.props.event.time;
     }
-    console.log(editEvent)
-    // APIManager.updateItem("events", this.props.event.id, editEvent)
-    // .then(() => {
-    //   this.resetState();
-    //   this.props.closeModal();
-    //   this.props.refresh();
-    // })
+    APIManager.updateItem("events", this.props.event.id, editEvent)
+    .then(() => {
+      this.resetState();
+      this.props.closeModal();
+      this.props.refresh();
+    })
     }
 
   render(){
@@ -61,7 +64,7 @@ export default class EventsModal extends Component{
         <div className="modal-background"></div>
         <div className="modal-card">
           <div className="modal-card-head">
-            <div className="modal-card-title">Add New Events</div>
+            <div className="modal-card-title">Edit Your Event</div>
           </div>
           <div className="modal-card-body">
             <div className="field">
