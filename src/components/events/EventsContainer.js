@@ -4,11 +4,8 @@ import Events from './Events'
 import EventsModal from './EventsModal'
 import EditModal from "./EditModal";
 import APIManager from "../../modules/APIManager";
-import moment from 'moment'
 
 export default class EventsContainer extends Component{
-  //TODO: Allow them to add new event
-
   state={
     editEvent: false,
     addEvent: false,

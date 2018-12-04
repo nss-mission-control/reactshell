@@ -195,119 +195,104 @@
     {
       "id": 2,
       "name": "Fancy Party",
-      "date": "2014-09-09",
+      "timestamp": "2014-09-09T15:02:52.339Z",
       "location": "My House",
-      "time": "03:02",
       "userId": 2
     },
     {
       "name": "Soccer Practice Today",
-      "date": "2018-11-02",
-      "time": "22:11",
+      "timestamp": "2018-11-02T22:11:52.339Z",
       "location": "The Field",
       "userId": 2,
       "id": 3
     },
     {
       "name": "Sleep",
-      "date": "2018-11-15",
-      "time": "04:23",
+      "timestamp": "2018-11-15T04:23:52.339Z",
       "location": "My Bed",
       "userId": 3,
       "id": 4
     },
     {
       "name": "Class",
-      "date": "2018-11-12",
-      "time": "09:05",
+      "timestamp": "2018-11-12T09:05:52.339Z",
       "location": "NSS",
       "userId": 1,
       "id": 7
     },
     {
       "name": "First day of school",
-      "date": "2018-10-01",
-      "time": "01:02",
+      "timestamp": "2018-10-01T01:02:52.339Z",
       "location": "NSS",
       "userId": 2,
       "id": 9
     },
     {
       "name": "The Day I Was Born",
-      "date": "1989-05-15",
-      "time": "12:12",
+      "timestamp": "1989-05-15T12:12:52.339Z",
       "location": "Hospital",
       "userId": 2,
       "id": 10
     },
     {
       "name": "Coffee with Jim",
-      "date": "2018-11-13",
-      "time": "15:00",
+      "timestamp": "2018-11-13T15:00:52.339Z",
       "location": "Starbucks",
       "userId": 1,
       "id": 11
     },
     {
       "name": "Lunch with Jill",
-      "date": "2018-11-15",
-      "time": "05:23",
+      "timestamp": "2018-11-15T17:23:52.339Z",
       "location": "Pizza Hut",
       "userId": 3,
       "id": 12
     },
     {
       "name": "Jase's Party",
-      "date": "2018-11-20",
-      "time": "10:10",
+      "timestamp": "2018-11-20T22:10:52.339Z",
       "location": "The Moon",
       "userId": 2,
       "id": 13
     },
     {
       "name": "Brendan's House Warming",
-      "date": "2018-11-17",
-      "time": "20:16",
+      "timestamp": "2018-11-17T20:16:52.339Z",
       "location": "Nashville, TN",
       "userId": 4,
       "id": 14
     },
     {
       "name": "Dance Class",
-      "date": "2018-11-14",
-      "time": "11:11",
+      "timestamp": "2018-11-14T11:11:52.339Z",
       "location": "Roots",
       "userId": 4,
       "id": 15
     },
     {
       "name": "Spelling Bee",
-      "date": "2011-11-11",
-      "time": "11:11",
+      "timestamp": "2018-11-11T11:11:52.339Z",
       "location": "Highschool",
       "userId": 3,
       "id": 16
     },
     {
       "name": "Lunch with Mike",
-      "date": "2018-11-12",
-      "time": "11:11",
+      "timestamp": "2018-11-12T11:11:52.339Z",
       "location": "South",
       "userId": 2,
       "id": 17
     },
     {
       "name": "Start NSS",
-      "date": "2018-10-01",
-      "time": "09:00",
+      "timestamp": "2018-10-01T09:00:52.339Z",
       "location": "Nashville Software School",
       "userId": 4,
       "id": 19
     },
     {
       "name": "Presentation of Mission Control Test",
-      "date": "2018-11-15",
-      "time": "09:00",
+      "timestamp": "2018-11-15T09:00:52.339Z",
       "location": "Nashville Software School",
       "userId": 4,
       "id": 20

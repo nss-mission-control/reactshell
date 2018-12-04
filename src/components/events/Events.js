@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import moment from 'moment'
 
 export default class Events extends Component{
-  //TODO: update date formatting
   addEditCapability=(event)=>{
     if(event.user.id === this.props.currentUserId){
       return <span className="icon level-item" onClick={()=> this.props.clickEvent(event)}>
@@ -27,7 +26,6 @@ export default class Events extends Component{
     if (this.props.events.length > 1) {
       this.props.events.sort(function (a, b) {
         // return (b.event.id) - (a.event.id)
-        console.log("b.date", new Date(b.date), "a.date", new Date(a.date))
         return new Date(b.date) - new Date(a.date);
       });
     }
@@ -51,16 +49,16 @@ export default class Events extends Component{
                 <article className="media">
                   <figure className="media-left">
                     <p className="has-text-centered has-text-primary">
-                    <strong>{moment(`${event.timestamp}`).format("MMMM")} </strong>
+                    <strong className="has-text-centered has-text-primary">{moment(`${event.timestamp}`).format("MMMM")} </strong>
                     <br />
-                    <strong className="is-size-3">{moment(`${event.timestamp}`).format("D")}</strong>
+                    <strong className="is-size-3 has-text-centered has-text-primary">{moment(`${event.timestamp}`).format("D")}</strong>
                     </p>
                   </figure>
                   <div className="media-content">
                     <div className="content">
                       <p className="is-size-4"><strong>{event.name}</strong></p>
                       <p>{event.location}</p>
-                      <p>{moment(`${event.time}`).format("HH mm A")}</p>
+                      <p>{moment(`${event.timestamp}`).format("hh:mm A")}</p>
                     </div>
                   </div>
                 </article>
