@@ -1,5 +1,5 @@
 
-import React, { Component, PureComponent } from 'react'
+import React, { PureComponent } from 'react'
 import { Droppable } from 'react-beautiful-dnd'
 import Task from './Tasks'
 import styled from 'styled-components'
