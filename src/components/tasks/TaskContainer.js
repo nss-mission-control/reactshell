@@ -4,7 +4,6 @@ import Tasks from './Tasks'
 export default class TaskContainer extends Component {
 
   taskSorting = () => {
-    console.log(this.props.tasks)
     return (
       <section className="container">
 
@@ -12,12 +11,10 @@ export default class TaskContainer extends Component {
 
           <div id="Upcoming" className="column   ">
             <div onDragOver={(e) => e.preventDefault()}
-              onDrop={(e) => { console.log(e.target) }} className="has-background-link">
+              className="has-background-link">
               {this.props.tasks.map(singleTask => {
-                console.log(singleTask)
                 if (singleTask.columnId === 1) {
                   return <Tasks task={singleTask} key={singleTask.id} />
-
                 }
               })}
             </div>

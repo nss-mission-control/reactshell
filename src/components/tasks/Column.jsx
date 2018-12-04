@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { Droppable } from 'react-beautiful-dnd'
 import Task from './Tasks'
 import styled from 'styled-components'
-import APIManager from '../../modules/APIManager'
+// import APIManager from '../../modules/APIManager'
 import './tasks.css'
 
 

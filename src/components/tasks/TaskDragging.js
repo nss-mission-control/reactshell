@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Tasks from './Tasks'
+// import Tasks from './Tasks'
 import { DragDropContext } from 'react-beautiful-dnd'
 import APIManager from '../../modules/APIManager'
 import Column from './Column'
@@ -43,7 +43,6 @@ export default class TaskDragging extends Component {
           .then(data => {
             stateSetter.tasks = data
             stateSetter.taskLoaded = true;
-            console.log(stateSetter)
             this.setState(stateSetter)
           })
   }
@@ -178,11 +177,10 @@ export default class TaskDragging extends Component {
   }
 
   editTaskSave = (evt) => {
-    console.log(evt.target.id)
     let taskIdString = evt.target.id
     let taskIdStringArray = taskIdString.split('-')
     let taskId = Number(taskIdStringArray[1])
-    let columnId = Number(taskIdStringArray[2])
+    // let columnId = Number(taskIdStringArray[2])
     APIManager.updateItem('tasks', taskId, {task: this.state.editedTaskValue})
     .then(() => {return APIManager.getAllCategory("tasks")})
     .then((data) => {
@@ -198,7 +196,6 @@ export default class TaskDragging extends Component {
   //determins which edit button was clicked
   editButtonClick = (evt) => {
     //gets the id
-    console.log(evt.target.id)
     let taskIdString = evt.target.id
     let taskIdStringArray = taskIdString.split('-')
     let taskId = Number(taskIdStringArray[1])
@@ -255,10 +252,10 @@ export default class TaskDragging extends Component {
 
 
     //new task form
-    let addTaskForm = ""
-    if (this.state.timeForForm === true) {
-      addTaskForm = (<div><input id="formFieldContent" type="text" onChange={this.handleFieldChange} /> <button onClick={this.newTaskSave}>Save</button></div>)
-    }
+    // let addTaskForm = ""
+    // if (this.state.timeForForm === true) {
+    //   let addTaskForm = (<div><input id="formFieldContent" type="text" onChange={this.handleFieldChange} /> <button onClick={this.newTaskSave}>Save</button></div>)
+    // }
 
 
     return (

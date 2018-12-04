@@ -3,9 +3,9 @@ import APIManager from "../../modules/APIManager"
 import { Link } from "react-router-dom"
 
 // these objects are used for inline style below
-const hiddenStyle = {
-  display: "none"
-}
+// const hiddenStyle = {
+//   display: "none"
+// }
 
 const heroMargin = {
   marginTop: "-57px",
