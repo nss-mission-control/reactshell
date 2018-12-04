@@ -38,6 +38,7 @@ export default class EventsModal extends Component{
         this.resetState();
         this.props.closeModal();
         this.props.refresh();
+        this.props.refreshEvents()
       })
     }
   }

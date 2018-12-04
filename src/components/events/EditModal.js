@@ -37,7 +37,6 @@ export default class EventsModal extends Component{
       location: this.state.location,
       userId: userId
     }
-
     if (editEvent.name === "") {
       editEvent.name = this.props.event.name;
     }
@@ -52,9 +51,10 @@ export default class EventsModal extends Component{
     }
     APIManager.updateItem("events", this.props.event.id, editEvent)
     .then(() => {
-      this.resetState();
-      this.props.closeModal();
-      this.props.refresh();
+      this.resetState()
+      this.props.refresh()
+      this.props.closeModal()
+      this.props.refreshEvents()
     })
     }
 

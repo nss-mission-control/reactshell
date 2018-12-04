@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import bulmaCalendar from '../../../node_modules/bulma-calendar/dist/js/bulma-calendar.js'
 import '../../../node_modules/bulma-calendar/dist/css/bulma-calendar.min.css'
+import "./Events.css"
 
 export default class EventsCalendar extends Component{
 

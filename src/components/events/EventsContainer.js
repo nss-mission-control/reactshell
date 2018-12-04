@@ -12,43 +12,52 @@ export default class EventsContainer extends Component{
     addEvent: false,
     allEvents: false,
     dateEvents: false,
+    events: [],
     filteredEvents: [],
     dateFilteredEvents: [],
     sortedEvents: []
   }
   componentDidMount=()=>{
-    let updatedEvents = []
-    let today = new moment().toJSON()
-    let myEvents = this.props.events
-    .filter(event => event.userId === this.props.currentUser.id)
-    let previousEvents = myEvents.filter(event => event.timestamp < today)
-    previousEvents.sort(function(a,b){
-      return new Date(b.timestamp) - new Date(a.timestamp)
-    })
-    let upcomingEvents = myEvents.filter(event => event.timestamp > today)
-    upcomingEvents.sort(function(a,b){
-      return new Date(a.timestamp) - new Date(b.timestamp)
-    })
-    upcomingEvents.map(event => updatedEvents.push(event))
-    previousEvents.map(event => updatedEvents.push(event))
-    this.setState({
-      filteredEvents: updatedEvents
-    })
-    if (this.props.events.length > 1) {
+    this.refreshEvents()
+  }
+
+  refreshEvents=()=>{
+    APIManager.getAllCategory("events/?_expand=user").then((data)=> this.setState({
+      events: data
+    })).then(()=>{
       let updatedEvents = []
       let today = new moment().toJSON()
-      let previousEvents = this.props.events.filter(event => event.timestamp < today)
+      let myEvents = this.state.events
+      .filter(event => event.userId === this.props.currentUser.id)
+      let previousEvents = myEvents.filter(event => event.timestamp < today)
       previousEvents.sort(function(a,b){
-        return new Date(b.timestamp) - new Date (a.timestamp)
+        return new Date(b.timestamp) - new Date(a.timestamp)
       })
-      let upcomingEvents = this.props.events.filter(event => event.timestamp > today)
+      let upcomingEvents = myEvents.filter(event => event.timestamp > today)
       upcomingEvents.sort(function(a,b){
-        return new Date(a.timestamp) - new Date (b.timestamp)
+        return new Date(a.timestamp) - new Date(b.timestamp)
       })
       upcomingEvents.map(event => updatedEvents.push(event))
       previousEvents.map(event => updatedEvents.push(event))
-      this.setState({sortedEvents: updatedEvents})
-  }
+      this.setState({
+        filteredEvents: updatedEvents
+      })
+      if (this.state.events.length > 1) {
+        let updatedEvents = []
+        let today = new moment().toJSON()
+        let previousEvents = this.state.events.filter(event => event.timestamp < today)
+        previousEvents.sort(function(a,b){
+          return new Date(b.timestamp) - new Date (a.timestamp)
+        })
+        let upcomingEvents = this.state.events.filter(event => event.timestamp > today)
+        upcomingEvents.sort(function(a,b){
+          return new Date(a.timestamp) - new Date (b.timestamp)
+        })
+        upcomingEvents.map(event => updatedEvents.push(event))
+        previousEvents.map(event => updatedEvents.push(event))
+        this.setState({sortedEvents: updatedEvents})
+    }
+    })
   }
 
   showAllEvents=()=>{
@@ -116,6 +125,7 @@ export default class EventsContainer extends Component{
 
   addEditClick = (event) => {
     let updatedEvent = {
+      id: event.id,
       location: event.location,
       name: event.name,
       date: moment(event.timestamp).format("YYYY-MM-DD"),
@@ -126,7 +136,10 @@ export default class EventsContainer extends Component{
 
   deleteEvent = (event) => {
     APIManager.deleteItem("events", event)
-    .then(() => this.props.refresh())
+    .then(() => {
+      this.props.refresh()
+      this.refreshEvents()
+    })
   }
 
 
@@ -135,18 +148,18 @@ export default class EventsContainer extends Component{
     let editEvent = "";
     let displayEvents =""
     if(this.state.editEvent) {
-      editEvent = <EditModal closeModal={this.closeModal} refresh={this.props.refresh} event={this.state.event}/>
+      editEvent = <EditModal closeModal={this.closeModal} refresh={this.props.refresh} event={this.state.event} refreshEvents={this.refreshEvents}/>
     }
     if(this.state.addEvent){
-      addEvent = <EventsModal closeModal={this.closeModal} date={this.state.dateSelected} refresh={this.props.refresh}/>
+      addEvent = <EventsModal closeModal={this.closeModal} date={this.state.dateSelected} refresh={this.props.refresh} refreshEvents={this.refreshEvents}/>
     }
     if(this.state.allEvents === true){
-      displayEvents = <Events events={this.state.sortedEvents} clickEvent={this.addEditClick} delete={this.deleteEvent} currentUserId={this.props.currentUser.id}/>
+      displayEvents = <Events events={this.state.sortedEvents} clickEvent={this.addEditClick} delete={this.deleteEvent} currentUserId={this.props.currentUser.id} refreshEvents={this.refreshEvents}/>
     } else if(this.state.allEvents === false){
-      displayEvents = <Events events={this.state.filteredEvents} clickEvent={this.addEditClick} delete={this.deleteEvent} currentUserId={this.props.currentUser.id} />
+      displayEvents = <Events events={this.state.filteredEvents} clickEvent={this.addEditClick} delete={this.deleteEvent} currentUserId={this.props.currentUser.id} refreshEvents={this.refreshEvents}/>
     }
     if(this.state.dateEvents === true){
-      displayEvents = <Events events={this.state.dateFilteredEvents} clickEvent={this.addEditClick} delete={this.deleteEvent} currentUserId={this.props.currentUser.id} />
+      displayEvents = <Events events={this.state.dateFilteredEvents} clickEvent={this.addEditClick} delete={this.deleteEvent} currentUserId={this.props.currentUser.id} refreshEvents={this.refreshEvents}/>
     }
     return(
       <React.Fragment>
