@@ -665,11 +665,6 @@
     },
     {
       "request_userId": 4,
-      "userId": 6,
-      "id": 9
-    },
-    {
-      "request_userId": 4,
       "userId": 8,
       "id": 10
     },
@@ -687,6 +682,11 @@
       "request_userId": 4,
       "userId": 3,
       "id": 13
+    },
+    {
+      "request_userId": 4,
+      "userId": 1,
+      "id": 14
     }
   ],
   "columns": [
@@ -736,7 +736,6 @@
         6,
         3,
         1,
-        5,
         11,
         9
       ]
