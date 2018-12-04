@@ -57,6 +57,7 @@
   overflow: scroll;
   width: 80%;
   height: 67%;
+  overflow-x: hidden;
 }
 .bottom {
   position: fixed;
@@ -65,9 +66,14 @@
   width: 80%;
   bottom: 0px;
   height: 22%;
+  overflow: hidden;
 }
 .addMessageTitle {
   text-align: center;
   font-weight: bold;
   padding-bottom: 5px;
+}
+.addToFollowingBtn {
+  margin-left: 3%;
+  border-radius: 10px !important;
 }

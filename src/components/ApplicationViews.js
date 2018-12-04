@@ -5,7 +5,7 @@ import LogIn from "./login/LogIn"
 import SignUp from "./login/SignUp"
 import TaskDragging from "./tasks/TaskDragging"
 import Friends from "./friends/Friends"
-import Events from "./events/Events"
+import EventsContainer from "./events/EventsContainer"
 import NewsContainer from "./news/NewsContainer"
 
 export default class ApplicationViews extends Component {
@@ -18,7 +18,7 @@ export default class ApplicationViews extends Component {
       <React.Fragment>
         <Route exact path="/" render={(props) => {
           if (this.isAuthenticated()) {
-            return <Messages messages={this.props.data.messages} refresh={this.props.refresh} />
+            return <Messages messages={this.props.data.messages} data={this.props.data} refresh={this.props.refresh} />
           } else {
             return <LogIn {...props} activeUser={this.props.activeUser} />
           }
@@ -32,7 +32,7 @@ export default class ApplicationViews extends Component {
         }} />
         <Route exact path="/events" render={(props) => {
           if (this.isAuthenticated()) {
-            return <Events />
+            return <EventsContainer events={this.props.data.events} refresh={this.props.refresh}/>
           } else {
             return <LogIn {...props} activeUser={this.props.activeUser} />
           }
