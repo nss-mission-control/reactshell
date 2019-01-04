@@ -107,6 +107,15 @@
       "email": "Dude@Dude",
       "profilePic": "images/avatar-placeholder.png",
       "id": 12
+    },
+    {
+      "firstName": "Cohort",
+      "lastName": "28",
+      "username": "c28isthebest",
+      "password": "1234",
+      "email": "cohort@nss.com",
+      "profilePic": "images/avatar-placeholder.png",
+      "id": 13
     }
   ],
   "messages": [
@@ -318,7 +327,7 @@
       "task": "Homework",
       "complete": true,
       "dueDate": "2018-11-12",
-      "userId": 2,
+      "userId": 1,
       "id": 1,
       "columnId": 1
     },
@@ -326,295 +335,24 @@
       "task": "Finish MVP",
       "complete": true,
       "dueDate": "2018-11-11",
-      "userId": 4,
+      "userId": 1,
       "id": 2,
-      "columnId": 1
+      "columnId": 2
     },
     {
       "task": "Plan project",
       "complete": true,
       "dueDate": "2018-11-09",
-      "userId": 2,
+      "userId": 1,
       "id": 3,
-      "columnId": 1
-    },
-    {
-      "task": "Take around the trash",
-      "complete": true,
-      "dueDate": "2018-11-29",
-      "userId": 4,
-      "id": 5,
-      "columnId": 1
-    },
-    {
-      "task": "Take out the trash",
-      "complete": true,
-      "dueDate": "2018-11-29",
-      "userId": 4,
-      "id": 6,
-      "columnId": 1
-    },
-    {
-      "task": "Balance checking account",
-      "complete": false,
-      "dueDate": "2018-11-06",
-      "userId": 2,
-      "id": 7,
-      "columnId": 1
-    },
-    {
-      "task": "Buy milk",
-      "complete": false,
-      "dueDate": "2018-11-02",
-      "userId": 2,
-      "id": 8,
-      "columnId": 1
-    },
-    {
-      "task": "Do homework",
-      "complete": false,
-      "dueDate": "2018-11-17",
-      "userId": 2,
-      "id": 9,
       "columnId": 3
     },
     {
-      "task": "Check all the email",
-      "complete": false,
-      "dueDate": "2018-11-01",
-      "userId": 4,
-      "id": 10,
-      "columnId": 3
-    },
-    {
-      "task": "Check email",
-      "complete": false,
-      "dueDate": "2018-11-01",
-      "userId": 4,
-      "id": 11,
-      "columnId": 3
-    },
-    {
-      "task": "I fixed all of the issuez with the task list!",
-      "complete": true,
-      "dueDate": "2018-10-11",
-      "userId": 3,
-      "id": 12,
-      "columnId": 3
-    },
-    {
-      "task": "Call mom",
-      "complete": false,
-      "dueDate": "2018-11-14",
-      "userId": 2,
-      "id": 13,
-      "columnId": 1
-    },
-    {
-      "task": "Videotape Santa",
-      "complete": false,
-      "dueDate": "2018-12-25",
-      "userId": 3,
-      "id": 15,
-      "columnId": 1
-    },
-    {
-      "task": "Tweet at Elon Musk and wait for response",
-      "complete": true,
-      "dueDate": "2018-11-06",
-      "userId": 3,
-      "id": 17,
-      "columnId": 2
-    },
-    {
-      "task": "Test new app",
-      "complete": false,
-      "dueDate": "2018-11-20",
-      "userId": 1,
-      "id": 18,
-      "columnId": 2
-    },
-    {
-      "task": "sdf",
-      "userId": 1,
+      "task": "Present ReactShell",
+      "userId": 13,
       "columnId": 1,
-      "id": 40
-    },
-    {
-      "task": "sdf",
-      "userId": 1,
-      "columnId": 1,
-      "id": 41
-    },
-    {
-      "task": "sdfsdf",
-      "userId": 1,
-      "columnId": 1,
-      "id": 42
-    },
-    {
-      "task": "asdf",
-      "userId": 1,
-      "columnId": 1,
-      "id": 43
-    },
-    {
-      "task": "sdfsdf",
-      "userId": 1,
-      "columnId": 1,
-      "id": 44
-    },
-    {
-      "task": "will it work",
-      "userId": 1,
-      "columnId": 1,
-      "id": 47
-    },
-    {
-      "task": "hafhafh",
-      "userId": 1,
-      "columnId": 1,
-      "id": 48
-    },
-    {
-      "task": "werwe",
-      "userId": 1,
-      "columnId": 1,
-      "id": 50
-    },
-    {
-      "task": "JaseTheAce",
-      "userId": 1,
-      "columnId": 1,
-      "id": 54
-    },
-    {
-      "task": "testing",
-      "userId": 1,
-      "columnId": 1,
-      "id": 55
-    },
-    {
-      "task": "ghhg",
-      "userId": 1,
-      "columnId": 1,
-      "id": 57
-    },
-    {
-      "task": "Test if add still works",
-      "userId": 1,
-      "columnId": 1,
-      "id": 59
-    },
-    {
-      "task": "Here is another test",
-      "userId": 1,
-      "columnId": 1,
-      "id": 61
-    },
-    {
-      "task": "Here we go again",
-      "userId": 1,
-      "columnId": 1,
-      "id": 62
-    },
-    {
-      "task": "Will this one work",
-      "userId": 1,
-      "columnId": 2,
-      "id": 63
-    },
-    {
-      "task": "Jase",
-      "userId": 1,
-      "columnId": 1,
-      "id": 66
-    },
-    {
-      "task": "Shift",
-      "userId": 1,
-      "columnId": 1,
-      "id": 67
-    },
-    {
-      "task": "Shift",
-      "userId": 1,
-      "columnId": 1,
-      "id": 68
-    },
-    {
-      "task": "WHAT",
-      "userId": 1,
-      "columnId": 1,
-      "id": 69
-    },
-    {
-      "task": "Yep",
-      "userId": 1,
-      "columnId": 1,
-      "id": 71
-    },
-    {
-      "task": "Fix",
-      "userId": 1,
-      "columnId": 2,
-      "id": 72
-    },
-    {
-      "task": "Testerster",
-      "userId": 2,
-      "columnId": 1,
-      "id": 74
-    },
-    {
-      "task": "Get some sleep",
-      "userId": 1,
-      "columnId": 3,
-      "id": 75
-    },
-    {
-      "task": "Code Everything",
-      "userId": 1,
-      "columnId": 3,
-      "id": 76
-    },
-    {
-      "task": "Fight the fight",
-      "userId": 1,
-      "columnId": 3,
-      "id": 77
-    },
-    {
-      "task": "Test",
-      "userId": 1,
-      "columnId": 1,
-      "id": 78
-    },
-    {
-      "userId": 1,
-      "columnId": 2,
-      "id": 80
-    },
-    {
-      "task": "add",
-      "userId": 1,
-      "columnId": 1,
-      "dueDate": "2018-12-13",
-      "id": 81
-    },
-    {
-      "task": "asd",
-      "userId": 1,
-      "columnId": 1,
-      "dueDate": "2018-12-13",
-      "id": 82
-    },
-    {
-      "task": "Fight the good fight",
-      "userId": 1,
-      "columnId": 2,
-      "dueDate": "2018-12-13",
-      "id": 83
+      "dueDate": "2018-12-04",
+      "id": 4
     }
   ],
   "friends": [
@@ -649,29 +387,29 @@
       "id": 8
     },
     {
-      "request_userId": 4,
-      "userId": 8,
+      "request_userId": 13,
+      "userId": 7,
+      "id": 9
+    },
+    {
+      "request_userId": 13,
+      "userId": 5,
       "id": 10
     },
     {
-      "request_userId": 4,
-      "userId": 9,
+      "request_userId": 13,
+      "userId": 8,
       "id": 11
     },
     {
-      "request_userId": 4,
+      "request_userId": 13,
       "userId": 2,
       "id": 12
     },
     {
-      "request_userId": 4,
-      "userId": 3,
+      "request_userId": 13,
+      "userId": 4,
       "id": 13
-    },
-    {
-      "request_userId": 4,
-      "userId": 1,
-      "id": 14
     }
   ],
   "columns": [
@@ -679,50 +417,22 @@
       "name": "Upcoming",
       "id": 1,
       "columnTasks": [
-        66,
-        61,
-        81,
-        2,
-        74
+        1
       ]
     },
     {
       "name": "InProgress",
       "id": 2,
       "columnTasks": [
-        12,
-        15,
-        83,
-        57,
-        76,
-        77,
-        75,
-        82,
-        62,
-        72,
-        80,
-        71,
-        48,
-        50,
-        47,
-        59,
-        13,
-        8,
-        63
+        4,
+        2
       ]
     },
     {
       "name": "Completed",
       "id": 3,
       "columnTasks": [
-        17,
-        78,
-        7,
-        6,
-        3,
-        1,
-        11,
-        9
+        3
       ]
     }
   ],

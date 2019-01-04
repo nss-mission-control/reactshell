@@ -1,4 +1,4 @@
-const URL = "http://localhost:8088/"
+const URL = "https://reactshell-database.herokuapp.com/"
 
  class APIManager{
   getAllCategory(category) {
